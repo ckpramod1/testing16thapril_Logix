@@ -440,7 +440,7 @@ div#logix_CPH_CalendarExtender1_container {
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="logix_CPH" runat="server">
     <div class="">
-        <div class="col-md-12"  class="maindiv">
+        <div class="col-md-12 maindiv" >
             <div class="widget box PB20" runat="server">
                 <div class="widget-header">
                     <div>

@@ -269,7 +269,7 @@ div#logix_CPH_div_iframe .widget-content {
 
     <!-- Breadcrumbs line End -->
        <div >
-        <div class="col-md-12"  class="maindiv"> 
+        <div class="col-md-12 maindiv" > 
     
      <div class="widget box" runat ="server" id="div_iframe">
      <div class="widget-header">

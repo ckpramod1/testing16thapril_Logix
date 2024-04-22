@@ -8,6 +8,8 @@ using System.Data;
 using System.Web.Services;
 using System.Globalization;
 using System.Web.UI.HtmlControls;
+using DataAccess.Accounts;
+using System.Runtime.Remoting;
 
 namespace logix.ForwardExports
 {
@@ -35,9 +37,54 @@ namespace logix.ForwardExports
         int custid;
         string booking = "", book_select = "";
           DataAccess.UserPermission obj_UP = new DataAccess.UserPermission();
+        DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+        DataAccess.ForwardingExports.BLDetails da_obj_FEblobj = new DataAccess.ForwardingExports.BLDetails();
+        DataAccess.Masters.MasterPort obj_MasterPort = new DataAccess.Masters.MasterPort();
+        DataAccess.ForwardingImports.JobInfo obj_da_FIjobinfo = new DataAccess.ForwardingImports.JobInfo();
+        DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+        DataAccess.Reportasp objRpt = new DataAccess.Reportasp();
+        DataAccess.UserPermission obj_da_User = new DataAccess.UserPermission();
+        DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
+        DataAccess.Masters.MasterPort da_obj_Port = new DataAccess.Masters.MasterPort();
+        DataAccess.Masters.MasterVessel da_obj_Vessel = new DataAccess.Masters.MasterVessel();
+        DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+        DataAccess.Marketing.Booking bookingobj = new DataAccess.Marketing.Booking();
+        DataAccess.ForwardingExports.BLDetails objbl = new DataAccess.ForwardingExports.BLDetails();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "dropdownButton();SpanTagMoveInputBottom();MuiTextField();", true);
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+                book.GetDataBase(Ccode);
+                obj_da_Log1.GetDataBase(Ccode);
+                obj_da_container.GetDataBase(Ccode);
+                obj_da_BLwojob.GetDataBase(Ccode);
+                da_obj_customerobj.GetDataBase(Ccode);
+                obj_da_Job.GetDataBase(Ccode);
+                obj_da_Invoice.GetDataBase(Ccode);
+                obj_UP.GetDataBase(Ccode);
+                da_obj_FEblobj.GetDataBase(Ccode);
+                obj_da_jobinfo.GetDataBase(Ccode);
+                obj_MasterPort.GetDataBase(Ccode);
+                obj_da_FIjobinfo.GetDataBase(Ccode);
+                obj_da_Log.GetDataBase(Ccode);
+                objRpt.GetDataBase(Ccode);
+                obj_da_User.GetDataBase(Ccode);
+                obj_da_Employee.GetDataBase(Ccode);
+                da_obj_Port.GetDataBase(Ccode);
+                da_obj_Vessel.GetDataBase(Ccode);
+                da_obj_Customer.GetDataBase(Ccode);
+                bookingobj.GetDataBase(Ccode);
+                obj_da_Log.GetDataBase(Ccode);
+                objbl.GetDataBase(Ccode);
+              
+
+            }
 
             ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_cancel);
 
@@ -273,6 +320,8 @@ namespace logix.ForwardExports
             List<string> list_result = new List<string>();
             DataTable dt = new DataTable();
             DataAccess.Masters.MasterPort obj_MasterPort = new DataAccess.Masters.MasterPort();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_MasterPort.GetDataBase(Ccode);
             //dt = obj_MasterPort.GetPortNameDetails(prefix.Trim());
             if (HttpContext.Current.Session["StrTranType"] != null)
             {
@@ -331,7 +380,7 @@ namespace logix.ForwardExports
         {
             Grd_Job.Visible = true;
             Grd_Vessel.Visible = false;
-            DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
             DataTable obj_dt = new DataTable();
             obj_dt = obj_da_jobinfo.GetJobNoList(int.Parse(Session["LoginBranchid"].ToString()), int.Parse(Session["LoginDivisionId"].ToString()));
             if (obj_dt.Rows.Count <= 0)
@@ -398,7 +447,7 @@ namespace logix.ForwardExports
         }
         public void getblno()
         {
-            DataAccess.ForwardingExports.BLDetails da_obj_FEblobj = new DataAccess.ForwardingExports.BLDetails();
+            //DataAccess.ForwardingExports.BLDetails da_obj_FEblobj = new DataAccess.ForwardingExports.BLDetails();
             DataTable dt_new;
             if (Grd_Job.Rows.Count > 0)
             {
@@ -465,7 +514,7 @@ namespace logix.ForwardExports
 
         private void fn_jobdetails(int jobno)
         {
-            DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
             DataTable obj_dt = new DataTable();
             obj_dt = obj_da_jobinfo.GetFEJobInfo(jobno, int.Parse(Session["LoginBranchid"].ToString()), int.Parse(Session["LoginDivisionId"].ToString()));
             if (obj_dt.Rows.Count > 0)
@@ -476,7 +525,7 @@ namespace logix.ForwardExports
                 txt_loadport.Text = obj_dt.Rows[0]["pol"].ToString();
                 txt_destport.Text = obj_dt.Rows[0]["pod"].ToString();
                 DataTable dtflag;
-                DataAccess.Masters.MasterPort obj_MasterPort = new DataAccess.Masters.MasterPort();
+                //DataAccess.Masters.MasterPort obj_MasterPort = new DataAccess.Masters.MasterPort();
                 dtflag = obj_MasterPort.SelPortName4typepadimg(txt_loadport.Text.ToUpper(), Session["StrTranType"].ToString());
                 flagimg.ImageUrl = "../LOGO/" + dtflag.Rows[0]["countrycode"] + ".svg";
 
@@ -610,7 +659,7 @@ namespace logix.ForwardExports
 
         private void fn_jobdetailsReuse(int jobno)
         {
-            DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
             DataTable obj_dt = new DataTable();
             obj_dt = obj_da_jobinfo.GetFEJobInfo(jobno, int.Parse(Session["LoginBranchid"].ToString()), int.Parse(Session["LoginDivisionId"].ToString()));
             if (obj_dt.Rows.Count > 0)
@@ -926,6 +975,8 @@ namespace logix.ForwardExports
             List<string> customername = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer da_obj_customerobj = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_customerobj.GetDataBase(Ccode);
             obj_dt = da_obj_customerobj.GetLikeCustomer4Carrier(prefix.Trim());
             customername = Utility.Fn_DatatableToList(obj_dt, "customername", "customerid");
             return customername;
@@ -937,6 +988,8 @@ namespace logix.ForwardExports
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Marketing.Booking bookingobj = new DataAccess.Marketing.Booking();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            bookingobj.GetDataBase(Ccode);
             obj_dt = bookingobj.GetBookingnosearch(prefix.Trim().ToUpper(), int.Parse(HttpContext.Current.Session["LoginBranchid"].ToString()), int.Parse(HttpContext.Current.Session["LoginDivisionId"].ToString()), HttpContext.Current.Session["StrTranType"].ToString());
 
             //if (job == "")
@@ -963,6 +1016,9 @@ namespace logix.ForwardExports
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer obj_da_customerobj = new DataAccess.Masters.MasterCustomer();
             DataAccess.Marketing.Quotation objQuotation = new DataAccess.Marketing.Quotation();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_da_customerobj.GetDataBase(Ccode);
+            objQuotation.GetDataBase(Ccode);
             obj_dt = obj_da_customerobj.GetLikeIndianCustomer(prefix.Trim());
             //cargo = logix.Utility.Fn_DatatableToList_Customer(obj_dt, "customername", "customerid");
             customer = Utility.Fn_DatatableToList(obj_dt, "customer", "customerid");
@@ -976,6 +1032,8 @@ namespace logix.ForwardExports
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterVessel da_obj_Vessel = new DataAccess.Masters.MasterVessel();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Vessel.GetDataBase(Ccode);
             obj_dt = da_obj_Vessel.GetLikeVessel(prefix.Trim().ToUpper());
             List_Result = Utility.Fn_DatatableToList(obj_dt, "vesselname", "vesselid");
             return List_Result;
@@ -986,6 +1044,8 @@ namespace logix.ForwardExports
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterPort da_obj_Port = new DataAccess.Masters.MasterPort();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Port.GetDataBase(Ccode);
             obj_dt = da_obj_Port.GetLikePort(prefix.Trim().ToUpper());
             List_Result = Utility.Fn_DatatableToList(obj_dt, "portname", "portid");
             return List_Result;
@@ -1007,6 +1067,8 @@ namespace logix.ForwardExports
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Customer.GetDataBase(Ccode);
             obj_dt = da_obj_Customer.GetLikeCustomer(prefix.Trim().ToUpper(), FType);
             List_Result = Utility.Fn_DatatableToList_Customer(obj_dt, "customer", "customerid");
             return List_Result;
@@ -1018,6 +1080,8 @@ namespace logix.ForwardExports
             List<string> customer = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer da_obj_customerobj = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_customerobj.GetDataBase(Ccode);
 
             strcustype = "L";
             // strcustype = "1";
@@ -1071,9 +1135,9 @@ namespace logix.ForwardExports
                     //DataTable obj_dt = new DataTable();
                     //obj_dt = (DataTable)Session["Container"];
 
-                    DataAccess.ForwardingImports.JobInfo obj_da_FIjobinfo = new DataAccess.ForwardingImports.JobInfo();
-                    DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
-                    DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+                    //DataAccess.ForwardingImports.JobInfo obj_da_FIjobinfo = new DataAccess.ForwardingImports.JobInfo();
+                    //DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+                    //DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
 
                     if (obj_da_FIjobinfo.CheckContainerNo(int.Parse(txt_job.Text), txt_container.Text, "FE", int.Parse(Session["LoginBranchid"].ToString()), int.Parse(Session["LoginDivisionId"].ToString())) != 1)
                     {
@@ -1166,9 +1230,9 @@ namespace logix.ForwardExports
                 if (txt_job.Text.Trim().Length > 0)
                 {
                     DataTable obj_dt = new DataTable();
-                    DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
-                    DataAccess.Accounts.Invoice obj_da_Invoice = new DataAccess.Accounts.Invoice();
-                    DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+                    //DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+                    //DataAccess.Accounts.Invoice obj_da_Invoice = new DataAccess.Accounts.Invoice();
+                    //DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
 
                     if (obj_da_Invoice.CheckClosedJobs("FE", int.Parse(txt_job.Text), int.Parse(Session["LoginBranchid"].ToString())) == 1)
                     {
@@ -1399,9 +1463,9 @@ namespace logix.ForwardExports
                     return;
                 }
                 //DataTable obj_dt = new DataTable();
-                DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
-                DataAccess.Accounts.Invoice obj_da_Invoice = new DataAccess.Accounts.Invoice();
-                DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+                //DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+                //DataAccess.Accounts.Invoice obj_da_Invoice = new DataAccess.Accounts.Invoice();
+                //DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
                 int intBooking;
               
                 blnMBL = false;
@@ -1447,7 +1511,7 @@ namespace logix.ForwardExports
                     txt_job.Text = obj_da_jobinfo.InsertJoboinfo(Convert.ToInt32(hid_Vesselid.Value.ToString()), Convert.ToInt32(hid_Loadportid.Value.ToString()), Convert.ToInt32(hid_Destportid.Value.ToString()), txt_em.Text.ToUpper(), txt_voyage.Text, DateTime.Parse(Utility.fn_ConvertDatetime(txt_etd.Text).ToString()), DateTime.Parse(Utility.fn_ConvertDatetime(txt_eta.Text).ToString()), DateTime.Parse(Utility.fn_ConvertDatetime(txt_emdate.Text).ToString()), int.Parse(hid_Shipdesportid.Value.ToString()), int.Parse(hid_Mloid.Value.ToString()), int.Parse(hid_Agentid.Value.ToString()), txt_mbl.Text.Trim().ToUpper(), int.Parse(ddl_jobtype.SelectedValue.ToString()), DateTime.Parse(Utility.fn_ConvertDatetime(txt_date.Text).ToString()), char.Parse(ddl_Contract.SelectedValue.ToString()), int.Parse(Session["LoginBranchid"].ToString()), DateTime.Parse(Utility.fn_ConvertDatetime(txt_Stuffedon.Text).ToString()), ddl_mblstatus.SelectedValue.ToString(), int.Parse(Session["LoginEmpId"].ToString()), txt_remark.Text.ToUpper(), int.Parse(Session["LoginDivisionId"].ToString()), Convert.ToDateTime(Utility.fn_ConvertDatetime(txtlbdate.Text))).ToString();
                     obj_da_jobinfo.updjobinfoprofit("FE", Convert.ToInt32(txt_job.Text), branchid, str_status, Convert.ToInt32(hdnCarrier.Value));
                     //obj_da_jobinfo.UpdateTaskEvent(txt_search.Text.ToString(), HttpContext.Current.Session["StrTranType"].ToString(), int.Parse(Session["LoginBranchid"].ToString()),Convert.ToInt32( Session["LoginEmpId"].ToString()),2);
-                    DataAccess.Reportasp objRpt = new DataAccess.Reportasp();
+                    //DataAccess.Reportasp objRpt = new DataAccess.Reportasp();
 
                     objRpt.InsOEeventdetailsTask(Convert.ToInt32(txt_job.Text), txt_search.Text.ToString(), "", "Job Updation",
                    Convert.ToDateTime(Utility.fn_ConvertDate(hid_date.Value.ToString())), Convert.ToInt32(Session["LoginEmpId"].ToString()), Convert.ToInt32(Session["LoginBranchid"]), Session["StrTranType"].ToString(),0,"",24);
@@ -1669,9 +1733,9 @@ namespace logix.ForwardExports
             Str_Content = Str_Content + "<tr><td align=left colspan=4>Carrier / Forwarder # : " + txt_mlo.Text + "</td></tr></table>";
             Str_Content = Str_Content + "<table BORDER=2 BORDERCOLOR=#336699 CELLPADDING=2 CELLSPACING=0 WIDTH=100% text=black><tr><td align=center>Container # </td><td align=center>Sizetype</td><td align=center>Seal #</td><td align=center>Pkgs</td><td align=center>Weight</td></tr><br>";
             DataTable obj_dt = new DataTable();
-            DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
-            DataAccess.UserPermission obj_da_User = new DataAccess.UserPermission();
-            DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
+            //DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.UserPermission obj_da_User = new DataAccess.UserPermission();
+            //DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
             obj_dt = obj_da_jobinfo.GetContainerDetails(int.Parse(txt_job.Text), txt_job.Text, int.Parse(Session["LoginBranchid"].ToString()), int.Parse(Session["LoginDivisionId"].ToString()));
             for (int i = 0; i <= obj_dt.Rows.Count - 1; i++)
             {
@@ -1706,9 +1770,9 @@ namespace logix.ForwardExports
                     DataTable obj_dt = new DataTable();
                     obj_dt = (DataTable)Session["Container"];
 
-                    DataAccess.ForwardingImports.JobInfo obj_da_FIjobinfo = new DataAccess.ForwardingImports.JobInfo();
-                    DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
-                    DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+                    //DataAccess.ForwardingImports.JobInfo obj_da_FIjobinfo = new DataAccess.ForwardingImports.JobInfo();
+                    //DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+                    //DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
 
                     if (obj_da_FIjobinfo.CheckContainerNo(int.Parse(txt_job.Text), Grd_container.Rows[grd.RowIndex].Cells[0].Text, "FE", int.Parse(Session["LoginBranchid"].ToString()), int.Parse(Session["LoginDivisionId"].ToString())) != 1)
                     {
@@ -1779,7 +1843,7 @@ namespace logix.ForwardExports
                 Session["str_sfs"] = "";
                 Session["str_sp"] = "";
 
-                DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+                //DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
                 if (txt_job.Text.Trim().Length > 0)
                 {
                    str_RptName = "FEexports.rpt";
@@ -1887,7 +1951,7 @@ namespace logix.ForwardExports
                 Grd_Job.Visible = false;
                 Grd_Vessel.Visible = true;
                 DataTable obj_dt = new DataTable();
-                DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+               // DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
                 // obj_dt = obj_da_jobinfo.GetVslfromSS4web();
                 obj_dt = obj_da_jobinfo.GetVslfromSS();
 
@@ -1921,7 +1985,7 @@ namespace logix.ForwardExports
             try
             {
                 Grd_container.PageIndex = e.NewPageIndex;
-                DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+               // DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
                 DataTable obj_dt = new DataTable();
 
                 obj_dt = obj_da_jobinfo.GetContainerDetails(int.Parse(txt_job.Text), txt_job.Text.ToString(), int.Parse(Session["LoginBranchid"].ToString()), int.Parse(Session["LoginDivisionId"].ToString()));
@@ -2008,7 +2072,7 @@ namespace logix.ForwardExports
             try
             {
                 DataTable obj_dt = new DataTable();
-                DataAccess.Masters.MasterPort da_obj_Port = new DataAccess.Masters.MasterPort();
+                //DataAccess.Masters.MasterPort da_obj_Port = new DataAccess.Masters.MasterPort();
                 int port = da_obj_Port.GetNPortid(txt_destport.Text.ToUpper());
                /* if (port != 0 && hid_Destportid.Value!="0")
                 {
@@ -2032,7 +2096,7 @@ namespace logix.ForwardExports
                 }
                 else
                 {
-                    DataAccess.Masters.MasterPort obj_MasterPort = new DataAccess.Masters.MasterPort();
+                    //DataAccess.Masters.MasterPort obj_MasterPort = new DataAccess.Masters.MasterPort();
                     obj_dt = obj_MasterPort.SelPortName4typepadimg(txt_destport.Text.ToUpper(), Session["StrTranType"].ToString());
                     podflag.ImageUrl = "../LOGO/" + obj_dt.Rows[0]["countrycode"] + ".svg";
                     txt_shptdest.Focus();
@@ -2051,7 +2115,7 @@ namespace logix.ForwardExports
             try
             {
                 DataTable obj_dt = new DataTable();
-                DataAccess.Masters.MasterVessel da_obj_Vessel = new DataAccess.Masters.MasterVessel();
+                //DataAccess.Masters.MasterVessel da_obj_Vessel = new DataAccess.Masters.MasterVessel();
                 int vesselid = da_obj_Vessel.GetVesselid(txt_vessel.Text.ToUpper());
 
                /* if (vesselid != 0 && hid_Vesselid.Value!="0")
@@ -2093,7 +2157,7 @@ namespace logix.ForwardExports
             try
             {
                 DataTable obj_dt = new DataTable();
-                DataAccess.Masters.MasterPort da_obj_Port = new DataAccess.Masters.MasterPort();
+               // DataAccess.Masters.MasterPort da_obj_Port = new DataAccess.Masters.MasterPort();
                 int port = da_obj_Port.GetNPortid(txt_loadport.Text.ToUpper());
                /* if (port != 0 && hid_Loadportid.Value!="0")
                 {
@@ -2117,7 +2181,7 @@ namespace logix.ForwardExports
                 }
                 else
                 {
-                    DataAccess.Masters.MasterPort obj_MasterPort = new DataAccess.Masters.MasterPort();
+                  //  DataAccess.Masters.MasterPort obj_MasterPort = new DataAccess.Masters.MasterPort();
                     obj_dt = obj_MasterPort.SelPortName4typepadimg(txt_loadport.Text.ToUpper(), Session["StrTranType"].ToString());
                     flagimg.ImageUrl = "../LOGO/" + obj_dt.Rows[0]["countrycode"] + ".svg";
                     txt_destport.Focus();
@@ -2137,7 +2201,7 @@ namespace logix.ForwardExports
             try
             {
                 DataTable obj_dt = new DataTable();
-                DataAccess.Masters.MasterPort da_obj_Port = new DataAccess.Masters.MasterPort();
+              //  DataAccess.Masters.MasterPort da_obj_Port = new DataAccess.Masters.MasterPort();
                 int port = da_obj_Port.GetNPortid(txt_shptdest.Text.ToUpper());
                 /*if (port != 0 && hid_Shipdesportid.Value!="0")
                 {
@@ -2163,7 +2227,7 @@ namespace logix.ForwardExports
                 }
                 else
                 {
-                    DataAccess.Masters.MasterPort obj_MasterPort = new DataAccess.Masters.MasterPort();
+                   // DataAccess.Masters.MasterPort obj_MasterPort = new DataAccess.Masters.MasterPort();
                     obj_dt = obj_MasterPort.SelPortName4typepadimg(txt_shptdest.Text.ToUpper(), Session["StrTranType"].ToString());
                     fdflag.ImageUrl = "../LOGO/" + obj_dt.Rows[0]["countrycode"] + ".svg";
                     txt_em.Focus();
@@ -2188,7 +2252,7 @@ namespace logix.ForwardExports
             try
             {
                 DataTable obj_dt = new DataTable();
-                DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+              //  DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
                 //int customerid = da_obj_Customer.GetCustomerid(txt_mlo.Text.ToUpper());//(txt_mlo.Text.ToUpper(), "L");
                 obj_dt = da_obj_Customer.GetexactCustomer(txt_mlo.Text.ToUpper(),"L");
                // if (customerid != 0)
@@ -2218,7 +2282,7 @@ namespace logix.ForwardExports
             try
             {
                 DataTable obj_dt = new DataTable();
-                DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+              //  DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
                 //int customerid = da_obj_Customer.GetCustomerid(txt_agent.Text.ToUpper());
                 //if (customerid != 0)
                 obj_dt = da_obj_Customer.GetexactCustomer(txt_agent.Text.ToUpper(), "P");
@@ -2381,7 +2445,7 @@ namespace logix.ForwardExports
 
         protected void get_Value()
         {
-            DataAccess.Marketing.Booking bookingobj = new DataAccess.Marketing.Booking();
+            //DataAccess.Marketing.Booking bookingobj = new DataAccess.Marketing.Booking();
             if (txt_job.Text == "")
             {
                 obj_dt = bookingobj.GetBookingnosearch(txt_search.Text, int.Parse(HttpContext.Current.Session["LoginBranchid"].ToString()), int.Parse(HttpContext.Current.Session["LoginDivisionId"].ToString()), HttpContext.Current.Session["StrTranType"].ToString());
@@ -2520,7 +2584,7 @@ namespace logix.ForwardExports
                     blnMBL = true;
                     return;
                 }
-                DataAccess.ForwardingExports.BLDetails objbl = new DataAccess.ForwardingExports.BLDetails();
+                //DataAccess.ForwardingExports.BLDetails objbl = new DataAccess.ForwardingExports.BLDetails();
                 DataTable dtbook = new DataTable();
                 dtbook = objbl.getsp_getbookingno(txt_mbl.Text.ToUpper(), Session["StrTranType"].ToString(), Convert.ToInt32(Session["LoginDivisionId"].ToString()));
                 if (dtbook.Rows.Count > 0)
@@ -2565,7 +2629,7 @@ namespace logix.ForwardExports
             try
             {
                 string[] carriertxt = txtCarrier.Text.Split(',');
-                DataAccess.Masters.MasterCustomer da_obj_customerobj = new DataAccess.Masters.MasterCustomer();
+                //DataAccess.Masters.MasterCustomer da_obj_customerobj = new DataAccess.Masters.MasterCustomer();
                 // obj_dt = da_obj_customerobj.GetLikeCustomer4Carrier(txtCarrier.Text);
 
                 //  int txtcarrierid = da_obj_customerobj.GetCustomerid(carriertxt[0].Trim().ToUpper());
@@ -2899,7 +2963,7 @@ namespace logix.ForwardExports
             
             GrdReuse.Visible = true;
             Grd_Job.Visible = false;
-            DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+         //   DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
             DataTable obj_dt = new DataTable();
             obj_dt = obj_da_jobinfo.GetJobNoList(int.Parse(Session["LoginBranchid"].ToString()), int.Parse(Session["LoginDivisionId"].ToString()));
             if (obj_dt.Rows.Count <= 0)
@@ -3075,7 +3139,7 @@ namespace logix.ForwardExports
         //muthu
         public void getbldetais()
         {
-            DataAccess.ForwardingExports.BLDetails da_obj_FEblobj = new DataAccess.ForwardingExports.BLDetails();
+           // DataAccess.ForwardingExports.BLDetails da_obj_FEblobj = new DataAccess.ForwardingExports.BLDetails();
             DataTable dt_new;
             if (txt_job.Text.ToString() != "")
             {
@@ -3193,7 +3257,7 @@ namespace logix.ForwardExports
             {
                 string typenew = "";
                 DataTable dtuser;
-                DataAccess.UserPermission obj_UP = new DataAccess.UserPermission();
+                //DataAccess.UserPermission obj_UP = new DataAccess.UserPermission();
                 int index = grd.SelectedRow.RowIndex;
                 string blno = grd.Rows[index].Cells[1].Text;
                 if(hid_type.Value=="N")
@@ -3258,7 +3322,7 @@ namespace logix.ForwardExports
 
         protected void txt_mbl_TextChanged(object sender, EventArgs e)
         {
-            DataAccess.ForwardingExports.BLDetails objbl = new DataAccess.ForwardingExports.BLDetails();
+            //DataAccess.ForwardingExports.BLDetails objbl = new DataAccess.ForwardingExports.BLDetails();
             DataTable dtbook = new DataTable();
             dtbook = objbl.getsp_getbookingno(txt_mbl.Text.ToUpper(), Session["StrTranType"].ToString(), Convert.ToInt32(Session["LoginDivisionId"].ToString()));
             if (dtbook.Rows.Count > 0)

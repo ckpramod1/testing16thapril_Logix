@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using DataAccess.Accounts;
+using logix.FI;
+using System.Runtime.Remoting;
 
 namespace logix.Maintenance
 {
@@ -25,6 +28,17 @@ namespace logix.Maintenance
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "GenerateLabelAfter();", true);
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+                Amendobj.GetDataBase(Ccode);
+                INVOICEobj.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+            
+            }
 
             ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_back);
 

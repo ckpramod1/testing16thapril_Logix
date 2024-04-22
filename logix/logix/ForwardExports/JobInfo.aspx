@@ -1627,6 +1627,7 @@
             <div class="widget box" runat="server" id="div_iframe">
 
                 <div class="widget-header">
+                    <div>
                     <div style="float: left; margin: 0px 0.5% 0px 0px;">
                         <h4 class="hide"><i class="icon-umbrella"></i>
                             <asp:Label ID="Label1" runat="server" Text="Job Info"></asp:Label></h4>
@@ -1643,74 +1644,77 @@
                     <div style="float: right; margin: 0px -0.5% 0px 0px;" class="log ico-log-sm">
                         <asp:LinkButton ID="logdetails" runat="server" ToolTip="Log" Style="text-decoration: none" OnClick="logdetails_Click"></asp:LinkButton>
                     </div>
+                     </div>
+
+                     <div class="FixedButtons">
+     <div class="left_btn">
+         <div class="btn ico-mbl-annexure">
+             <asp:Button ID="btn_mbl" runat="server" ToolTip="MBL Annexure" Text="MBL Annexure" TabIndex="24" OnClick="btn_mbl_Click" />
+         </div>
+         <div class="btn ico-proforma-sales-invoice">
+             <asp:Button ID="Proinvoic" runat="server" ToolTip="Proforma Sales Invoice" Text="Proforma Sales Invoice" TabIndex="25" OnClick="Proinvoic_Click" />
+         </div>
+         <div class="btn ico-proforma-purchase-invoice">
+             <asp:Button ID="procrednote" runat="server" ToolTip="Proforma Purchase Invoice" Text="Proforma Purchase Invoice" TabIndex="26" OnClick="procrednote_Click" />
+         </div>
+         <div class="btn ico-proforma-oscndn">
+             <asp:Button ID="Proosdncn" runat="server" ToolTip="Proforma OSSI/PI" Text="Proforma OSSI/PI" TabIndex="27" OnClick="Proosdncn_Click" />
+         </div>
+
+
+         <div class="btn ico-swap" id="Div1" runat="server">
+             <asp:Button ID="Btnnamendjob" runat="server" ToolTip="Change Job" TabIndex="41" OnClick="Btnamendjob_Click" />
+         </div>
+
+
+         <div class="btn ico-upload" style="display: none;">
+             <asp:Button ID="uploaddoc" runat="server" ToolTip="UPLoad Document" Text="UPLoad Document" OnClick="uploaddoc_Click" />
+         </div>
+
+
+         <div class="btn ico-mbl-annexure hide">
+             <asp:Button ID="btn_mothervessupd" runat="server" ToolTip="Vessel updates" Text="Vessel updates" TabIndex="24" OnClick="btn_mothervessupd_Click" />
+         </div>
+         <div class="btn ico-sailing">
+             <asp:Button ID="btn_Vessel" runat="server" ToolTip="Mother Vessel" Text="Mother Vessel" TabIndex="24" OnClick="btn_Vessel_Click" />
+         </div>
+         <div class="btn ico-reuse">
+             <asp:Button ID="btnbl" runat="server" ToolTip="Reuse" Text="Back to BL" TabIndex="28" OnClick="btnbl_Click" Visible="false" />
+         </div>
+         <div class="btn ico-mbl-draft">
+             <asp:Button ID="btn_draftmbl" runat="server" ToolTip="Mother Vessel" Text="Draft MBL" TabIndex="29" OnClick="btn_draftmbl_Click" />
+         </div>
+     </div>
+
+
+
+
+
+     <div class="right_btn">
+         <div class="btn ico-reuse">
+             <asp:Button ID="Btn_reuse" runat="server" ToolTip="Reuse" Text="Reuse" TabIndex="28" OnClick="Btn_reuse_Click" />
+         </div>
+         <div class="btn ico-save" id="btn_save1" runat="server">
+             <asp:Button ID="btn_save" runat="server" ToolTip="Save" OnClick="btn_save_Click" TabIndex="29" />
+         </div>
+
+
+         <div class="btn ico-view">
+             <asp:Button ID="btn_view" runat="server" ToolTip="View" Text="View" TabIndex="30" OnClick="btn_view_Click" />
+         </div>
+         <div class="btn ico-cancel" id="btn_cancel1" runat="server">
+             <asp:Button ID="btn_cancel" runat="server" ToolTip="Cancel" Text="Cancel" TabIndex="31" OnClick="btn_cancel_Click" />
+         </div>
+     </div>
+
+ </div>
 
                 </div>
 
                 <div class="widget-content">
 
 
-                    <div class="FormGroupContent4 FixedButtons">
-                        <div class="left_btn">
-                            <div class="btn ico-mbl-annexure">
-                                <asp:Button ID="btn_mbl" runat="server" ToolTip="MBL Annexure" Text="MBL Annexure" TabIndex="24" OnClick="btn_mbl_Click" />
-                            </div>
-                            <div class="btn ico-proforma-sales-invoice">
-                                <asp:Button ID="Proinvoic" runat="server" ToolTip="Proforma Sales Invoice" Text="Proforma Sales Invoice" TabIndex="25" OnClick="Proinvoic_Click" />
-                            </div>
-                            <div class="btn ico-proforma-purchase-invoice">
-                                <asp:Button ID="procrednote" runat="server" ToolTip="Proforma Purchase Invoice" Text="Proforma Purchase Invoice" TabIndex="26" OnClick="procrednote_Click" />
-                            </div>
-                            <div class="btn ico-proforma-oscndn">
-                                <asp:Button ID="Proosdncn" runat="server" ToolTip="Proforma OSSI/PI" Text="Proforma OSSI/PI" TabIndex="27" OnClick="Proosdncn_Click" />
-                            </div>
-
-
-                            <div class="btn ico-swap" id="Div1" runat="server">
-                                <asp:Button ID="Btnnamendjob" runat="server" ToolTip="Change Job" TabIndex="41" OnClick="Btnamendjob_Click" />
-                            </div>
-
-
-                            <div class="btn ico-upload" style="display: none;">
-                                <asp:Button ID="uploaddoc" runat="server" ToolTip="UPLoad Document" Text="UPLoad Document" OnClick="uploaddoc_Click" />
-                            </div>
-
-
-                            <div class="btn ico-mbl-annexure hide">
-                                <asp:Button ID="btn_mothervessupd" runat="server" ToolTip="Vessel updates" Text="Vessel updates" TabIndex="24" OnClick="btn_mothervessupd_Click" />
-                            </div>
-                            <div class="btn ico-sailing">
-                                <asp:Button ID="btn_Vessel" runat="server" ToolTip="Mother Vessel" Text="Mother Vessel" TabIndex="24" OnClick="btn_Vessel_Click" />
-                            </div>
-                            <div class="btn ico-reuse">
-                                <asp:Button ID="btnbl" runat="server" ToolTip="Reuse" Text="Back to BL" TabIndex="28" OnClick="btnbl_Click" Visible="false" />
-                            </div>
-                            <div class="btn ico-mbl-draft">
-                                <asp:Button ID="btn_draftmbl" runat="server" ToolTip="Mother Vessel" Text="Draft MBL" TabIndex="29" OnClick="btn_draftmbl_Click" />
-                            </div>
-                        </div>
-
-
-
-
-
-                        <div class="right_btn">
-                            <div class="btn ico-reuse">
-                                <asp:Button ID="Btn_reuse" runat="server" ToolTip="Reuse" Text="Reuse" TabIndex="28" OnClick="Btn_reuse_Click" />
-                            </div>
-                            <div class="btn ico-save" id="btn_save1" runat="server">
-                                <asp:Button ID="btn_save" runat="server" ToolTip="Save" OnClick="btn_save_Click" TabIndex="29" />
-                            </div>
-
-
-                            <div class="btn ico-view">
-                                <asp:Button ID="btn_view" runat="server" ToolTip="View" Text="View" TabIndex="30" OnClick="btn_view_Click" />
-                            </div>
-                            <div class="btn ico-cancel" id="btn_cancel1" runat="server">
-                                <asp:Button ID="btn_cancel" runat="server" ToolTip="Cancel" Text="Cancel" TabIndex="31" OnClick="btn_cancel_Click" />
-                            </div>
-                        </div>
-
-                    </div>
+                   
 
                     <div class="FormGroupContent4">
                         <div class="DateInputnew">

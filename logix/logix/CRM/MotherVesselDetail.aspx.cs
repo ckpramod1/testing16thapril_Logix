@@ -14,12 +14,14 @@ using System.IO;
 using System.Web.UI.HtmlControls;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Runtime.Remoting;
 
 namespace logix.CRM
 {
 
     public partial class MotherVesselDetail : System.Web.UI.Page
     {
+
         DataAccess.Corporate CorpObj = new DataAccess.Corporate();
         DataAccess.ForwardingExports.JobInfo FEJobobj = new DataAccess.ForwardingExports.JobInfo();
         DataAccess.ForwardingExports.StuffingConfirmation STufobj = new DataAccess.ForwardingExports.StuffingConfirmation();
@@ -35,7 +37,21 @@ namespace logix.CRM
         DataAccess.Masters.MasterVessel vesselobj = new DataAccess.Masters.MasterVessel();
         DataAccess.Masters.MasterPackages packageobj = new DataAccess.Masters.MasterPackages();
         DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
-       
+        DataAccess.Masters.MasterPackages packobj = new DataAccess.Masters.MasterPackages();
+
+        DataAccess.Message4Booking obj_da_msgbkng = new DataAccess.Message4Booking();
+        DataAccess.ForwardingExports.JobInfo obj_da_FEJob = new DataAccess.ForwardingExports.JobInfo();
+        DataAccess.LogDetails obj_da_log = new DataAccess.LogDetails();
+        DataAccess.Corporate obj_da_Corp = new DataAccess.Corporate();
+        DataAccess.HR.Employee obj_da_hremp = new DataAccess.HR.Employee();
+        DataAccess.ForwardingExports.StuffingConfirmation obj_da_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
+        DataAccess.ForwardingExports.ShippingBill obj_da_shpngbill = new DataAccess.ForwardingExports.ShippingBill();
+        DataAccess.Masters.MasterPort obj_da_port = new DataAccess.Masters.MasterPort();
+        DataAccess.Masters.MasterCustomer obj_da_customer = new DataAccess.Masters.MasterCustomer();
+        DataAccess.Masters.MasterEmployee obj_da_emp = new DataAccess.Masters.MasterEmployee();
+        DataAccess.ForwardingExports.LoadingConfirmation obj_da_LoadC = new DataAccess.ForwardingExports.LoadingConfirmation();
+
+
         Boolean sbexist, sbvalid = false;
         string trantype, strname;
         string Sname;
@@ -83,6 +99,42 @@ namespace logix.CRM
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "dropdownButton();SpanTagMoveInputBottom();MuiTextField();", true);
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+                CorpObj.GetDataBase(Ccode);
+                FEJobobj.GetDataBase(Ccode);
+                STufobj.GetDataBase(Ccode);
+                LoadConfirm.GetDataBase(Ccode);
+                hrempobj.GetDataBase(Ccode);
+                ShippingBillobj.GetDataBase(Ccode);
+                empobj.GetDataBase(Ccode);
+                FIBLobj.GetDataBase(Ccode);
+                bookingobj.GetDataBase(Ccode);
+                msgbookingobj.GetDataBase(Ccode);
+                customerobj.GetDataBase(Ccode);
+                portobj.GetDataBase(Ccode);
+                vesselobj.GetDataBase(Ccode);
+                packageobj.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+                packobj.GetDataBase(Ccode);
+                obj_da_msgbkng.GetDataBase(Ccode);
+                obj_da_FEJob.GetDataBase(Ccode);
+                obj_da_log.GetDataBase(Ccode);
+                obj_da_Corp.GetDataBase(Ccode);
+                obj_da_hremp.GetDataBase(Ccode);
+                obj_da_stuff.GetDataBase(Ccode);
+                obj_da_shpngbill.GetDataBase(Ccode);
+                obj_da_port.GetDataBase(Ccode);
+                obj_da_customer.GetDataBase(Ccode);
+                obj_da_emp.GetDataBase(Ccode);
+                obj_da_LoadC.GetDataBase(Ccode);
+
+
+            }
 
             if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
             {
@@ -330,6 +382,8 @@ namespace logix.CRM
         public static List<string> CMailID(string prefix)
         {
             DataAccess.ForwardingExports.StuffingConfirmation obj_da_sc = new DataAccess.ForwardingExports.StuffingConfirmation();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_da_sc.GetDataBase(Ccode);
             DataTable obj_Dt = new DataTable();
             List<string> Bookingno = new List<string>();
             obj_Dt = obj_da_sc.GetLikeCustExporMailID(prefix);
@@ -345,6 +399,8 @@ namespace logix.CRM
             string transtypewd = HttpContext.Current.Session["StrTranType"].ToString();
             int bid = Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString());
             DataAccess.Marketing.Booking obj_bok = new DataAccess.Marketing.Booking();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_bok.GetDataBase(Ccode);
             DataTable dtBok = new DataTable();
             dtBok = obj_bok.GetBookingPending(transtypewd, bid, prefix);
             List_Result = Utility.Fn_TableToList(prefix.ToUpper(), dtBok, "bookingno");
@@ -359,6 +415,8 @@ namespace logix.CRM
             int bid = Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString());
             int did = Convert.ToInt32(HttpContext.Current.Session["LoginDivisionid"].ToString());
             DataAccess.ForwardingExports.StuffingConfirmation obj_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_stuff.GetDataBase(Ccode);
             DataTable dtBok = new DataTable();
             dtBok = obj_stuff.GetLikeBooking(transtype, prefix, bid, did);
             List_Result = Utility.Fn_TableToList(prefix.ToUpper(), dtBok, "shiprefno");
@@ -388,6 +446,8 @@ namespace logix.CRM
             int bid = Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString());
             int did = Convert.ToInt32(HttpContext.Current.Session["LoginDivisionid"].ToString());
             DataAccess.ForwardingExports.StuffingConfirmation obj_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_stuff.GetDataBase(Ccode);
             DataTable dtBok = new DataTable();
             if (HttpContext.Current.Session["head"].ToString() == "Stuffing Details")
             {
@@ -433,6 +493,8 @@ namespace logix.CRM
             List<string> List_Result = new List<string>();
             DataTable dt = new DataTable();
             DataAccess.Masters.MasterCustomer obj_MasterCustomer = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_MasterCustomer.GetDataBase(Ccode);
             dt = obj_MasterCustomer.GetLikeCustomer(prefix, "P");
             List_Result = Utility.Fn_DatatableToList(dt, "customername", "customerid", "customer");
             return List_Result;
@@ -446,6 +508,8 @@ namespace logix.CRM
             int bid = Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString());
             int did = Convert.ToInt32(HttpContext.Current.Session["LoginDivisionid"].ToString());
             DataAccess.ForwardingExports.ShippingBill obj_shipbill = new DataAccess.ForwardingExports.ShippingBill();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_shipbill.GetDataBase(Ccode);
             dt = obj_shipbill.GetLikeShipBill(prefix, bid, did);
             //List_Result = Utility.Fn_TableToList(prefix.ToUpper(), dt, "sbno");   
             List_Result = Utility.Fn_DatatableToList_Text(dt, "sbno");
@@ -458,6 +522,8 @@ namespace logix.CRM
             List<string> List_Result = new List<string>();
             DataTable dt = new DataTable();
             DataAccess.Masters.MasterPackages obj_mpackage = new DataAccess.Masters.MasterPackages();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_mpackage.GetDataBase(Ccode);
             dt = obj_mpackage.GetLikepackage(prefix);
             //List_Result = Utility.Fn_TableToList(prefix.ToUpper(), dt, "descn");
             List_Result = Utility.Fn_TableToList(dt, "descn", "packageid");
@@ -470,6 +536,8 @@ namespace logix.CRM
             List<string> List_Result = new List<string>();
             DataTable dt = new DataTable();
             DataAccess.Masters.MasterCustomer obj_mcustomer = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_mcustomer.GetDataBase(Ccode);
             dt = obj_mcustomer.GetLikeIndianCustomer(prefix);
             List_Result = Utility.Fn_TableToList(dt, "customer", "customerid");
             return List_Result;
@@ -481,6 +549,8 @@ namespace logix.CRM
             List<string> List_Result = new List<string>();
             DataTable dt = new DataTable();
             DataAccess.Masters.MasterPort obj_portname = new DataAccess.Masters.MasterPort();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_portname.GetDataBase(Ccode);
             dt = obj_portname.GetLikePort(prefix);
             List_Result = Utility.Fn_TableToList(dt, "portname", "portid");
             return List_Result;
@@ -492,6 +562,8 @@ namespace logix.CRM
             List<string> List_Result = new List<string>();
             DataTable dt = new DataTable();
             DataAccess.Masters.MasterVessel obj_mastervessel = new DataAccess.Masters.MasterVessel();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_mastervessel.GetDataBase(Ccode);
             dt = obj_mastervessel.GetLikeVessel(prefix);
             List_Result = Utility.Fn_TableToList(dt, "vesselname", "vesselid");
             return List_Result;
@@ -514,6 +586,8 @@ namespace logix.CRM
             List<string> List_Result = new List<string>();
             DataTable dt = new DataTable();
             DataAccess.ForwardingExports.StuffingConfirmation obj_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_stuff.GetDataBase(Ccode);
             dt = obj_stuff.GetLikeEmpMailID(prefix);
             List_Result = Utility.Fn_TableToList(prefix.ToUpper(), dt, "offmailid");
             return List_Result;
@@ -1581,27 +1655,27 @@ namespace logix.CRM
                 }
 
 
-                if (btnadd.ToolTip == "Add")
-                {
+                //if (btnadd.ToolTip == "Add")
+                //{
 
 
 
 
-                    STufobj.InsFETCBooking(jobno, Bookingno, vesselid, txt_voy.Text, polid, dtetd, podid, dteta, " ", bid, empid, did);
-                    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "StuffingDetails", "alertify.alert('Details Saved');", true);
-                }
-                else {
+                //    STufobj.InsFETCBooking(jobno, Bookingno, vesselid, txt_voy.Text, polid, dtetd, podid, dteta, " ", bid, empid, did);
+                //    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "StuffingDetails", "alertify.alert('Details Saved');", true);
+                //}
+                //else {
 
 
-                    STufobj.updateMotherveessel(jobno, Bookingno, vesselid, txt_voy.Text, polid, dtetd, podid, dteta, " ", bid, empid, did,Convert.ToInt32(hid_veselid.Value));
-                    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "StuffingDetails", "alertify.alert('Details Update sucessfully');", true);
+                //    STufobj.updateMotherveessel(jobno, Bookingno, vesselid, txt_voy.Text, polid, dtetd, podid, dteta, " ", bid, empid, did,Convert.ToInt32(hid_veselid.Value));
+                //    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "StuffingDetails", "alertify.alert('Details Update sucessfully');", true);
 
-                    btnadd.ToolTip = "Add";
-                    btnadd.Attributes["class"] = "right-btn btn ico-add MT15";
+                //    btnadd.ToolTip = "Add";
+                //    btnadd.Attributes["class"] = "right-btn btn ico-add MT15";
 
 
 
-                }
+                //}
 
                     DataTable dt1 = new DataTable();
                     dt1=STufobj.GetMothervessaldts(jobno ,bid);
@@ -1797,7 +1871,7 @@ namespace logix.CRM
                 {
                     invpl = 'N';
                 }
-                DataAccess.Masters.MasterPackages packobj = new DataAccess.Masters.MasterPackages();
+                //DataAccess.Masters.MasterPackages packobj = new DataAccess.Masters.MasterPackages();
                 int bid = Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString());
                 int did = Convert.ToInt32(HttpContext.Current.Session["LoginDivisionid"].ToString());
                 int empid = Convert.ToInt32(Session["LoginEmpId"].ToString());
@@ -2806,7 +2880,7 @@ namespace logix.CRM
         {
             try
             {
-                DataAccess.Masters.MasterPackages packobj = new DataAccess.Masters.MasterPackages();
+               // DataAccess.Masters.MasterPackages packobj = new DataAccess.Masters.MasterPackages();
                 intpkgs = packobj.GetNPackageid(txt_pkgtype.Text);
                 if (intpkgs!= 0)
                 {
@@ -3444,13 +3518,13 @@ namespace logix.CRM
                     txteta.Text = Grd_vessel.Rows[indexval].Cells[4].Text;
                     txtetd.Text = Grd_vessel.Rows[indexval].Cells[2].Text;
                     ddl_Vessal.SelectedItem.Text = Grd_vessel.Rows[indexval].Cells[6].Text;
-                    hid_veselid.Value = Grd_vessel.Rows[indexval].Cells[8].Text;
+                   // hid_veselid.Value = Grd_vessel.Rows[indexval].Cells[8].Text;
                     //txtremarks.Text = HttpUtility.HtmlDecode(Grd_vessel.Rows[indexval].Cells[5].Text);
                     oldvesselid = vesselobj.GetVesselid(txt_mvessel.Text.Trim());
                     hd_oldmvessel.Value = oldvesselid.ToString();
-                    btnadd.ToolTip = "Update";
+                  //  btnadd.ToolTip = "Update";
                   
-                    btnadd.Attributes["class"] = "btn btn-update1";
+                  //  btnadd.Attributes["class"] = "btn btn-update1";
 
                 }
                 UserRights();
@@ -3574,12 +3648,12 @@ namespace logix.CRM
                 string usermail = "";
                 
                 DataTable obj_dt = new DataTable();
-                DataAccess.Message4Booking obj_da_msgbkng = new DataAccess.Message4Booking();
-                DataAccess.ForwardingExports.JobInfo obj_da_FEJob = new DataAccess.ForwardingExports.JobInfo();
-                DataAccess.LogDetails obj_da_log = new DataAccess.LogDetails();
-                DataAccess.Corporate obj_da_Corp = new DataAccess.Corporate();
-                DataAccess.HR.Employee obj_da_hremp = new DataAccess.HR.Employee();
-                DataAccess.ForwardingExports.StuffingConfirmation obj_da_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
+                //DataAccess.Message4Booking obj_da_msgbkng = new DataAccess.Message4Booking();
+                //DataAccess.ForwardingExports.JobInfo obj_da_FEJob = new DataAccess.ForwardingExports.JobInfo();
+                //DataAccess.LogDetails obj_da_log = new DataAccess.LogDetails();
+                //DataAccess.Corporate obj_da_Corp = new DataAccess.Corporate();
+                //DataAccess.HR.Employee obj_da_hremp = new DataAccess.HR.Employee();
+                //DataAccess.ForwardingExports.StuffingConfirmation obj_da_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
                 if (btn_send.ToolTip == "Cancel")
                 {
                     GrdBooking.Visible = false;
@@ -3814,9 +3888,9 @@ namespace logix.CRM
                 DataTable obj_dt = new DataTable();
                 DataTable obj_dt1 = new DataTable();
                 DataTable obj_dt2 = new DataTable();
-                DataAccess.ForwardingExports.ShippingBill obj_da_shpngbill = new DataAccess.ForwardingExports.ShippingBill();
-                DataAccess.Masters.MasterPort obj_da_port = new DataAccess.Masters.MasterPort();
-                DataAccess.Masters.MasterCustomer obj_da_customer = new DataAccess.Masters.MasterCustomer();
+                //DataAccess.ForwardingExports.ShippingBill obj_da_shpngbill = new DataAccess.ForwardingExports.ShippingBill();
+                //DataAccess.Masters.MasterPort obj_da_port = new DataAccess.Masters.MasterPort();
+                //DataAccess.Masters.MasterCustomer obj_da_customer = new DataAccess.Masters.MasterCustomer();
                 sendqry = sendqry + Session["Companyaddress"].ToString();
            
 
@@ -3975,10 +4049,10 @@ namespace logix.CRM
                   DataTable obj_dt3=new DataTable();
                  DataTable obj_dtST=new DataTable();
                  DataTable obj_dtST2=new DataTable();
-                 DataAccess.HR.Employee obj_da_hremp=new DataAccess.HR.Employee();
-                 DataAccess.Masters.MasterEmployee obj_da_emp=new DataAccess.Masters.MasterEmployee();
-                 DataAccess.ForwardingExports.StuffingConfirmation obj_da_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
-                 DataAccess.ForwardingExports.ShippingBill obj_da_shpngbill = new DataAccess.ForwardingExports.ShippingBill();
+                 //DataAccess.HR.Employee obj_da_hremp=new DataAccess.HR.Employee();
+                 //DataAccess.Masters.MasterEmployee obj_da_emp=new DataAccess.Masters.MasterEmployee();
+                 //DataAccess.ForwardingExports.StuffingConfirmation obj_da_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
+                 //DataAccess.ForwardingExports.ShippingBill obj_da_shpngbill = new DataAccess.ForwardingExports.ShippingBill();
              sendqry = sendqry +Session["Companyaddress"].ToString();        
              sendqry = sendqry + "<table border=1 width=100% text=blue><tr><td align=center BGCOLOR=#CCCCCC><FONT FACE=Arial SIZE=3 COLOR=Black><B>SAILING CONFIRMATION & TENTATIVE SAILING SCHEDULE</B></FONT></td></tr><br>";
              sendqry = sendqry + "<table width=100%><tr><td align=left><FONT FACE=sans-serif SIZE=2>Dear Sir / Madam,</FONT></td></tr></table><br>";
@@ -4591,11 +4665,11 @@ namespace logix.CRM
                     string str_Script = "";
 
                   
-                    DataAccess.ForwardingExports.JobInfo obj_da_FEJob = new DataAccess.ForwardingExports.JobInfo();
-                    DataAccess.LogDetails obj_da_log = new DataAccess.LogDetails();
-                    DataAccess.Corporate obj_da_Corp = new DataAccess.Corporate();
-                    DataAccess.ForwardingExports.LoadingConfirmation obj_da_LoadC = new DataAccess.ForwardingExports.LoadingConfirmation();
-                    DataAccess.ForwardingExports.StuffingConfirmation obj_da_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
+                    //DataAccess.ForwardingExports.JobInfo obj_da_FEJob = new DataAccess.ForwardingExports.JobInfo();
+                    //DataAccess.LogDetails obj_da_log = new DataAccess.LogDetails();
+                    //DataAccess.Corporate obj_da_Corp = new DataAccess.Corporate();
+                    //DataAccess.ForwardingExports.LoadingConfirmation obj_da_LoadC = new DataAccess.ForwardingExports.LoadingConfirmation();
+                    //DataAccess.ForwardingExports.StuffingConfirmation obj_da_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
                     blno = obj_da_stuff.GetBLNofromBookNo(txt_book.Text.ToString(), "FE", Convert.ToInt32(Session["LoginBranchid"]), Convert.ToInt32(Session["LoginDivisionid"]));
                     if (Grd_sb.Rows.Count > 0)
                     {

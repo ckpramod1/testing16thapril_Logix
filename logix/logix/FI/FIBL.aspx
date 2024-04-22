@@ -1902,10 +1902,11 @@
 
     <!-- Breadcrumbs line End -->
     <div>
-        <div class="col-md-12">
+        <div class="col-md-12 maindiv">
 
             <div class="widget box" runat="server" id="div_iframe">
                 <div class="widget-header">
+                    <div>
                     <div style="float: left; margin: 0px 0.5% 0px 0px;">
                         <h4 class="hide"><i class="icon-umbrella"></i>
                             <asp:Label ID="lbl_header" runat="server"></asp:Label></h4>
@@ -1923,44 +1924,47 @@
                     <div style="float: right; margin: 0px -0.5% 0px 0px;" class="log ico-log-sm">
                         <asp:LinkButton ID="logdetails" runat="server" ToolTip="Log" Style="text-decoration: none" OnClick="logdetails_Click"></asp:LinkButton>
                     </div>
+                      </div>
+                                       <div class="FixedButtons">
+                       <div class="left_btn">
+                           <div class="btn ico-proforma-sales-invoice">
+                               <asp:Button ID="Proinvoic" runat="server" Text="Proforma Invoice" ToolTip="Proforma Invoice" TabIndex="36" OnClick="Proinvoic_Click" />
+                           </div>
+                           <div class="btn ico-proforma-purchase-invoice">
+                               <asp:Button ID="procrednote" runat="server" Text="Proforma Purchase Operations" ToolTip="Proforma Purchase Operations" TabIndex="37" OnClick="procrednote_Click" />
+                           </div>
+                             <div class="btn ico-icd-cargo-declaration" id="Div1" runat="server">
+     <asp:Button ID="btn_Customsdtl" runat="server" ToolTip="Customs Detail" TabIndex="33" OnClick="btn_Customsdtl_Click" />
+ </div>
+                          
+
+                       </div>
+                       <div class="right_btn">
+                            <div class="btn ico-do">
+    <asp:Button ID="btn_blrelease" runat="server" Text="BL Print" ToolTip="BL Print" TabIndex="45" OnClick="btn_blrelease_Click" />
+</div>
+                           <div class="btn ico-reuse">
+                               <asp:Button ID="Btn_reuse" runat="server" Text="Reuse" ToolTip="Reuse" OnClick="Btn_reuse_Click" />
+                           </div>
+                           <div class="btn ico-save" id="btn_save1" runat="server">
+                               <asp:Button ID="btn_save" runat="server" ToolTip="Save" TabIndex="33" OnClick="btn_save_Click" />
+                           </div>
+                           <div class="btn ico-view hide">
+                               <asp:Button ID="btn_view" runat="server" Text="View" ToolTip="View" TabIndex="34" OnClick="btn_view_Click" />
+                           </div>
+                           <div class="btn ico-delete">
+                               <asp:Button ID="btn_delete" runat="server" Text="Delete" ToolTip="Delete" OnClientClick="javascript:return confirm('Do U want Delete ?');" OnClick="btn_delete_Click" />
+                           </div>
+                           <div class="btn ico-cancel" id="btn_cancel1" runat="server">
+                               <asp:Button ID="btn_cancel" runat="server" Text="Cancel" TabIndex="35" ToolTip="Cancel" OnClick="btn_cancel_Click" />
+                           </div>
+                       </div>
+                   </div>
+
 
                 </div>
                 <div class="widget-content">
-                    <div class="FormGroupContent4 FixedButtons">
-                        <div class="left_btn">
-                            <div class="btn ico-proforma-sales-invoice">
-                                <asp:Button ID="Proinvoic" runat="server" Text="Proforma Invoice" ToolTip="Proforma Invoice" TabIndex="36" OnClick="Proinvoic_Click" />
-                            </div>
-                            <div class="btn ico-proforma-purchase-invoice">
-                                <asp:Button ID="procrednote" runat="server" Text="Proforma Purchase Operations" ToolTip="Proforma Purchase Operations" TabIndex="37" OnClick="procrednote_Click" />
-                            </div>
-                              <div class="btn ico-icd-cargo-declaration" id="Div1" runat="server">
-      <asp:Button ID="btn_Customsdtl" runat="server" ToolTip="Customs Detail" TabIndex="33" OnClick="btn_Customsdtl_Click" />
-  </div>
-                           
-
-                        </div>
-                        <div class="right_btn">
-                             <div class="btn ico-do">
-     <asp:Button ID="btn_blrelease" runat="server" Text="BL Print" ToolTip="BL Print" TabIndex="45" OnClick="btn_blrelease_Click" />
- </div>
-                            <div class="btn ico-reuse">
-                                <asp:Button ID="Btn_reuse" runat="server" Text="Reuse" ToolTip="Reuse" OnClick="Btn_reuse_Click" />
-                            </div>
-                            <div class="btn ico-save" id="btn_save1" runat="server">
-                                <asp:Button ID="btn_save" runat="server" ToolTip="Save" TabIndex="33" OnClick="btn_save_Click" />
-                            </div>
-                            <div class="btn ico-view hide">
-                                <asp:Button ID="btn_view" runat="server" Text="View" ToolTip="View" TabIndex="34" OnClick="btn_view_Click" />
-                            </div>
-                            <div class="btn ico-delete">
-                                <asp:Button ID="btn_delete" runat="server" Text="Delete" ToolTip="Delete" OnClientClick="javascript:return confirm('Do U want Delete ?');" OnClick="btn_delete_Click" />
-                            </div>
-                            <div class="btn ico-cancel" id="btn_cancel1" runat="server">
-                                <asp:Button ID="btn_cancel" runat="server" Text="Cancel" TabIndex="35" ToolTip="Cancel" OnClick="btn_cancel_Click" />
-                            </div>
-                        </div>
-                    </div>
+                    
 
 
 

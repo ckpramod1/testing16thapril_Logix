@@ -474,7 +474,7 @@
 
 
 
-        .FixedButtons {
+       /* .FixedButtons {
             position: fixed;
             top: 30px;
             left: 0;
@@ -484,7 +484,7 @@
             width: calc(100vw - 5px);
             border-bottom: 0.5px solid #00000010;
             padding: 1px 0 5px 10px;
-        }
+        }*/
 
         div#logix_CPH_div_iframe .widget-content {
             top: 0 !important;
@@ -579,7 +579,7 @@
 
     <!-- /Breadcrumbs line -->
     <div>
-        <div class="col-md-12"  class="maindiv">
+        <div class="col-md-12 maindiv" >
 
             <div class="widget box" runat="server" id="div_iframe">
 

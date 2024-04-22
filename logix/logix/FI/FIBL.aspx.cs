@@ -17,6 +17,7 @@ using iTextSharp.text.html;
 using iTextSharp.text.html.simpleparser;
 using DocumentFormat.OpenXml.Drawing.Spreadsheet;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using System.Runtime.Remoting;
 
 namespace logix.FI
 {
@@ -53,6 +54,9 @@ namespace logix.FI
         DataTable dtbldetails = new DataTable();
         DataAccess.UserPermission obj_UP = new DataAccess.UserPermission();
         DataAccess.LogDetails da_obj_logobj = new DataAccess.LogDetails();
+        DataAccess.Accounts.Invoice obj_da_Invoice = new DataAccess.Accounts.Invoice();
+        DataAccess.Accounts.DCAdvise DAdvise = new DataAccess.Accounts.DCAdvise();
+        DataAccess.ForwardingExports.BLDetails obj_da_BL = new DataAccess.ForwardingExports.BLDetails();
         string blno;
         int j, i;
         int intjobno;
@@ -170,8 +174,7 @@ namespace logix.FI
         bool invgen, invgen1;
         string base1, strvolume, strntweight;
         double rate, exrate;
-        DataAccess.Accounts.Invoice obj_da_Invoice = new DataAccess.Accounts.Invoice();
-        DataAccess.Accounts.DCAdvise DAdvise = new DataAccess.Accounts.DCAdvise();
+       
         string famount;
         int refnodebitOs;
         string strTranType;
@@ -184,12 +187,47 @@ namespace logix.FI
         bool DebitOS, CreditOS;
         string txt_booking = string.Empty;
         DataTable dtcust = new DataTable();
-        DataAccess.ForwardingExports.BLDetails obj_da_BL = new DataAccess.ForwardingExports.BLDetails();
+
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
 
+            string Ccode = Convert.ToString(Session["Ccode"]);
 
+            if (Ccode != "")
+            {
+
+                blobj.GetDataBase(Ccode);
+                FEblobj.GetDataBase(Ccode);
+                customerobj.GetDataBase(Ccode);
+                portobj.GetDataBase(Ccode);
+                vesselobj.GetDataBase(Ccode);
+                pkgobj.GetDataBase(Ccode);
+                bookingobj.GetDataBase(Ccode);
+                Corpobj.GetDataBase(Ccode);
+                hrempobj.GetDataBase(Ccode);
+                fijobobj.GetDataBase(Ccode);
+
+                Invobj.GetDataBase(Ccode);
+                //obj_da_jobinfo.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+                cargoobj.GetDataBase(Ccode);
+                FIBookingBL.GetDataBase(Ccode);
+                ChargeObj.GetDataBase(Ccode);
+                ProINVobj.GetDataBase(Ccode);
+                obj_MasterPort.GetDataBase(Ccode);
+                da_obj_OSDNCN.GetDataBase(Ccode);
+                DCAdviseObj.GetDataBase(Ccode);
+                objaej.GetDataBase(Ccode);
+                obj_UP.GetDataBase(Ccode);
+                da_obj_logobj.GetDataBase(Ccode);
+                obj_da_Invoice.GetDataBase(Ccode);
+                DAdvise.GetDataBase(Ccode);
+                DCAdviseObj.GetDataBase(Ccode);
+                obj_da_BL.GetDataBase(Ccode);
+              
+            }
 
 
 

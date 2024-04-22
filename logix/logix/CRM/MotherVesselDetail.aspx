@@ -1337,6 +1337,7 @@
 
             <div class="widget box" runat="server" id="div_iframe">
                 <div class="widget-header">
+                    <div>
                     <div style="float: left; margin: 0px 0.5% 0px 0px;">
                         <h4 class="hide"><i class="icon-umbrella"></i>
                             <asp:Label ID="lbl_head" runat="server"></asp:Label></h4>
@@ -1354,6 +1355,7 @@
                     <div style="float: right; margin: 0px -0.5% 0px 0px;" class="log ico-log-sm">
                         <asp:LinkButton ID="logdetails" runat="server" ToolTip="Log" Style="text-decoration: none" OnClick="logdetails_Click"></asp:LinkButton>
                     </div>
+                        </div>
                 </div>
                 <div class="widget-content">
                     <%--row1--%>

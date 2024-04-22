@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Runtime.Remoting;
 
 namespace logix.Reportasp
 {
@@ -44,11 +45,34 @@ namespace logix.Reportasp
 
         // Einvoice newly added satrt//
         DataAccess.Documents objnewdoc = new DataAccess.Documents();
+        DataAccess.LogDetails logobj = new DataAccess.LogDetails();
+        DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
+        DataAccess.Documents objnew = new DataAccess.Documents();
         // Einvoice newly added end//
         protected void Page_Load(object sender, EventArgs e)
         {
-       //     divqr.Visible = false;
+            //     divqr.Visible = false;
             //string fadname = Session["FADbname"].ToString();
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+                da_obj_Log.GetDataBase(Ccode);
+                obj_inv.GetDataBase(Ccode);
+                custobj.GetDataBase(Ccode);
+                portobj.GetDataBase(Ccode);
+                objosdncn.GetDataBase(Ccode);
+                da_obj_jobinfo.GetDataBase(Ccode);
+                logobj.GetDataBase(Ccode);
+
+                objnewdoc.GetDataBase(Ccode);
+                logobj.GetDataBase(Ccode);
+                masterObj.GetDataBase(Ccode);
+                objnew.GetDataBase(Ccode);
+
+            }
+
             if (Request.QueryString.ToString().Contains("FADbname123"))
             {
                 if (Session["FADbname"] == null)
@@ -149,7 +173,7 @@ namespace logix.Reportasp
                     {
                         titlename = "Interbranchvouchertransfer";
                     }
-                    DataAccess.LogDetails logobj = new DataAccess.LogDetails();
+                    //DataAccess.LogDetails logobj = new DataAccess.LogDetails();
                     DateTime joudate = logobj.GetDate();
                     lbl_invoice.Text = invoice.ToString();
                     bid = Convert.ToInt32(Session["LoginBranchid"]);
@@ -183,7 +207,7 @@ namespace logix.Reportasp
                     //    lbl_page.Text = "1 of " + (page_).ToString();
                     //}
 
-                    DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
+                    //DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
                     DataTable dtlogo = masterObj.Getlogo(Convert.ToInt32(Session["LoginDivisionId"]));
                     if (dtlogo.Rows.Count > 0)
                     {
@@ -6036,7 +6060,7 @@ namespace logix.Reportasp
                         DataTable dtt = new DataTable();
                         if (Profoma != "Proforma")
                         {
-                            DataAccess.Documents objnew = new DataAccess.Documents();
+                            //DataAccess.Documents objnew = new DataAccess.Documents();
                             dtt = objnew.getgstpod(invoice, bid, vouyear, "I");
                             if (dtt.Rows.Count > 0)
                             {

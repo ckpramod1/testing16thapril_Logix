@@ -47,16 +47,56 @@ namespace logix.Tools
 
         string ip = "";
         string dbname = "";
-       
-      
+        DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
+        DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+
+
         protected string DBCS;
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\SL\DB.txt"))
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
             {
-                DBCS = reader.ReadLine();
+
+                masterObj.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+
+            }
+
+            if (Ccode == "SWENLOG")
+            {
+                string DBName = "SL";
+                using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
+                {
+                    DBCS = reader.ReadLine();
+                }
+            }
+            else if (Ccode == "MARINAIR")
+            {
+                string DBName = "MarinAir";
+                using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
+                {
+                    DBCS = reader.ReadLine();
+                }
+            }
+            else if (Ccode == "OCEANKARE")
+            {
+                string DBName = "OceanKare";
+                using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
+                {
+                    DBCS = reader.ReadLine();
+                }
+            }
+            else if (Ccode == "DEMO")
+            {
+                string DBName = "Forwarding";
+                using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
+                {
+                    DBCS = reader.ReadLine();
+                }
             }
 
             ip = DBCS.Split(new string[] { "=" }, 0)[1].Split(';')[0].Trim();
@@ -72,7 +112,7 @@ namespace logix.Tools
                     //Elengo
                     try
                     {
-                        DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
+                        //DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
                         DataTable dtlogo = masterObj.Getlogo(Convert.ToInt32(Session["LoginDivisionId"]));
                         if (dtlogo.Rows.Count > 0)
                         {
@@ -80,7 +120,7 @@ namespace logix.Tools
                             string base64String = Convert.ToBase64String(logoimageBytes);
                             Image4.ImageUrl = "data:image/png;base64," + base64String;
                         }
-                        DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+                        //DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
                         Logobj.InsCrystalRPTLogDtls("ReportView1", Request.QueryString["RFName"].ToString(), Convert.ToInt32(Session["LoginBranchid"]));
                     }
                     catch (Exception Ex)

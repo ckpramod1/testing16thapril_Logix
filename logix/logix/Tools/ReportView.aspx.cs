@@ -57,8 +57,15 @@ namespace logix.Tools
         {
             string Ccode = Convert.ToString(Session["Ccode"]);
 
+            if (Ccode != "")
+            {
 
-            if (Ccode == "CH01")
+                masterObj.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+               
+            }
+
+            if (Ccode == "SWENLOG")
             {
                 string DBName = "SL";
                 using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
@@ -66,7 +73,7 @@ namespace logix.Tools
                     DBCS = reader.ReadLine();
                 }
             }
-            else if (Ccode == "CH02")
+            else if (Ccode == "MARINAIR")
             {
                 string DBName = "MarinAir";
                 using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
@@ -74,7 +81,7 @@ namespace logix.Tools
                     DBCS = reader.ReadLine();
                 }
             }
-            if (Ccode == "CH03")
+           else  if (Ccode == "OCEANKARE")
             {
                 string DBName = "OceanKare";
                 using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
@@ -82,7 +89,15 @@ namespace logix.Tools
                     DBCS = reader.ReadLine();
                 }
             }
-                ip = DBCS.Split(new string[] { "=" }, 0)[1].Split(';')[0].Trim();
+            else if (Ccode == "DEMO")
+            {
+                string DBName = "Forwarding";
+                using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
+                {
+                    DBCS = reader.ReadLine();
+                }
+            }
+            ip = DBCS.Split(new string[] { "=" }, 0)[1].Split(';')[0].Trim();
             dbname = DBCS.Split(new string[] { "=" }, 0)[2].Split(';')[0].Trim();
             username = DBCS.Split(new string[] { "=" }, 0)[3].Split(';')[0].Trim();
             password = DBCS.Split(new string[] { "=" }, 0)[4].Split(';')[0].Trim();
@@ -216,10 +231,10 @@ namespace logix.Tools
                             strFName = Server.MapPath("../Reports/" + Request.QueryString["RFName"].ToString());
                         }
                         //strFName = Server.MapPath("../Reports/" + Request.QueryString["RFName"].ToString());
-                        if (Request.QueryString.ToString().Contains("exp"))
-                        {
-                            exp = Request.QueryString["exp"].ToString();
-                        }
+                        //if (Request.QueryString.ToString().Contains("exp"))
+                        //{
+                        //    exp = Request.QueryString["exp"].ToString();
+                        //}
                     } 
 
                     lblSF.Text = strSF;
