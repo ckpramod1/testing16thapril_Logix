@@ -154,7 +154,8 @@ table .chzn-container-single .chzn-single {
 .modalPopup {
     position: fixed !important;
     /* background-color: rgba(0, 0, 0, 0.75) !important; */
-    background: #8c8a8a94 !important;
+    background-color: rgba(0, 0, 0, 0.25) !important;
+    /*background: #8c8a8a94 !important;*/
     width: 100% !important;
     height: 100% !important;
     /* margin-left: 7px !important; */

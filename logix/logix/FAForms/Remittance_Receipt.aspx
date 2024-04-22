@@ -988,8 +988,8 @@ input#logix_CPH_txtsch {
 
 <asp:Content ID="Content2" ContentPlaceHolderID="logix_CPH" runat="server">
 
-    <div>
-        <div class="col-md-12">
+    
+        <div class="col-md-12 maindiv">
 
             <div class="widget box" runat="server">
                 <div class="widget-header">

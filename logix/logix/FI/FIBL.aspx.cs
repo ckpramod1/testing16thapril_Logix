@@ -6237,7 +6237,7 @@ namespace logix.FI
             dtuser = obj_UP.GetFormwiseuserRights(3, Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginBranchid"]), Session["StrTranType"].ToString());
             if (dtuser.Rows.Count > 0)
             {
-                Response.Redirect("../FI/jobInfo.aspx?back=yes"+"&job="+txtjobno.Text);
+                Response.Redirect("../ForwardExports/JobInfo.aspx?back=yes" + "&job="+txtjobno.Text);
             }
             else
             {

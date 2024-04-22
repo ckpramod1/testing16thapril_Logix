@@ -373,6 +373,7 @@ div#logix_CPH_div_iframe .widget-content {
 
             <div class="widget box" runat="server" id="div_iframe">
                 <div class="widget-header">
+                    <div>
                     <div style="float: left; margin: 0px 0.5% 0px 0px;">
                         <h4 class="hide"><i class="icon-umbrella"></i>
                             <asp:Label ID="lbl_Header" runat="server" Text="Events"></asp:Label></h4>
@@ -389,20 +390,25 @@ div#logix_CPH_div_iframe .widget-content {
                     <div style="float: right; margin: 0px -0.5% 0px 0px;" class="log ico-log-sm" >
                         <asp:LinkButton ID="logdetails" runat="server" ToolTip="Log" Style="text-decoration: none" OnClick="logdetails_Click"></asp:LinkButton>
                     </div>
+                      </div>
+
+
+                     <div class="FixedButtons">
+     <div class="right_btn">
+         <div class="btn ico-update" id="visblehid">
+             <asp:Button ID="btn_update" runat="server" Text="Update" ToolTip="Update" OnClick="btn_update_Click" />
+         </div>
+         <div class="btn ico-cancel" id="btn_cancel1" runat="server">
+             <asp:Button ID="btn_Cancel" runat="server" Text="Cancel"  ToolTip="Cancel/Back" OnClick="btn_Cancel_Click" />
+         </div>
+     </div>
+ </div>
+
 
                 </div>
 
                 <div class="widget-content">
-                    <div class="FormGroupContent4 FixedButtons">
-                        <div class="right_btn">
-                            <div class="btn ico-update" id="visblehid">
-                                <asp:Button ID="btn_update" runat="server" Text="Update" ToolTip="Update" OnClick="btn_update_Click" />
-                            </div>
-                            <div class="btn ico-cancel" id="btn_cancel1" runat="server">
-                                <asp:Button ID="btn_Cancel" runat="server" Text="Cancel"  ToolTip="Cancel/Back" OnClick="btn_Cancel_Click" />
-                            </div>
-                        </div>
-                    </div>
+                   
                     <div class="FormGroupContent4 boxmodal">
                         <div class="EventsDrop">
                             <asp:Label ID="Label1" runat="server" Text="Events"> </asp:Label>

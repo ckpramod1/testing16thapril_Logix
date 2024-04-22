@@ -28,6 +28,9 @@ namespace logix.CRM
         DataAccess.ForwardingImports.JobInfo FIJobobj = new DataAccess.ForwardingImports.JobInfo();
         DataTable Dt = new DataTable();
         DataAccess.LogDetails logobj = new DataAccess.LogDetails();
+        DataAccess.LogDetails obj_da_Logobj = new DataAccess.LogDetails();
+        DataAccess.LogDetails da_obj_LogObj = new DataAccess.LogDetails();
+        DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
         int i;
         string sp = "";
         //string strTrantype = "FE";
@@ -35,6 +38,23 @@ namespace logix.CRM
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+
+                FEJobobj.GetDataBase(Ccode);
+                FIJobobj.GetDataBase(Ccode);
+                logobj.GetDataBase(Ccode);
+                obj_da_Logobj.GetDataBase(Ccode);
+                da_obj_LogObj.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+
+
+
+            }
 
             ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btnExporttoexcel);
             ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btnBack);
@@ -52,7 +72,7 @@ namespace logix.CRM
 
             if (IsPostBack != true)
             {
-                DataAccess.LogDetails obj_da_Logobj = new DataAccess.LogDetails();
+                //DataAccess.LogDetails obj_da_Logobj = new DataAccess.LogDetails();
                 dtFrom.Text = Utility.fn_ConvertDate(obj_da_Logobj.GetDate().ToString());
                 dtTo.Text = Utility.fn_ConvertDate(obj_da_Logobj.GetDate().ToString());
                 //dtFrom.Text = Utility.fn_ConvertDate(obj_da_Logobj.GetDate().ToShortDateString());
@@ -261,7 +281,7 @@ namespace logix.CRM
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            DataAccess.LogDetails da_obj_LogObj = new DataAccess.LogDetails();
+           // DataAccess.LogDetails da_obj_LogObj = new DataAccess.LogDetails();
             if( btnBack.ToolTip == "Cancel")
             {
                 dtFrom.Text = Utility.fn_ConvertDate(da_obj_LogObj.GetDate().ToString());
@@ -327,7 +347,7 @@ namespace logix.CRM
             GridViewlog.Visible = true;
             Panel1.Visible = true;
             DataTable obj_dtlogdetails = new DataTable();
-            DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+            //DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
 
             //obj_dtlogdetails = Logobj.InsTempGrpLogdtlsGet(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginBranchid"]), 762, "Job", txt_jobno.Text, txt_jobno.Text, Session["StrTranType"].ToString());
 

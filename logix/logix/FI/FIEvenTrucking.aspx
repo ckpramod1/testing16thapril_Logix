@@ -328,6 +328,7 @@ div#logix_CPH_Panel1 {
 
             <div class="widget box" runat="server" id="div_iframe">
                 <div class="widget-header">
+                    <div>
                     <h4 class="hide"><i class="icon-umbrella"></i>
                         <asp:Label ID="lbl_header" runat="server" Text="Event Tracking"></asp:Label>
                     </h4>
@@ -343,22 +344,26 @@ div#logix_CPH_Panel1 {
                     <div style="float: right; margin: 0px -0.5% 0px 0px;" class="log ico-log-sm" >
                         <asp:LinkButton ID="logdetails" runat="server" ToolTip="Log" Style="text-decoration: none" OnClick="logdetails_Click"></asp:LinkButton>
                     </div>
+                        </div>
+
+                    <div class="FixedButtons">
+      <div class="right_btn">
+           <div class="btn ico-find ">
+        <asp:Button ID="btnfind" ToolTip="Find" runat="server" Text="Find" UseSubmitBehavior="False" OnClick="btnfind_Click" />
+    </div>
+    <div class="btn ico-cancel" id="btn_cancel1" runat="server">
+        <asp:Button ID="btnclear" ToolTip="Cancel" runat="server"  Text="Cancel" UseSubmitBehavior="False" OnClick="btnclear_Click" />
+    </div>
+        <div class="btn ico-excel">
+            <asp:Button ID="btnexport" Text="Export To Excel" ToolTip="Export To Excel" runat="server" UseSubmitBehavior="False" OnClick="btnexport_Click" />
+        </div>
+
+    </div>
+</div>
+
                 </div>
                 <div class="widget-content">
-                    <div class="FormGroupContent4 FixedButtons">
-                          <div class="right_btn">
-                               <div class="btn ico-find ">
-                            <asp:Button ID="btnfind" ToolTip="Find" runat="server" Text="Find" UseSubmitBehavior="False" OnClick="btnfind_Click" />
-                        </div>
-                        <div class="btn ico-cancel" id="btn_cancel1" runat="server">
-                            <asp:Button ID="btnclear" ToolTip="Cancel" runat="server"  Text="Cancel" UseSubmitBehavior="False" OnClick="btnclear_Click" />
-                        </div>
-                            <div class="btn ico-excel">
-                                <asp:Button ID="btnexport" Text="Export To Excel" ToolTip="Export To Excel" runat="server" UseSubmitBehavior="False" OnClick="btnexport_Click" />
-                            </div>
-
-                        </div>
-                    </div>
+                    
                     <div class="FormGroupContent4 boxmodal">
                         <div class="JboInput1">
                            

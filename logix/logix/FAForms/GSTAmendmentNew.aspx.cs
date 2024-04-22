@@ -26,10 +26,26 @@ namespace logix.FAForms
         int gsttype = 0, statename = 0, supplyto = 0;
         DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
         DataAccess.Masters.MasterCustomer obj_mascust = new DataAccess.Masters.MasterCustomer();
-
+        DataAccess.Accounts.STAdjustment obj_da_ST = new DataAccess.Accounts.STAdjustment();
+        DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+        DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+                obj_da_Log.GetDataBase(Ccode);
+                obj_mascust.GetDataBase(Ccode);
+                obj_da_ST.GetDataBase(Ccode);
+                customerobj.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+
+
+            }
 
             ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_cancel);
             if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
@@ -120,7 +136,7 @@ namespace logix.FAForms
 
                 hid_type.Value = str_type;
 
-                DataAccess.Accounts.STAdjustment obj_da_ST = new DataAccess.Accounts.STAdjustment();
+                //DataAccess.Accounts.STAdjustment obj_da_ST = new DataAccess.Accounts.STAdjustment();
                 obj_ds = obj_da_ST.GetServiceTaxAmtForNewPro(Convert.ToInt32(txt_receipt.Text), Convert.ToInt32(txt_year.Text), Convert.ToInt32(Session["LoginBranchid"].ToString()), str_type);
 
                 if (obj_ds.Tables.Count > 1)
@@ -152,7 +168,7 @@ namespace logix.FAForms
                                     if (hid_supplyto.Value != "0" || hid_supplyto.Value != "")
                                     {
                                         DataTable dt_list = new DataTable();
-                                        DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+                                        //DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
                                         dt_list = customerobj.GetIndianCustomergstadd(Convert.ToInt32(hid_supplyto.Value));
                                         if (dt_list.Rows.Count > 0)
                                         {
@@ -355,8 +371,8 @@ namespace logix.FAForms
 
         protected void btn_update_Click(object sender, EventArgs e)
         {
-            DataAccess.Accounts.Invoice obj_da_Invoice = new DataAccess.Accounts.Invoice();
-            DataAccess.Accounts.STAdjustment obj_da_ST = new DataAccess.Accounts.STAdjustment();
+            //DataAccess.Accounts.Invoice obj_da_Invoice = new DataAccess.Accounts.Invoice();
+            //DataAccess.Accounts.STAdjustment obj_da_ST = new DataAccess.Accounts.STAdjustment();
             
 
             CheckData();
@@ -388,7 +404,7 @@ namespace logix.FAForms
                             if (hid_supplyto.Value != "0" || hid_supplyto.Value != "")
                             {
                                 DataTable dt_list = new DataTable();
-                                DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+                              //  DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
                                 dt_list = customerobj.GetIndianCustomergstadd(Convert.ToInt32(hid_supplyto.Value));
                                 if (dt_list.Rows.Count > 0)
                                 {
@@ -1782,7 +1798,7 @@ namespace logix.FAForms
             GridViewlog.Visible = true;
             Panel3.Visible = true;
             DataTable obj_dtlogdetails = new DataTable();
-            DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+            //DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
             if (Session["str_ModuleName"].ToString() == "FA")
             {
                 obj_dtlogdetails = Logobj.InsTempGrpLogdtlsGet(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginBranchid"]), 1833, "", "", "", Session["StrTranType"].ToString());

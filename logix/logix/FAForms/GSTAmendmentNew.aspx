@@ -282,6 +282,7 @@
             <div class="widget box" runat="server">
 
                 <div class="widget-header">
+                    <div>
                     <h4 class="hide"><i class="icon-umbrella"></i>
                         <asp:Label ID="lbl_Header" runat="server" Text="GST Amendment"></asp:Label></h4>
                      <div class="crumbs">
@@ -297,22 +298,26 @@
                     <div style="float: right; margin: 0px -0.5% 0px 0px;" class="log ico-log-sm" >
                         <asp:LinkButton ID="logdetails" runat="server" ToolTip="Log" Style="text-decoration: none" OnClick="logdetails_Click"></asp:LinkButton>
                     </div>
+                        </div>
+
+                    <div class="FixedButtons">
+     <div class="right_btn">
+        <div class="btn ico-update">
+            <asp:Button ID="btn_update" runat="server" Text="Update" ToolTip="Update" OnClick="btn_update_Click" />
+        </div>
+        <div class="btn ico-view" id="view_id" runat="server" Visible="false" >
+            <asp:Button ID="btn_view" runat="server" ToolTip="View" Text="View" OnClick="btn_view_Click" Visible="false" />
+        </div>
+        <div class="btn ico-cancel" id="btn_cancel1" runat="server">
+            <asp:Button ID="btn_cancel" runat="server" ToolTip="Cancel" Text="Cancel" OnClick="btn_cancel_Click" />
+        </div>
+    </div>
+</div>
+
                 </div>
 
                 <div class="widget-content">
-                    <div class="FixedButtons">
-                         <div class="right_btn">
-                            <div class="btn ico-update">
-                                <asp:Button ID="btn_update" runat="server" Text="Update" ToolTip="Update" OnClick="btn_update_Click" />
-                            </div>
-                            <div class="btn ico-view" id="view_id" runat="server" Visible="false" >
-                                <asp:Button ID="btn_view" runat="server" ToolTip="View" Text="View" OnClick="btn_view_Click" Visible="false" />
-                            </div>
-                            <div class="btn ico-cancel" id="btn_cancel1" runat="server">
-                                <asp:Button ID="btn_cancel" runat="server" ToolTip="Cancel" Text="Cancel" OnClick="btn_cancel_Click" />
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="FormGroupContent4 boxmodal">
                         <div class="ModeDropCN3">
                             <asp:Label ID="Label7" runat="server" Text="Voucher Type"> </asp:Label>

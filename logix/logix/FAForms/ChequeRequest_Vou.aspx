@@ -667,7 +667,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="logix_CPH" runat="server">
 
-        <div class="">
+        <div class="col-md-12 maindiv">
 
             <div class="widget box" runat="server" id="div_iframe">
                 <div class="widget-header">

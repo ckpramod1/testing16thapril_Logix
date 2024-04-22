@@ -15,6 +15,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.Services;
 using System.Text.RegularExpressions;
 using ClosedXML.Excel;
+using static logix.TaskDetailsDashMain;
 namespace logix.HRM
 {
     public partial class HRMPersonalInformation : System.Web.UI.Page
@@ -39,6 +40,16 @@ namespace logix.HRM
         DataAccess.Masters.MasterEmployee objproces = new DataAccess.Masters.MasterEmployee();
         DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
         DataAccess.UserPermission user_check = new DataAccess.UserPermission();
+        DataAccess.LogDetails obj_da_log = new DataAccess.LogDetails();
+        DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+        DataAccess.userlogin obj_login = new DataAccess.userlogin();
+        DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
+        DataAccess.Masters.MasterEmployee empobjt = new DataAccess.Masters.MasterEmployee();
+        DataAccess.HR.Employee obj_da_HR = new DataAccess.HR.Employee();
+        DataAccess.HR.Employee da_obj_HrEmp = new DataAccess.HR.Employee();
+        DataAccess.Masters.MasterEmployee da_obj_HrEmp2 = new DataAccess.Masters.MasterEmployee();
+        DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+
 
         Boolean blr;
         string dobdate;
@@ -46,7 +57,30 @@ namespace logix.HRM
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "dropdownButton();GenerateLabelAfter();", true);
 
+            string Ccode = Convert.ToString(Session["Ccode"]);
 
+            if (Ccode != "")
+            {
+
+                empObj.GetDataBase(Ccode);
+                prtObj.GetDataBase(Ccode);
+                HREmpobj.GetDataBase(Ccode);
+                logobj.GetDataBase(Ccode);
+                objproces.GetDataBase(Ccode);
+
+                obj_da_Log.GetDataBase(Ccode);
+                user_check.GetDataBase(Ccode);
+                obj_da_log.GetDataBase(Ccode);
+                obj_da_Emp.GetDataBase(Ccode);
+                obj_login.GetDataBase(Ccode);
+                obj_da_Employee.GetDataBase(Ccode);
+                empobjt.GetDataBase(Ccode);
+                obj_da_HR.GetDataBase(Ccode);
+                da_obj_HrEmp.GetDataBase(Ccode);
+                da_obj_HrEmp2.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+               
+            }
 
             //con = new SqlConnection(DBSC);
             cmd = new SqlCommand();
@@ -93,7 +127,7 @@ namespace logix.HRM
                     //str_DataType = "DropDown~DropDown~DropDown~DropDown";
                     //btn_update.Attributes.Add("OnClick", "return IsValid('" + str_CtrlLists + "','" + str_MsgLists + "','" + str_DataType + "')");
 
-                    DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+                    //DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
                     txt_fromyear.Text = Convert.ToDateTime(obj_da_Log.GetDate()).ToString("dd/MM/yyyy");
                     txt_toyear.Text = txt_fromyear.Text;
                     txt_EduYear.Text = txt_fromyear.Text;
@@ -131,7 +165,7 @@ namespace logix.HRM
                         return;
                     }
 
-                    DataAccess.LogDetails obj_da_log = new DataAccess.LogDetails();
+                    //DataAccess.LogDetails obj_da_log = new DataAccess.LogDetails();
                     txt_dol.Text = Utility.fn_ConvertDate(obj_da_log.GetDate().ToShortDateString());
                     hid_date.Value = txt_dol.Text;
                     str_CtrlLists = "txt_Empcode~ddl_reason";
@@ -158,6 +192,8 @@ namespace logix.HRM
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_da_Employee.GetDataBase(Ccode);
             obj_dt = obj_da_Employee.GetLikeEmpName(prefix.ToUpper());
             if (obj_dt.Rows.Count > 0)
             {
@@ -175,6 +211,8 @@ namespace logix.HRM
             DataTable obj_dt = new DataTable();
             //DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
             DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_da_Employee.GetDataBase(Ccode);
             obj_dt = obj_da_Employee.GetLikeEmpName(prefix.ToUpper());
             List_Result = Utility.Fn_DatatableToList(obj_dt, "empname", "employeeid");
             return List_Result;
@@ -185,6 +223,8 @@ namespace logix.HRM
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_da_Employee.GetDataBase(Ccode);
             obj_dt = obj_da_Employee.GetLikeEmpName(prefix.ToUpper());
             List_Result = Utility.Fn_DatatableToList(obj_dt, "empname", "empcode");
             return List_Result;
@@ -257,11 +297,11 @@ namespace logix.HRM
 
         private void Get_EmpDetail()
         {
-            DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+            //DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
 
             DataTable dt_checkamend = new DataTable();
             DataTable obj_dt = new DataTable();
-            DataAccess.userlogin obj_login = new DataAccess.userlogin();
+            //DataAccess.userlogin obj_login = new DataAccess.userlogin();
             obj_dt = obj_da_Emp.selEmpDetails(txt_empcode.Text.ToUpper(), "PER");
 
             if (obj_dt.Rows.Count > 0)
@@ -410,7 +450,7 @@ namespace logix.HRM
                     Img_Sign.ImageUrl = "~/images/signature.JPG";
                 }
 
-                DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
+               // DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
                 DataTable obj_dt1 = new DataTable();
                 obj_dt1 = obj_da_Employee.GetROLDetail(txt_empcode.Text.ToUpper());
                 if (obj_dt1.Rows.Count > 0)
@@ -486,7 +526,7 @@ namespace logix.HRM
                     txt_Appraisal.Text = obj_dt.Rows[0]["AppraisalBy"].ToString();
                     txt_reviewedby.Text = obj_dt.Rows[0]["reviewedby"].ToString();
                     functionid.Value = obj_dt.Rows[0]["functionid"].ToString();
-                    DataAccess.Masters.MasterEmployee empobjt = new DataAccess.Masters.MasterEmployee();
+                    //DataAccess.Masters.MasterEmployee empobjt = new DataAccess.Masters.MasterEmployee();
                     if (functionid.Value != "")
                     {
                         dt = empobjt.GetLikefunctionid(functionid.Value);
@@ -516,7 +556,7 @@ namespace logix.HRM
 
                 // if (dt.Rows.Count > 0)
                 // {
-                DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+                //DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
                 DataTable dtrole = obj_da_Emp.Getroleforemployee(txt_empcode.Text.ToUpper());
                 for (int i = 0; i <= dtrole.Rows.Count - 1; i++)
                 {
@@ -552,8 +592,8 @@ namespace logix.HRM
             try
             {
                 string user_;
-                DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
-                DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+                //DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+                //DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
 
                 //int Str_Date =Convert.ToInt32(Fn_DOBDateFormate(txt_dob.Text));
                 //DateTime dt_DOB = DateTime.Parse(Utility.fn_ConvertDate(Str_Date).ToString());
@@ -974,7 +1014,7 @@ namespace logix.HRM
         {
             int i = 0;
             int processid = 0;
-            DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+           // DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
             obj_dt = obj_da_Emp.selEmpDetails(txt_empcode.Text.ToUpper(), "PER");
 
             if (obj_dt.Rows.Count > 0)
@@ -1328,7 +1368,7 @@ namespace logix.HRM
         {
             if (txt_empcode.Text.Trim().Length > 0)
             {
-                DataAccess.HR.Employee obj_da_HR = new DataAccess.HR.Employee();
+                //DataAccess.HR.Employee obj_da_HR = new DataAccess.HR.Employee();
                 //DataTable obj_dt = new DataTable();
                 obj_dt = obj_da_HR.selEmpDetails(txt_empcode.Text.ToUpper(), "EDU");
                 Grd_Edu.DataSource = obj_dt;
@@ -1342,7 +1382,7 @@ namespace logix.HRM
         {
             if (txt_empcode.Text.Trim().Length > 0)
             {
-                DataAccess.HR.Employee obj_da_HR = new DataAccess.HR.Employee();
+              //  DataAccess.HR.Employee obj_da_HR = new DataAccess.HR.Employee();
                 DataTable obj_dt = new DataTable();
                 obj_dt = obj_da_HR.selEmpDetails(txt_empcode.Text.ToUpper(), "EXP");
                 Grd_Exp.DataSource = obj_dt;
@@ -1356,9 +1396,9 @@ namespace logix.HRM
         {
             try
             {
-                DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
-                DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
-                if (txt_empcode.Text.Trim().Length > 0)
+            //    DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+            //    DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+              if (txt_empcode.Text.Trim().Length > 0)
                 {
                     string[] getyuear = txt_EduYear.Text.Split('/');
                     string Str_MonthYear = getyuear[1].ToUpper() + "-" + getyuear[2];
@@ -1456,8 +1496,8 @@ namespace logix.HRM
         {
             try
             {
-                DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
-                DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+                //DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+                //DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
                 if (txt_empcode.Text.Trim().Length > 0)
                 {
                     string Str_FromMonthYear, Str_ToMonthYear;
@@ -1533,7 +1573,7 @@ namespace logix.HRM
 
         private void Fn_LoadDivision()
         {
-            DataAccess.HR.Employee da_obj_HrEmp = new DataAccess.HR.Employee();
+            //DataAccess.HR.Employee da_obj_HrEmp = new DataAccess.HR.Employee();
             DataTable obj_dt = new DataTable();
             obj_dt = da_obj_HrEmp.GetDivisionhrm("HR");
             ddl_division.DataSource = obj_dt;
@@ -1543,9 +1583,9 @@ namespace logix.HRM
         }
         private void Fn_LoadDepartment()
         {
-            DataAccess.Masters.MasterEmployee da_obj_HrEmp = new DataAccess.Masters.MasterEmployee();
+            //DataAccess.Masters.MasterEmployee da_obj_HrEmp = new DataAccess.Masters.MasterEmployee();
             DataTable obj_dt = new DataTable();
-            obj_dt = da_obj_HrEmp.GetDept();
+            obj_dt = da_obj_HrEmp2.GetDept();
             // obj_dt = da_obj_HrEmp.GetDeptFunc();
             ddl_department.DataSource = obj_dt;
             ddl_department.DataTextField = "deptname";
@@ -1553,9 +1593,9 @@ namespace logix.HRM
         }
         private void deptfunction()
         {
-            DataAccess.Masters.MasterEmployee da_obj_HrEmp = new DataAccess.Masters.MasterEmployee();
+          //  DataAccess.Masters.MasterEmployee da_obj_HrEmp = new DataAccess.Masters.MasterEmployee();
             DataTable obj_dt = new DataTable();
-            obj_dt = da_obj_HrEmp.GetDeptFunc();
+            obj_dt = da_obj_HrEmp2.GetDeptFunc();
             ddl_function.DataSource = obj_dt;
             ddl_function.Items.Add("");
             for (int i = 0; i < obj_dt.Rows.Count; i++)
@@ -1567,9 +1607,9 @@ namespace logix.HRM
         }
         private void getfunctionid()
         {
-            DataAccess.Masters.MasterEmployee da_obj_HrEmp = new DataAccess.Masters.MasterEmployee();
+          //  DataAccess.Masters.MasterEmployee da_obj_HrEmp = new DataAccess.Masters.MasterEmployee();
             DataTable obj_dt = new DataTable();
-            obj_dt = da_obj_HrEmp.GetLikefunctionname(ddl_function.SelectedItem.Text);
+            obj_dt = da_obj_HrEmp2.GetLikefunctionname(ddl_function.SelectedItem.Text);
             if (obj_dt.Rows.Count > 0)
             {
                 hid_functionid.Value = obj_dt.Rows[0]["functionid"].ToString();
@@ -1581,9 +1621,9 @@ namespace logix.HRM
         }
         private void Fn_LoadDesignation()
         {
-            DataAccess.Masters.MasterEmployee da_obj_HrEmp = new DataAccess.Masters.MasterEmployee();
+           // DataAccess.Masters.MasterEmployee da_obj_HrEmp = new DataAccess.Masters.MasterEmployee();
             DataTable obj_dt = new DataTable();
-            obj_dt = da_obj_HrEmp.GetDesign();
+            obj_dt = da_obj_HrEmp2.GetDesign();
             ddl_designation.DataSource = obj_dt;
             ddl_designation.DataTextField = "designame";
             ddl_designation.DataBind();
@@ -1591,7 +1631,7 @@ namespace logix.HRM
         private void Fn_Loadbranch()
         {
             ddl_branch.Items.Clear();
-            DataAccess.HR.Employee da_obj_HrEmp = new DataAccess.HR.Employee();
+          //  DataAccess.HR.Employee da_obj_HrEmp = new DataAccess.HR.Employee();
             DataTable obj_dt = new DataTable();
             string divid = Session["LoginDivisionName"].ToString();
             obj_dt = da_obj_HrEmp.selBranchList(divid);
@@ -1606,7 +1646,7 @@ namespace logix.HRM
         private void Fn_Loadrole()
         {
             chkproducts.Items.Clear();
-            DataAccess.HR.Employee da_obj_HrEmp = new DataAccess.HR.Employee();
+           // DataAccess.HR.Employee da_obj_HrEmp = new DataAccess.HR.Employee();
             DataTable obj_dt = new DataTable();
             // string divid = Session["LoginDivisionName"].ToString();
             obj_dt = da_obj_HrEmp.Getrolename();
@@ -1638,7 +1678,7 @@ namespace logix.HRM
         {
             try
             {
-                DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+              //  DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
                 DataTable obj_dt = new DataTable();
                 obj_dt = obj_da_Emp.selEmpDetails(txt_empcode.Text.ToUpper(), "OFF");
                 if (obj_dt.Rows.Count > 0)
@@ -1695,7 +1735,7 @@ namespace logix.HRM
                 }
 
 
-                DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+              //  DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
 
 
                 if (lbl_OffEmpcode.Text.Trim().Length > 0)
@@ -2180,7 +2220,7 @@ namespace logix.HRM
                 ImageButton Img_Expdelete = (ImageButton)e.CommandSource;
                 GridViewRow grd = (GridViewRow)Img_Expdelete.NamingContainer;
                 obj_dt = (DataTable)Session["Grd_Exp"];
-                DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+               // DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
                 obj_da_Emp.DelEmpExperience(txt_empcode.Text.ToUpper(), obj_dt.Rows[grd.RowIndex][0].ToString(), obj_dt.Rows[grd.RowIndex][1].ToString(), obj_dt.Rows[grd.RowIndex][2].ToString(), obj_dt.Rows[grd.RowIndex][3].ToString());
                 Fn_Expclear();
                 Fn_GrdExpDetail();
@@ -2198,7 +2238,7 @@ namespace logix.HRM
                 ImageButton Img_Edudelete = (ImageButton)e.CommandSource;
                 GridViewRow grd = (GridViewRow)Img_Edudelete.NamingContainer;
                 obj_dt = (DataTable)Session["Grd_Edu"];
-                DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+               // DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
                 obj_da_Emp.DelEmpEducation(txt_empcode.Text.ToUpper(), obj_dt.Rows[grd.RowIndex]["certificate"].ToString(), obj_dt.Rows[grd.RowIndex]["yop"].ToString(), obj_dt.Rows[grd.RowIndex]["percentage"].ToString());
                 //obj_da_Emp.DelEmpEducation(hid_empid.Value, Grd_Edu.SelectedRow.Cells[0].Text, Grd_Edu.SelectedRow.Cells[1].Text, Grd_Edu.SelectedRow.Cells[2].Text);
                 Fn_Educlear();
@@ -2290,7 +2330,7 @@ namespace logix.HRM
             GridViewlog.Visible = true;
             Panel1.Visible = true;
             DataTable obj_dtlogdetails = new DataTable();
-            DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+            //DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
 
             obj_dtlogdetails = Logobj.InsTempGrpLogdtlsGet(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginBranchid"]), 172, "Job", "", "", Session["StrTranType"].ToString());
 
@@ -2309,7 +2349,7 @@ namespace logix.HRM
 
         protected void link_cust_Click(object sender, EventArgs e)
         {
-            DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+           // DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
 
             DataTable dtexecel = new DataTable();
             dtexecel = obj_da_Emp.Getemplistdetails();
@@ -2450,8 +2490,8 @@ namespace logix.HRM
         {
             try
             {
-                DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
-                DataAccess.LogDetails obj_da_log = new DataAccess.LogDetails();
+                //DataAccess.HR.Employee obj_da_Employee = new DataAccess.HR.Employee();
+                //DataAccess.LogDetails obj_da_log = new DataAccess.LogDetails();
 
                 DateTime dt_DOL = DateTime.Parse(Utility.fn_ConvertDate(txt_dol.Text));
 

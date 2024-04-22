@@ -1271,6 +1271,7 @@ table input[type="submit"], table input[type="button"] {
 <asp:Content ID="Content2" ContentPlaceHolderID="logix_CPH" runat="server">
          <div runat="server" id="div_ComApproval" class="PendingRightnewComapp" >
                        
+        <div class="col-md-12 maindiv">
 
                             <div class="widget box" runat="server" id="div_iframe">
 
@@ -1548,6 +1549,7 @@ table input[type="submit"], table input[type="button"] {
                                 </div>
                            
                             </div>
+            </div>
                         </div>
     <asp:Label ID="hidbooking" runat="server" />
         <asp:Label ID="hidhbl" runat="server" />

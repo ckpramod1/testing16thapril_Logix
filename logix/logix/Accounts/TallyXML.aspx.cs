@@ -49,6 +49,13 @@ namespace logix.Accounts
         bool blrTDS;
         DataSet DS = new DataSet();
         DataAccess.UserPermission obj_UP = new DataAccess.UserPermission();
+        DataAccess.Masters.MasterDivision obj_da_Division = new DataAccess.Masters.MasterDivision();
+        DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+        DataAccess.ForwardingImports.JobInfo FIJobObj = new DataAccess.ForwardingImports.JobInfo();
+        DataAccess.Masters.MasterVessel VesselObj = new DataAccess.Masters.MasterVessel();
+        DataAccess.Accounts.Recipts obj_da_Receipt = new DataAccess.Accounts.Recipts();
+        DataAccess.HR.Employee branch = new DataAccess.HR.Employee();
+        DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
         int countryid;
         string jobprefix, numformat, deductedchargename, vounum;
         double TdsAmount = 0;
@@ -59,6 +66,42 @@ namespace logix.Accounts
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+                HREmpobj.GetDataBase(Ccode);
+                Invobj.GetDataBase(Ccode);
+                BrObj.GetDataBase(Ccode);
+                DivObj.GetDataBase(Ccode);
+                Custobj.GetDataBase(Ccode);
+
+                DCobj.GetDataBase(Ccode);
+                logobj.GetDataBase(Ccode);
+                OSDCNObj.GetDataBase(Ccode);
+                RcptObj.GetDataBase(Ccode);
+                PymtObj.GetDataBase(Ccode);
+                FEJobObj.GetDataBase(Ccode);
+                FIBLObj.GetDataBase(Ccode);
+                TDSObj.GetDataBase(Ccode);
+                MBObj.GetDataBase(Ccode);
+                obj_da_ledger.GetDataBase(Ccode);
+                costobj.GetDataBase(Ccode);
+                invoiceobj.GetDataBase (Ccode);
+                obj_da_FA.GetDataBase(Ccode);
+                obj_UP.GetDataBase(Ccode);
+                obj_da_Division.GetDataBase(Ccode);
+                obj_da_Log.GetDataBase(Ccode);
+                FIJobObj.GetDataBase (Ccode);
+                VesselObj.GetDataBase(Ccode);
+                obj_da_Receipt.GetDataBase(Ccode);
+                branch.GetDataBase(Ccode);
+                Logobj.GetDataBase (Ccode);
+
+
+            }
 
             if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
             {
@@ -196,7 +239,7 @@ namespace logix.Accounts
                         ddl_reference.Items.Add("Ref No");
                         ddl_narration.Items.Add("Remarks");
                     }
-                    DataAccess.Masters.MasterDivision obj_da_Division = new DataAccess.Masters.MasterDivision();
+                    //DataAccess.Masters.MasterDivision obj_da_Division = new DataAccess.Masters.MasterDivision();
                     hid_shortname.Value = obj_da_Division.GetShortName(int.Parse(Session["LoginDivisionId"].ToString()));
                 
                     btn_UnTransfer.Enabled = false;
@@ -266,7 +309,7 @@ namespace logix.Accounts
 
         public void bind()
         {
-            DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+            //DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
             DateTime dtdate = obj_da_Log.GetDate();
 
             if (ddl_voucher.SelectedItem.Text.Trim().Length > 0)
@@ -7289,8 +7332,8 @@ namespace logix.Accounts
                     {
                         if (strtrantype == "FE" || strtrantype == "OI" ||strtrantype == "OE" || strtrantype == "FI"|| strtrantype == "AE" || strtrantype == "AI")
                         {
-                            DataAccess.CloseJobs jobcloseobj = new DataAccess.CloseJobs();
-                            DataAccess.ForwardingImports.JobInfo FIJobObj = new DataAccess.ForwardingImports.JobInfo();
+                            //DataAccess.CloseJobs jobcloseobj = new DataAccess.CloseJobs();
+                            //DataAccess.ForwardingImports.JobInfo FIJobObj = new DataAccess.ForwardingImports.JobInfo();
                             if (strtrantype == "FE"|| strtrantype == "OE")
                             {
                                 Dt = FEJobObj.GetFEJobInfonew(Convert.ToInt32(jobno), branchid, divisionid);
@@ -7302,7 +7345,7 @@ namespace logix.Accounts
                             }
                             else if (strtrantype == "FE"|| strtrantype == "OE")
                             {
-                                DataAccess.Masters.MasterVessel VesselObj = new DataAccess.Masters.MasterVessel();
+                                //DataAccess.Masters.MasterVessel VesselObj = new DataAccess.Masters.MasterVessel();
                                 Dt = FIJobObj.ShowJobDetailsnew(Convert.ToInt32(jobno), branchid, divisionid);
                                 if (Dt.Rows.Count > 0)
                                 {
@@ -9769,7 +9812,7 @@ namespace logix.Accounts
             }
 
             DataTable obj_dt = new DataTable();
-            DataAccess.Accounts.Recipts obj_da_Receipt = new DataAccess.Accounts.Recipts();
+            //DataAccess.Accounts.Recipts obj_da_Receipt = new DataAccess.Accounts.Recipts();
             if (str_Voucher == "Bank Deposit - Transfer To CO")
             {
                 obj_dt = obj_da_Receipt.GetSlipDetails4tally(txt_from.Text, branchid, 'B');
@@ -9831,7 +9874,7 @@ namespace logix.Accounts
             }
             strtally = strtally + "<VOUCHERNUMBER>" + "BP-" + Rvouno + "</VOUCHERNUMBER>" + System.Environment.NewLine;
             //partyledger = Rbankname;
-            DataAccess.HR.Employee branch = new DataAccess.HR.Employee();
+            //DataAccess.HR.Employee branch = new DataAccess.HR.Employee();
             string Branchname = "CORPORATE";
             int branchid = branch.GetBranchIdNEW(Branchname.ToString().ToUpper());
             if (mode == "B")
@@ -10904,7 +10947,7 @@ namespace logix.Accounts
             GridViewlog.Visible = true;
             Panel2.Visible = true;
             DataTable obj_dtlogdetails = new DataTable();
-            DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+            //DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
 
             obj_dtlogdetails = Logobj.InsTempGrpLogdtlsGet(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginBranchid"]), 1959, "", "", "", Session["StrTranType"].ToString());
 

@@ -21,6 +21,17 @@ namespace logix.CRM
         string Msg_List;
         string Dtype_List;
         DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+        DataAccess.Masters.MasterEmployee obj_da_me = new DataAccess.Masters.MasterEmployee();
+        DataAccess.ForwardingExports.JobInfo obj_da_job = new DataAccess.ForwardingExports.JobInfo();
+        DataAccess.ForwardingExports.BLDetails obj_da_bl = new DataAccess.ForwardingExports.BLDetails();
+
+        DataAccess.ForwardingExports.StuffingConfirmation obj_da_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
+        DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+        DataAccess.HR.Employee obj_da_hre = new DataAccess.HR.Employee();
+        DataAccess.ForwardingExports.JobInfo FEJobobj = new DataAccess.ForwardingExports.JobInfo();
+        DataAccess.Documents obj_da_doc = new DataAccess.Documents();
+        DataAccess.LogDetails obj_da_ld = new DataAccess.LogDetails();
+        DataAccess.Message4Booking obj_da_m4b = new DataAccess.Message4Booking();
         int int_branchid;
         int int_divisionid;
         string blpod;
@@ -39,6 +50,29 @@ namespace logix.CRM
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
 
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+
+                obj_da_me.GetDataBase(Ccode);
+                obj_da_job.GetDataBase(Ccode);
+                obj_da_bl.GetDataBase(Ccode);
+                obj_da_stuff.GetDataBase(Ccode);
+                obj_da_jobinfo.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+                obj_da_hre.GetDataBase(Ccode);
+                FEJobobj.GetDataBase(Ccode);
+                obj_da_doc.GetDataBase(Ccode);
+                obj_da_ld.GetDataBase(Ccode);
+                obj_da_m4b.GetDataBase(Ccode);
+
+
+
+
+            }
+
             if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
             {
                 ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('"+ Session["Site"].ToString() + "/','_top');", true);
@@ -56,7 +90,7 @@ namespace logix.CRM
                     btn_send.Attributes.Add("OnClick", "return IsValid('" + Ctrl_List + "','" + Msg_List + "','" + Dtype_List + "');");
                     this.Mdl_grdjob.Hide();
                     fn_enblstatus();
-                    DataAccess.Masters.MasterEmployee obj_da_me = new DataAccess.Masters.MasterEmployee();
+                    //DataAccess.Masters.MasterEmployee obj_da_me = new DataAccess.Masters.MasterEmployee();
                     int_empid = Convert.ToInt32(Session["LoginEmpId"].ToString());
                     strEmpName = obj_da_me.GetEmployeeName(int_empid);
                     ClearAll();
@@ -79,6 +113,8 @@ namespace logix.CRM
         public static List<string> IMailID(string prefix)
         {
             DataAccess.ForwardingExports.StuffingConfirmation obj_da_sc = new DataAccess.ForwardingExports.StuffingConfirmation();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_da_sc.GetDataBase(Ccode);
 
             DataTable obj_Dt = new DataTable();
             List<string> Bookingno = new List<string>();
@@ -91,6 +127,8 @@ namespace logix.CRM
         public static List<string> CMailID(string prefix)
         {
             DataAccess.ForwardingExports.StuffingConfirmation obj_da_sc = new DataAccess.ForwardingExports.StuffingConfirmation();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_da_sc.GetDataBase(Ccode);
             DataTable obj_Dt = new DataTable();
             List<string> Bookingno = new List<string>();
             obj_Dt = obj_da_sc.GetLikeCustExporMailID(prefix);
@@ -127,7 +165,7 @@ namespace logix.CRM
             int_divisionid = Convert.ToInt32(Session["LoginDivisionId"].ToString());
             int_branchid = Convert.ToInt32(Session["LoginBranchid"].ToString());
             DataTable obj_dt = new DataTable();
-            DataAccess.ForwardingExports.JobInfo obj_da_job = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo obj_da_job = new DataAccess.ForwardingExports.JobInfo();
             if (Session["StrTranType"] != null)
             {
                 if (Session["StrTranType"].ToString() == "FE")
@@ -180,7 +218,7 @@ namespace logix.CRM
                 int_branchid = Convert.ToInt32(Session["LoginBranchid"].ToString());
                 txt_job.Text = jobno.ToString();
                 DataTable obj_dt_job = new DataTable();
-                DataAccess.ForwardingExports.JobInfo obj_da_job = new DataAccess.ForwardingExports.JobInfo();
+               // DataAccess.ForwardingExports.JobInfo obj_da_job = new DataAccess.ForwardingExports.JobInfo();
                 if (Session["StrTranType"] != null)
                 {
                     if (Session["StrTranType"].ToString() == "FE")
@@ -196,9 +234,9 @@ namespace logix.CRM
                 }
 
                 DataTable obj_dt_bl = new DataTable();
-                DataAccess.ForwardingExports.BLDetails obj_da_bl = new DataAccess.ForwardingExports.BLDetails();
+                //DataAccess.ForwardingExports.BLDetails obj_da_bl = new DataAccess.ForwardingExports.BLDetails();
 
-                DataAccess.ForwardingExports.StuffingConfirmation obj_da_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
+                //DataAccess.ForwardingExports.StuffingConfirmation obj_da_stuff = new DataAccess.ForwardingExports.StuffingConfirmation();
                 if (Session["StrTranType"] != null)
                 {
                     if (Session["StrTranType"].ToString() == "FE")
@@ -301,7 +339,7 @@ namespace logix.CRM
 
                     chk_containers.Items.Clear();
                     DataTable obj_dt_jobinfo = new DataTable();
-                    DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
+                    //DataAccess.ForwardingExports.JobInfo obj_da_jobinfo = new DataAccess.ForwardingExports.JobInfo();
                     obj_dt_jobinfo = obj_da_jobinfo.GetContainerDetails(Convert.ToInt32(txt_job.Text), txt_job.Text, int_branchid, int_divisionid);
                     //for (int i = 0; i < obj_dt_jobinfo.Rows.Count; i++)
                     //{
@@ -843,8 +881,8 @@ namespace logix.CRM
 
         protected void btn_send_Click(object sender, EventArgs e)
         {
-            DataAccess.HR.Employee obj_da_hre = new DataAccess.HR.Employee();
-            DataAccess.ForwardingExports.JobInfo FEJobobj = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.HR.Employee obj_da_hre = new DataAccess.HR.Employee();
+            //DataAccess.ForwardingExports.JobInfo FEJobobj = new DataAccess.ForwardingExports.JobInfo();
             int_branchid = Convert.ToInt32(Session["LoginBranchid"].ToString());
             int_divisionid = Convert.ToInt32(Session["LoginDivisionId"].ToString());
 
@@ -962,7 +1000,7 @@ namespace logix.CRM
                 }
 
                 int_empid = Convert.ToInt32(Session["LoginEmpId"].ToString());
-                DataAccess.Masters.MasterEmployee obj_da_me = new DataAccess.Masters.MasterEmployee();
+               // DataAccess.Masters.MasterEmployee obj_da_me = new DataAccess.Masters.MasterEmployee();
                 strEmpName = obj_da_me.GetEmployeeName(int_empid);
                 int_branchid = Convert.ToInt32(Session["LoginBranchid"].ToString());
                 int_divisionid = Convert.ToInt32(Session["LoginDivisionId"].ToString());
@@ -970,9 +1008,9 @@ namespace logix.CRM
                 string sendqry = "";
 
                 string subject = "";
-                DataAccess.Documents obj_da_doc = new DataAccess.Documents();
-                DataAccess.LogDetails obj_da_ld = new DataAccess.LogDetails();
-                DataAccess.Message4Booking obj_da_m4b = new DataAccess.Message4Booking();
+                //DataAccess.Documents obj_da_doc = new DataAccess.Documents();
+                //DataAccess.LogDetails obj_da_ld = new DataAccess.LogDetails();
+                //DataAccess.Message4Booking obj_da_m4b = new DataAccess.Message4Booking();
                 sname = obj_da_doc.GetShortname(int_branchid);
                 subject = "PRESENT STATUS - " + "-" + blpod + "-" + sname + "-" + txt_job.Text + "-" + txt_subject.Text;
                 sendqry = sendqry + "<table cellspacing=0 cellpadding=2>";

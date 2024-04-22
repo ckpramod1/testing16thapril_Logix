@@ -347,6 +347,7 @@ table#logix_CPH_grdFE td:nth-child(3) {
             <div class="widget box" runat="server" id="div_iframe">
 
                 <div class="widget-header">
+                    <div>
                     <h4 class="hide"><i class="icon-umbrella"></i>
                         <asp:Label ID="lblheader" runat="server" Text="Event Tracking - Operations"></asp:Label>
                     </h4>
@@ -362,19 +363,24 @@ table#logix_CPH_grdFE td:nth-child(3) {
                     <div style="float: right; margin: 0px -0.5% 0px 0px;" class="log ico-log-sm" >
                         <asp:LinkButton ID="logdetails" runat="server" ToolTip="Log" Style="text-decoration: none" OnClick="logdetails_Click"></asp:LinkButton>
                     </div>
+                        </div>
+
+
+                      <div class="FixedButtons">
+      <div class="right_btn">
+          <div class="btn ico-get">
+              <asp:Button ID="btnGet" runat="server" Text="Get" ToolTip="Get" OnClick="btnGet_Click" /></div>
+          <div class="btn ico-excel">
+              <asp:Button ID="btnExporttoexcel" runat="server" Text="Export To Excel" ToolTip="Export To Excel" OnClick="btnExporttoexcel_Click" /></div>
+          <div class="btn ico-cancel" id="btn_cancel1" runat="server">
+              <asp:Button ID="btnBack" runat="server" Text="Cancel" ToolTip="Cancel" OnClick="btnBack_Click" /></div>
+      </div>
+  </div>
+
 
                 </div>
                 <div class="widget-content">
-                    <div class="FixedButtons">
-                        <div class="right_btn">
-                            <div class="btn ico-get">
-                                <asp:Button ID="btnGet" runat="server" Text="Get" ToolTip="Get" OnClick="btnGet_Click" /></div>
-                            <div class="btn ico-excel">
-                                <asp:Button ID="btnExporttoexcel" runat="server" Text="Export To Excel" ToolTip="Export To Excel" OnClick="btnExporttoexcel_Click" /></div>
-                            <div class="btn ico-cancel" id="btn_cancel1" runat="server">
-                                <asp:Button ID="btnBack" runat="server" Text="Cancel" ToolTip="Cancel" OnClick="btnBack_Click" /></div>
-                        </div>
-                    </div>
+                  
                     <div class="FormGroupContent4 boxmodal">
                         <div class="FromDateCal">
                             <asp:Label ID="lbl_fromdate" runat="server" Text="From Date"></asp:Label>

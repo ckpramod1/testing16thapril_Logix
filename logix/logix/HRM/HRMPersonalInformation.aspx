@@ -1166,9 +1166,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="logix_CPH" runat="server">
 
     <!-- Breadcrumbs line End -->
-
+      <div class="col-md-12  maindiv">
     <div class="widget box">
         <div class=" widget-header">
+            <div>
             <h3 class="hide">
                 <img src="../Theme/newTheme/img/personalinfo_ic.png" />
                 <asp:Label ID="lbl_header" runat="server" Text="Personal Info"></asp:Label>
@@ -1184,31 +1185,36 @@
             <div style="float: right; margin: 0px -0.5% 0px 0px;" class="log ico-log-sm">
                 <asp:LinkButton ID="logdetails" runat="server" ToolTip="Log" Style="text-decoration: none" OnClick="logdetails_Click"></asp:LinkButton>
             </div>
+                </div>
+
+
+            <div class="FixedButtons">
+  <div style="float: left;" class="left_btn">
+                <asp:LinkButton ID="link_cust" runat="server" OnClick="link_cust_Click">
+                               <%-- <img src="../Theme/assets/img/buttonIcon/active/excel.png" title="Export to Excel" />--%>
+                    <img src="../Theme/assets/img/buttonIcon/active/excel.png" title="Export to Excel" />
+                </asp:LinkButton>
+
+                <div style="clear: both;"></div>
+            </div>
+
+    <div class="right_btn">
+        <div class="btn ico-save" id="btn_save1" runat="server">
+            <asp:Button ID="btn_save" runat="server" Text="Save" ToolTip="Save" OnClick="btn_save_Click" />
+        </div>
+        <div class="btn ico-view">
+            <asp:Button ID="btn_view" runat="server" Text="View" ToolTip="View" OnClick="btn_view_Click" />
+        </div>
+        <div class="btn ico-cancel" id="btn_cancel1" runat="server">
+            <asp:Button ID="btn_cancel" runat="server" Text="Cancel" ToolTip="Cancel" OnClick="btn_cancel_Click" />
+        </div>
+    </div>
+</div>
+
 
         </div>
         <div class="widget-content">
-            <div class="FixedButtons">
-              <div style="float: left;" class="left_btn">
-                            <asp:LinkButton ID="link_cust" runat="server" OnClick="link_cust_Click">
-                                           <%-- <img src="../Theme/assets/img/buttonIcon/active/excel.png" title="Export to Excel" />--%>
-                                <img src="../Theme/assets/img/buttonIcon/active/excel.png" title="Export to Excel" />
-                            </asp:LinkButton>
-
-                            <div style="clear: both;"></div>
-                        </div>
-
-                <div class="right_btn">
-                    <div class="btn ico-save" id="btn_save1" runat="server">
-                        <asp:Button ID="btn_save" runat="server" Text="Save" ToolTip="Save" OnClick="btn_save_Click" />
-                    </div>
-                    <div class="btn ico-view">
-                        <asp:Button ID="btn_view" runat="server" Text="View" ToolTip="View" OnClick="btn_view_Click" />
-                    </div>
-                    <div class="btn ico-cancel" id="btn_cancel1" runat="server">
-                        <asp:Button ID="btn_cancel" runat="server" Text="Cancel" ToolTip="Cancel" OnClick="btn_cancel_Click" />
-                    </div>
-                </div>
-            </div>
+            
             <div class="FormGroupRow">
                 <div class="EmpRight">
                     <asp:Image ID="Img_Emp" runat="server" Height="106px" Width="100px" BorderStyle="Solid" BorderWidth="1px" ImageUrl="~/images/UT.jpg" />
@@ -2086,6 +2092,7 @@
             </div>
         </div>
     </div>
+          </div>
 
     <%--  <div class="FormGroupContent4">
                 <div class="div_Tab" id="div_personal" runat="server"> <asp:LinkButton ID="lnk_personal" runat="server" ForeColor="White" CssClass="LabelValue" OnClick="lnk_personal_Click" >Personal Info</asp:LinkButton> </div>

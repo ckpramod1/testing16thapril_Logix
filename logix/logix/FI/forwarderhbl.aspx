@@ -298,6 +298,7 @@ table#logix_CPH_grd td:nth-child(6) {
 
             <div class="widget box" runat="server" id="div_iframe">
                 <div class="widget-header">
+                    <div>
                     <h4 class="hide"><i class="icon-umbrella"></i>
                         <asp:Label ID="lbl_header" runat="server" Text="ForwarderBLvsHBL"></asp:Label></h4>
                     <!-- Breadcrumbs line -->
@@ -312,18 +313,23 @@ table#logix_CPH_grd td:nth-child(6) {
                     <div style="float: right; margin: 0px -0.5% 0px 0px;" class="log ico-log-sm" >
                         <asp:LinkButton ID="logdetails" runat="server" ToolTip="Log" Style="text-decoration: none" OnClick="logdetails_Click"></asp:LinkButton>
                     </div>
+                        </div>
+
+
+                     <div class="FixedButtons">
+      <div class="right_btn">
+         <div class="btn ico-view">
+             <asp:Button ID="btn_view" ToolTip="View" Text="View" runat="server" OnClick="btn_view_Click" UseSubmitBehavior="False" />
+         </div>
+         <div class="btn ico-cancel" id="btn_cancel2" runat="server">
+             <asp:Button ID="btn_cancel" ToolTip="Cancel" Text="Cancel"  runat="server" OnClick="btn_cancel_Click" UseSubmitBehavior="False" /></div>
+     </div>
+ </div>
+
                 </div>
 
                 <div class="widget-content">
-                    <div class="FormGroupContent4 FixedButtons">
-                         <div class="right_btn">
-                            <div class="btn ico-view">
-                                <asp:Button ID="btn_view" ToolTip="View" Text="View" runat="server" OnClick="btn_view_Click" UseSubmitBehavior="False" />
-                            </div>
-                            <div class="btn ico-cancel" id="btn_cancel2" runat="server">
-                                <asp:Button ID="btn_cancel" ToolTip="Cancel" Text="Cancel"  runat="server" OnClick="btn_cancel_Click" UseSubmitBehavior="False" /></div>
-                        </div>
-                    </div>
+                   
                     <div class="FormGroupContent4 boxmodal">
                         <div class="JobInput4">
                             <asp:Label ID="Label1" runat="server" Text="Job #"> </asp:Label>

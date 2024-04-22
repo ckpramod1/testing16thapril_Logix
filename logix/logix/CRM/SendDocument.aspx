@@ -376,6 +376,7 @@ div#logix_CPH_div_iframe .widget-content {
             <div class="widget box" runat="server" id="div_iframe">
 
                 <div class="widget-header">
+                    <div>
                     <h4 class="hide"><i class="icon-umbrella"></i>
                         <asp:Label ID="lbl_header" runat="server" Text="Send Document"></asp:Label>
                     </h4>
@@ -388,19 +389,24 @@ div#logix_CPH_div_iframe .widget-content {
             <li class="current"><a href="#" title="">Send Document</a> </li>
         </ul>
     </div>
+                        </div>
+
+                     <div class="FixedButtons">
+       <div class="right_btn">
+     <div class="btn ico-send"  runat="server" id="btn_send_id" >
+         <asp:Button ID="btn_send" runat="server" Text="Send" ToolTip="Send" OnClick="btn_send_Click" />
+     </div>
+     <div class="btn ico-back" id="btn_back1" runat="server">
+         <asp:Button ID="btn_cancel" runat="server" Text="Cancel" ToolTip="Cancel" OnClick="btn_cancel_Click" />
+     </div>
+ </div>
+ </div>
+
+
                 </div>
                 <div class="widget-content">
 
-                    <div class="FormGroupContent4 FixedButtons">
-                          <div class="right_btn">
-                        <div class="btn ico-send"  runat="server" id="btn_send_id" >
-                            <asp:Button ID="btn_send" runat="server" Text="Send" ToolTip="Send" OnClick="btn_send_Click" />
-                        </div>
-                        <div class="btn ico-back" id="btn_back1" runat="server">
-                            <asp:Button ID="btn_cancel" runat="server" Text="Cancel" ToolTip="Cancel" OnClick="btn_cancel_Click" />
-                        </div>
-                    </div>
-                    </div>
+                   
                   
                     <div class="FormGroupContent4 custom-d-flex">
 

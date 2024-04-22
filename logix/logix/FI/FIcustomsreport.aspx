@@ -273,6 +273,7 @@ div#logix_CPH_div_iframe .widget-content {
     
      <div class="widget box" runat ="server" id="div_iframe">
      <div class="widget-header">
+         <div>
                   <h4 class="hide"><i class="icon-umbrella"></i><asp:Label ID="lbl_hdr" runat="server" Text="Customs Report"></asp:Label></h4>
              <!-- Breadcrumbs line -->
           <div class="crumbs">
@@ -283,57 +284,63 @@ div#logix_CPH_div_iframe .widget-content {
               <li class="current"><a href="#" title="">Customs Report</a> </li>
             </ul>
       </div>
+             </div>
+
+                  <div class="FixedButtons">
+             
+ 
+<div class="left_btn" >
+    <div class="btn ico-igm-1-5">
+        <asp:Button ID="btn_igm" runat="server" Text="IGM 1.5" ToolTip="IGM 1.5" OnClick="btn_igm_Click" TabIndex="2" />
+
+    </div>
+    <div class="btn ico-liner-igm">
+        <asp:Button ID="btn_ligm" runat="server" Text="Liner IGM" ToolTip="Liner IGM" OnClick="btn_ligm_Click" TabIndex="3" />
+    </div>
+    <div class="btn ico-customs-edi">
+        <asp:Button ID="btn_cedi" runat="server" Text="Customs EDI" ToolTip="Customs EDI" OnClick="btn_cedi_Click" TabIndex="4" />
+    </div>
+
+    <div class="btn ico-igm-1-5-view">
+        <asp:Button ID="btn_igmrpt" runat="server" Text="View IGM 1.5" ToolTip="View IGM 1.5" OnClick="btn_igmrpt_Click" TabIndex="2" />
+    </div>
+    <div class="btn ico-liner-view">
+        <asp:Button ID="btn_ligmrpt" runat="server"  Text="View Liner IGM"  ToolTip="View Liner IGM" OnClick="btn_igmrpt_Click" TabIndex="3" />
+    </div>
+    <div class="btn ico-custom-view">
+        <asp:Button ID="btn_cedirpt" runat="server" Text="View Customs EDI" ToolTip="View Customs EDI" OnClick="btn_igmrpt_Click" TabIndex="4" />
+    </div>
+    </div>
+             <div class="right_btn">
+                  <div class="btn ico-annexure-i"><asp:Button ID="btn_annex1" runat="server" Text="Annexure1"  onclick="btn_annex1_Click" TabIndex="16"/></div>
+                  <div class="btn ico-annexure-ii"><asp:Button ID="btn_annex2" runat="server" Text="Annexure2"  onclick="btn_annex2_Click" TabIndex="17"/></div>
+                  <div class="btn ico-annexure-b"><asp:Button ID="btn_annexB" runat="server" Text="AnnexureB" onclick="btn_annexB_Click" TabIndex="18"/></div>
+                  <div class="btn ico-form-ii"><asp:Button ID="btn_form2" runat="server" Text="Form II"  onclick="btn_form2_Click" TabIndex="19"/></div>
+                  <div class="btn ico-form-iii"><asp:Button ID="btn_form3" runat="server" Text="Form III" onclick="btn_form3_Click" TabIndex="20"/></div>
+                  
+                 
+                 
+              
+                 <div class="btn ico-clp"><asp:Button ID="btn_cntnrldplan" runat="server" Text="Container Load Plan"  onclick="btn_cntnrldplan_Click" TabIndex="21"/></div>
+                  <div class="btn ico-igm-final"><asp:Button ID="btn_finaligm" runat="server" Text="Final IGM"  onclick="btn_finaligm_Click" TabIndex="22"/></div>
+                 <div class="btn ico-consol-letter"><asp:Button ID="btn_consolletter" runat="server" Text="Consol Letter" onclick="btn_consolletter_Click" TabIndex="23"/></div>
+                   <div class="btn ico-icd-cfs"><asp:Button ID="btn_icdcfs" runat="server" Text="ICD CFS" onclick="btn_icdcfs_Click" TabIndex="24"/></div>
+             
+               
+                   <div class="btn ico-icd-movement-note"><asp:Button ID="btn_icdmovement" runat="server" Text="ICD Movement Note"  onclick="btn_icdmovement_Click" TabIndex="26"/></div>
+                   <div class="btn ico-icd-cargo-declaration"><asp:Button ID="btn_icdcargo" runat="server" Text="ICD Cargo Declaration"  onclick="btn_icdcargo_Click" TabIndex="27"/></div>
+                   <div class="btn ico-cancel"><asp:Button ID="btn_cancel" runat="server" Text="Cancel" onclick="btn_cancel_Click" TabIndex="28"/></div>
+                   <div class="btn ico-icd-tsa"><asp:Button ID="btn_icdtsa" runat="server" Text="ICD TSA" onclick="btn_icdtsa_Click" TabIndex="25"/></div>
+
+                
+            </div>
+         </div>
+
+
+
                 </div>
           <div class="widget-content">
-              <div class="FixedButtons">
-                  
-      
-     <div class="left_btn" >
-         <div class="btn ico-igm-1-5">
-             <asp:Button ID="btn_igm" runat="server" Text="IGM 1.5" ToolTip="IGM 1.5" OnClick="btn_igm_Click" TabIndex="2" />
-
-         </div>
-         <div class="btn ico-liner-igm">
-             <asp:Button ID="btn_ligm" runat="server" Text="Liner IGM" ToolTip="Liner IGM" OnClick="btn_ligm_Click" TabIndex="3" />
-         </div>
-         <div class="btn ico-customs-edi">
-             <asp:Button ID="btn_cedi" runat="server" Text="Customs EDI" ToolTip="Customs EDI" OnClick="btn_cedi_Click" TabIndex="4" />
-         </div>
-
-         <div class="btn ico-igm-1-5-view">
-             <asp:Button ID="btn_igmrpt" runat="server" Text="View IGM 1.5" ToolTip="View IGM 1.5" OnClick="btn_igmrpt_Click" TabIndex="2" />
-         </div>
-         <div class="btn ico-liner-view">
-             <asp:Button ID="btn_ligmrpt" runat="server"  Text="View Liner IGM"  ToolTip="View Liner IGM" OnClick="btn_igmrpt_Click" TabIndex="3" />
-         </div>
-         <div class="btn ico-custom-view">
-             <asp:Button ID="btn_cedirpt" runat="server" Text="View Customs EDI" ToolTip="View Customs EDI" OnClick="btn_igmrpt_Click" TabIndex="4" />
-         </div>
-         </div>
-                  <div class="right_btn">
-                       <div class="btn ico-annexure-i"><asp:Button ID="btn_annex1" runat="server" Text="Annexure1"  onclick="btn_annex1_Click" TabIndex="16"/></div>
-                       <div class="btn ico-annexure-ii"><asp:Button ID="btn_annex2" runat="server" Text="Annexure2"  onclick="btn_annex2_Click" TabIndex="17"/></div>
-                       <div class="btn ico-annexure-b"><asp:Button ID="btn_annexB" runat="server" Text="AnnexureB" onclick="btn_annexB_Click" TabIndex="18"/></div>
-                       <div class="btn ico-form-ii"><asp:Button ID="btn_form2" runat="server" Text="Form II"  onclick="btn_form2_Click" TabIndex="19"/></div>
-                       <div class="btn ico-form-iii"><asp:Button ID="btn_form3" runat="server" Text="Form III" onclick="btn_form3_Click" TabIndex="20"/></div>
-                       
-                      
-                      
-                   
-                      <div class="btn ico-clp"><asp:Button ID="btn_cntnrldplan" runat="server" Text="Container Load Plan"  onclick="btn_cntnrldplan_Click" TabIndex="21"/></div>
-                       <div class="btn ico-igm-final"><asp:Button ID="btn_finaligm" runat="server" Text="Final IGM"  onclick="btn_finaligm_Click" TabIndex="22"/></div>
-                      <div class="btn ico-consol-letter"><asp:Button ID="btn_consolletter" runat="server" Text="Consol Letter" onclick="btn_consolletter_Click" TabIndex="23"/></div>
-                        <div class="btn ico-icd-cfs"><asp:Button ID="btn_icdcfs" runat="server" Text="ICD CFS" onclick="btn_icdcfs_Click" TabIndex="24"/></div>
-                  
-                    
-                        <div class="btn ico-icd-movement-note"><asp:Button ID="btn_icdmovement" runat="server" Text="ICD Movement Note"  onclick="btn_icdmovement_Click" TabIndex="26"/></div>
-                        <div class="btn ico-icd-cargo-declaration"><asp:Button ID="btn_icdcargo" runat="server" Text="ICD Cargo Declaration"  onclick="btn_icdcargo_Click" TabIndex="27"/></div>
-                        <div class="btn ico-cancel"><asp:Button ID="btn_cancel" runat="server" Text="Cancel" onclick="btn_cancel_Click" TabIndex="28"/></div>
-                        <div class="btn ico-icd-tsa"><asp:Button ID="btn_icdtsa" runat="server" Text="ICD TSA" onclick="btn_icdtsa_Click" TabIndex="25"/></div>
-
-                     
-                 </div>
-              </div>
+             
               <div class="FormGroupContent4">
                    <div class="JobInput16 custom-mr-05">
                        <span>Job #</span>

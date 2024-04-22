@@ -27,6 +27,21 @@ namespace logix.FI
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
 
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+
+                FIEVobj.GetDataBase(Ccode);
+                FEJobObj.GetDataBase(Ccode);
+                obj_da_Logobj.GetDataBase(Ccode);
+
+
+              
+
+            }
+
             if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
             {
                 ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('"+ Session["Site"].ToString() + "/','_top');", true);
@@ -78,6 +93,8 @@ namespace logix.FI
             List<string> customer = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer da_obj_customerobj = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_customerobj.GetDataBase(Ccode);
             obj_dt = da_obj_customerobj.GetLikeCustomer(prefix.ToUpper(), custtype);
             customer = Utility.Fn_DatatableToList_int16Display(obj_dt, "customer", "customerid", "customername");
 

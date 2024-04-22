@@ -29,6 +29,7 @@ namespace logix.FI
         DataAccess.LogDetails da_obj_logobj = new DataAccess.LogDetails();
         string type;
         DataAccess.ForwardingImports.JobInfo da_obj_FIJobobj = new DataAccess.ForwardingImports.JobInfo();
+        DataAccess.ForwardingImports.JobInfo obj_da_jinfo = new DataAccess.ForwardingImports.JobInfo();
 
         int int_divisionid;
         string str_closedjob;
@@ -40,6 +41,24 @@ namespace logix.FI
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+
+                objCust.GetDataBase(Ccode);
+                objcargopick.GetDataBase(Ccode);
+                da_obj_logobj.GetDataBase(Ccode);
+                da_obj_FIJobobj.GetDataBase(Ccode);
+                obj_da_jinfo.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+
+
+
+
+            }
 
             ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_Cancel);
             if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
@@ -165,6 +184,8 @@ namespace logix.FI
             List<string> list_result = new List<string>();
 
             DataAccess.Masters.MasterCustomer objCust = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            objCust.GetDataBase(Ccode);
             DataTable dt = new DataTable();
 
             dt = objCust.GetLikeCustomerWDL(prefix);
@@ -212,7 +233,7 @@ namespace logix.FI
                 btn_cancel1.Attributes["class"] = "btn ico-cancel";
                 hf_jobno.Value = "0";
                 hf_docno.Value = "0";
-                DataAccess.ForwardingImports.JobInfo da_obj_FIJobobj = new DataAccess.ForwardingImports.JobInfo();
+                //DataAccess.ForwardingImports.JobInfo da_obj_FIJobobj = new DataAccess.ForwardingImports.JobInfo();
                 DataTable dtmail = new DataTable();
                 txtdate = txt_dtdate.Text;
                 blerr = false;
@@ -8673,7 +8694,7 @@ namespace logix.FI
                 int_branchid = Convert.ToInt32(Session["LoginBranchid"].ToString());
 
                 DataTable obj_dt_jinfo = new DataTable();
-                DataAccess.ForwardingImports.JobInfo obj_da_jinfo = new DataAccess.ForwardingImports.JobInfo();
+                //DataAccess.ForwardingImports.JobInfo obj_da_jinfo = new DataAccess.ForwardingImports.JobInfo();
 
                 if (txtjob.Text != "")
                 {

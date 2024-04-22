@@ -15,9 +15,27 @@ namespace logix.FI
 
         string str_division;
         string str_branch;
+        DataAccess.ForwardingImports.BLDetails obj_da_FIBLobj = new DataAccess.ForwardingImports.BLDetails();
+        DataAccess.LogDetails obj_da_logobj = new DataAccess.LogDetails();
+        DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+
+                obj_da_FIBLobj.GetDataBase(Ccode);
+                obj_da_logobj.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+
+
+
+
+            }
 
             ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_cancel);
             if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
@@ -63,7 +81,7 @@ namespace logix.FI
         protected void txt_jobno_TextChanged(object sender, EventArgs e)
         {
             DataTable obj_Dt = new DataTable();
-            DataAccess.ForwardingImports.BLDetails obj_da_FIBLobj = new DataAccess.ForwardingImports.BLDetails();
+            //DataAccess.ForwardingImports.BLDetails obj_da_FIBLobj = new DataAccess.ForwardingImports.BLDetails();
             if (txt_jobno.Text != "")
             {
                 obj_Dt = obj_da_FIBLobj.ForwarderVsHBL(Convert.ToInt32(txt_jobno.Text), Convert.ToInt32(Session["LoginBranchid"]), Convert.ToInt32(Session["LoginDivisionId"]));
@@ -100,7 +118,7 @@ namespace logix.FI
                 string str_sf = "";
                 string str_Script = "";
                 string str_sp = "";
-                DataAccess.LogDetails obj_da_logobj = new DataAccess.LogDetails();
+                //DataAccess.LogDetails obj_da_logobj = new DataAccess.LogDetails();
                 if (txt_jobno.Text == "")
                 {
                     str_RPtName = "forwardervshbl.rpt";
@@ -172,7 +190,7 @@ namespace logix.FI
             GridViewlog.Visible = true;
             Panel1.Visible = true;
             DataTable obj_dtlogdetails = new DataTable();
-            DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+            //DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
 
             obj_dtlogdetails = Logobj.InsTempGrpLogdtlsGet(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginBranchid"]), 672, "Job", txt_jobno.Text, txt_jobno.Text, Session["StrTranType"].ToString());
 

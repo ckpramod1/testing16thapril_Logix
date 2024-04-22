@@ -825,7 +825,7 @@
                     </div>
                         </div>
 
-                    div class="FixedButtons">
+                   <div class="FixedButtons">
                            <div class="right_btn">
        <div class="btn ico-get">
            <asp:Button ID="btnview" runat="server" ToolTip="View" OnClick="btnview_Click" Visible="false" />
@@ -837,7 +837,7 @@
 
                 </div>
                 <div class="widget-content">
-                    <
+                    
                     <div class="FormGroupContent4 boxmodal">
                                     <div class="LedgerInput" style="width: 14%;" >
     <asp:Label ID="Label9" runat="server" Text="OurBranch"></asp:Label>

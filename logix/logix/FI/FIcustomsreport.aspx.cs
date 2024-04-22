@@ -110,6 +110,7 @@ namespace logix.FI
         DataAccess.Masters.MasterVessel Vslobj = new DataAccess.Masters.MasterVessel();
        
         DataAccess.Masters.MasterPort Portobj = new DataAccess.Masters.MasterPort();
+        DataAccess.ForwardingImports.CargoManifest obj_da_cargo = new DataAccess.ForwardingImports.CargoManifest();
         Class1 objraj = new Class1();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -142,6 +143,7 @@ namespace logix.FI
                 Vslobj.GetDataBase (Ccode);
 
                 Portobj.GetDataBase (Ccode);
+                obj_da_cargo.GetDataBase (Ccode);
 
 
 
@@ -1196,7 +1198,7 @@ namespace logix.FI
                 return;
             }
             DataTable obj_dt_pan = new DataTable();
-            DataAccess.ForwardingImports.CargoManifest obj_da_cargo = new DataAccess.ForwardingImports.CargoManifest();
+            //DataAccess.ForwardingImports.CargoManifest obj_da_cargo = new DataAccess.ForwardingImports.CargoManifest();
             obj_dt_pan = obj_da_cargo.Getpanno4igm(int_branchid);
             if (obj_dt_pan.Rows.Count > 0)
             {

@@ -23,6 +23,12 @@ namespace logix.FI
         bool bol;
         string strdnno;
         DataAccess.LogDetails da_obj_objLog = new DataAccess.LogDetails();
+        DataAccess.Masters.MasterCustomer da_obj_objCust = new DataAccess.Masters.MasterCustomer();
+        DataAccess.ForwardingImports.CargoPickup da_obj_objcargopick = new DataAccess.ForwardingImports.CargoPickup();
+        DataAccess.Accounts.OSDNCN da_obj_objOSDNCN = new DataAccess.Accounts.OSDNCN();
+        DataAccess.Accounts.Invoice da_obj_objINVOICE = new DataAccess.Accounts.Invoice();
+        DataAccess.Accounts.Approval da_obj_objApprove = new DataAccess.Accounts.Approval();
+        DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
         int vouyear;
         string Ctrl_List;
         string Msg_List;
@@ -30,6 +36,26 @@ namespace logix.FI
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
+
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+
+                da_obj_objLog.GetDataBase(Ccode);
+                da_obj_objCust.GetDataBase(Ccode);
+                da_obj_objcargopick.GetDataBase(Ccode);
+                da_obj_objOSDNCN.GetDataBase(Ccode);
+                da_obj_objINVOICE.GetDataBase(Ccode);
+                da_obj_objApprove.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+
+
+
+
+            }
 
             if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
             {
@@ -96,6 +122,8 @@ namespace logix.FI
         {
             DataTable obj_Dt = new DataTable();
             DataAccess.Masters.MasterCustomer obj_da_cust = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_da_cust.GetDataBase(Ccode);
             List<string> agent = new List<string>();
             obj_Dt = obj_da_cust.GetLikeCustomer(prefix);
             agent = Utility.Fn_DatatableToList(obj_Dt, "customername", "customerid", "customer");
@@ -115,8 +143,8 @@ namespace logix.FI
         {
             try
             {
-                DataAccess.Masters.MasterCustomer da_obj_objCust = new DataAccess.Masters.MasterCustomer();
-                DataAccess.ForwardingImports.CargoPickup da_obj_objcargopick = new DataAccess.ForwardingImports.CargoPickup();
+                //DataAccess.Masters.MasterCustomer da_obj_objCust = new DataAccess.Masters.MasterCustomer();
+                //DataAccess.ForwardingImports.CargoPickup da_obj_objcargopick = new DataAccess.ForwardingImports.CargoPickup();
 
                 dt_caargo = (DataTable)Session["datatable"];
                 if (dt_caargo.Rows.Count > 0)
@@ -192,9 +220,9 @@ namespace logix.FI
         {
             try
             {
-                DataAccess.Accounts.OSDNCN da_obj_objOSDNCN = new DataAccess.Accounts.OSDNCN();
-                DataAccess.Accounts.Invoice da_obj_objINVOICE = new DataAccess.Accounts.Invoice();
-                DataAccess.Accounts.Approval da_obj_objApprove = new DataAccess.Accounts.Approval();
+                //DataAccess.Accounts.OSDNCN da_obj_objOSDNCN = new DataAccess.Accounts.OSDNCN();
+                //DataAccess.Accounts.Invoice da_obj_objINVOICE = new DataAccess.Accounts.Invoice();
+                //DataAccess.Accounts.Approval da_obj_objApprove = new DataAccess.Accounts.Approval();
 
                 if (hf_cfsid.Value == "13234")
                 {
@@ -224,7 +252,7 @@ namespace logix.FI
         {
             try
             {
-                DataAccess.ForwardingImports.CargoPickup da_obj_objcargopick = new DataAccess.ForwardingImports.CargoPickup();
+                //DataAccess.ForwardingImports.CargoPickup da_obj_objcargopick = new DataAccess.ForwardingImports.CargoPickup();
                 if (hf_cfsid.Value != "0")
                 {
                     dt_caargo = da_obj_objcargopick.getcfsDtls(Convert.ToInt32(hf_cfsid.Value), Convert.ToInt32(Session["LoginBranchid"].ToString()));
@@ -342,7 +370,7 @@ namespace logix.FI
             GridViewlog.Visible = true;
             Panel1.Visible = true;
             DataTable obj_dtlogdetails = new DataTable();
-            DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+            //DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
 
             obj_dtlogdetails = Logobj.InsTempGrpLogdtlsGet(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginBranchid"]), 1076, "Job", "", "", Session["StrTranType"].ToString());
                     

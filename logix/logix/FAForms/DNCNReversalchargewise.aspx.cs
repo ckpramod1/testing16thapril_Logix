@@ -24,6 +24,20 @@ namespace logix.FAForm
         DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
         DataAccess.Accounts.Journal Jnlobj = new DataAccess.Accounts.Journal();
         DataAccess.FAVoucher Obj_Voucher = new DataAccess.FAVoucher();
+        DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+        DataAccess.Accounts.Invoice obj_da_Invoice = new DataAccess.Accounts.Invoice();
+        DataAccess.Accounts.Invoice obj_da_invoice = new DataAccess.Accounts.Invoice();
+        DataAccess.Accounts.Payment obj_da_Payment = new DataAccess.Accounts.Payment();
+        DataAccess.CostingTemp obj_da_Cost = new DataAccess.CostingTemp();
+        DataAccess.Accounts.Payment obj_da_payment = new DataAccess.Accounts.Payment();
+
+        DataAccess.Accounts.OSDNCN obj_da_OSDNCN = new DataAccess.Accounts.OSDNCN();
+        DataAccess.Accounts.Approval obj_da_Approval = new DataAccess.Accounts.Approval();
+        DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
+        DataAccess.Masters.MasterCustomer obj_da_Customer = new DataAccess.Masters.MasterCustomer();
+        DataAccess.Documents objnew = new DataAccess.Documents();
+        DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+
         string reversal = "";
         int int_Curr_Vouyear;
         Boolean blr;
@@ -44,6 +58,37 @@ namespace logix.FAForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+                obj_da_Reversal.GetDataBase(Ccode);
+                obj_da_Ledger.GetDataBase(Ccode);
+                Obj_Recipts.GetDataBase(Ccode);
+                INVOICEobj.GetDataBase(Ccode);
+                DCAdviseObj.GetDataBase(Ccode);
+                obj_da_Log.GetDataBase(Ccode);
+                customerobj.GetDataBase(Ccode);
+                Jnlobj.GetDataBase(Ccode);
+                Obj_Voucher.GetDataBase(Ccode);
+                obj_da_Emp.GetDataBase(Ccode);
+                obj_da_Invoice.GetDataBase(Ccode);
+                obj_da_invoice.GetDataBase(Ccode);
+                obj_da_Payment.GetDataBase(Ccode);
+                obj_da_Cost.GetDataBase(Ccode);
+                obj_da_payment.GetDataBase(Ccode);
+                obj_da_OSDNCN.GetDataBase(Ccode);
+                obj_da_Approval.GetDataBase(Ccode);
+                objrv.GetDataBase(Ccode);
+                obj_da_Customer.GetDataBase(Ccode);
+                objnew.GetDataBase(Ccode);
+                Logobj.GetDataBase(Ccode);
+
+
+
+            }
+
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
             if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
             {
@@ -66,7 +111,7 @@ namespace logix.FAForm
                 int_bid = Convert.ToInt32(Session["LoginBranchid"].ToString());
                 hid_divisionid.Value = Session["LoginDivisionId"].ToString();
                 int Corid;
-                DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
+                //DataAccess.HR.Employee obj_da_Emp = new DataAccess.HR.Employee();
                 Corid = obj_da_Emp.GetBranchId(Convert.ToInt32(hid_divisionid.Value), "CORPORATE");
 
                 if (Corid == int_bid)
@@ -164,7 +209,7 @@ namespace logix.FAForm
 
         private void Fn_GetDetail()
         {
-            DataAccess.Accounts.Invoice obj_da_Invoice = new DataAccess.Accounts.Invoice();
+            //DataAccess.Accounts.Invoice obj_da_Invoice = new DataAccess.Accounts.Invoice();
             DataTable obj_dt = new DataTable();
             DataTable ibj_dttemp = new DataTable();
             if (txt_receipt.Text.Trim().Length > 0 && txt_year.Text.Trim().Length > 0)
@@ -625,7 +670,7 @@ namespace logix.FAForm
                 int int_Vyear = Convert.ToInt32(txt_year.Text.ToString());
                 int int_Jobno = Convert.ToInt32(hid_job.Value.ToString());
                 int int_Receipt = Convert.ToInt32(txt_receipt.Text.ToString());
-                DataAccess.Accounts.Invoice obj_da_invoice = new DataAccess.Accounts.Invoice();
+                //DataAccess.Accounts.Invoice obj_da_invoice = new DataAccess.Accounts.Invoice();
                 DataTable dtrev = new DataTable();
 
                 if (ddl_voucher.SelectedItem.Text == "Purchase Invoice")
@@ -1125,7 +1170,7 @@ namespace logix.FAForm
                     return;
                 }
                 DataTable obj_dt = new DataTable();
-                DataAccess.Accounts.Payment obj_da_Payment = new DataAccess.Accounts.Payment();
+                //DataAccess.Accounts.Payment obj_da_Payment = new DataAccess.Accounts.Payment();
                 obj_dt = obj_da_Payment.CheckVouReversal(Convert.ToInt32(txt_receipt.Text), Convert.ToInt32(Session["LoginBranchid"].ToString()), Hid_voutype.Value, Convert.ToInt32(txt_year.Text));
                 if (Grd_Charge.Rows.Count > 0)
                 {
@@ -1228,7 +1273,7 @@ namespace logix.FAForm
             double BL_Amount = 0, BL_Expense = 0, BL_debit = 0, BL_credit = 0;
             int JobType = 0, MLO = 0, int_Cont20 = 0, int_Cont40 = 0;
             DateTime dtdate = CDate;
-            DataAccess.CostingTemp obj_da_Cost = new DataAccess.CostingTemp();
+            //DataAccess.CostingTemp obj_da_Cost = new DataAccess.CostingTemp();
             if (int_bid == 0 || int_bid == null)
             {
                 int_bid = Convert.ToInt32(Session["LoginBranchid"].ToString());
@@ -1362,7 +1407,7 @@ namespace logix.FAForm
 
 
             // Einvoice newly added start//
-            DataAccess.Documents objnew = new DataAccess.Documents();
+            //DataAccess.Documents objnew = new DataAccess.Documents();
             int ind_div1 = Convert.ToInt32(Session["LoginDivisionId"].ToString());
             string div_id = "", gstirn_ = "", gstirnerr_ = "";
             int gstirn = 0, gstirnerr = 0;
@@ -1398,7 +1443,7 @@ namespace logix.FAForm
                     int int_Vyear = Convert.ToInt32(txt_year.Text.ToString());
                     int int_Jobno = Convert.ToInt32(hid_job.Value.ToString());
                     string Str_DBName = Session["FADbname"].ToString();
-                    DataAccess.Accounts.Invoice obj_da_invoice = new DataAccess.Accounts.Invoice();
+                    //DataAccess.Accounts.Invoice obj_da_invoice = new DataAccess.Accounts.Invoice();
                     DateTime dtdate = obj_da_Log.GetDate();
                     DataTable dtacc = new DataTable();
                     int jobclosed = 0;
@@ -1434,10 +1479,10 @@ namespace logix.FAForm
                     //if ((txt_receipt.Text.Trim().Length > 0 && int_Jobno != 0) || (txt_trantype.Text == "WAREHOUSE" && txt_receipt.Text.Trim().Length > 0))
                     //{
 
-                    DataAccess.Accounts.Payment obj_da_payment = new DataAccess.Accounts.Payment();
+                    //DataAccess.Accounts.Payment obj_da_payment = new DataAccess.Accounts.Payment();
 
-                    DataAccess.Accounts.OSDNCN obj_da_OSDNCN = new DataAccess.Accounts.OSDNCN();
-                    DataAccess.Accounts.Approval obj_da_Approval = new DataAccess.Accounts.Approval();
+                    //DataAccess.Accounts.OSDNCN obj_da_OSDNCN = new DataAccess.Accounts.OSDNCN();
+                    //DataAccess.Accounts.Approval obj_da_Approval = new DataAccess.Accounts.Approval();
                     DataTable obj_dt = new DataTable();
                     DataTable dt = new DataTable();
                     DataTable dt_list = new DataTable();
@@ -1451,7 +1496,7 @@ namespace logix.FAForm
                     {
                         if ((hid_custid.Value != "0" || hid_custid.Value != "") && (hid_Custtype.Value.ToString() != "P"))
                         {
-                            DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+                            //DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
 
                             dt_list = customerobj.GetIndianCustomergstadd(Convert.ToInt32(hid_custid.Value));
                             //if (dt_list.Rows.Count > 0)
@@ -1667,7 +1712,7 @@ namespace logix.FAForm
                             }
                             /***************** For Re-Transfer *******************/
 
-                            DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
+                            //DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
                             DataSet ds = new DataSet();
                             //DataTable dtnew = new DataTable();
                             DataTable dtnew1 = new DataTable();
@@ -1938,7 +1983,7 @@ namespace logix.FAForm
                             log1.Info("After Call the Procedure Reversalcreditnote1 - (Voutype- " + "credit Note - Others" + " | Vouno-" + int_CNno + " | Branchid- " + int_bid + " |EmployeeID- " + int_Empid + " |Vouyear- " + int_Vyear + ")");
                             /***************** For Re-Transfer *******************/
 
-                            DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
+                            //DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
                             DataSet ds = new DataSet();
                             //DataTable dtnew = new DataTable();
                             DataTable dtnew1 = new DataTable();
@@ -2091,7 +2136,7 @@ namespace logix.FAForm
                             
                             /***************** For Re-Transfer *******************/
                             
-                            DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
+                           // DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
                             DataSet ds = new DataSet();
                             //DataTable dtnew = new DataTable();
                             DataTable dtnew1 = new DataTable();
@@ -2222,7 +2267,7 @@ namespace logix.FAForm
 
                             /***************** For Re-Transfer *******************/
 
-                            DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
+                           // DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
                             DataSet ds = new DataSet();
                             //DataTable dtnew = new DataTable();
                             DataTable dtnew1 = new DataTable();
@@ -2346,7 +2391,7 @@ namespace logix.FAForm
 
                             /***************** For Re-Transfer *******************/
 
-                            DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
+                           // DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
                             DataSet ds = new DataSet();
                             //DataTable dtnew = new DataTable();
                             DataTable dtnew1 = new DataTable();
@@ -2458,7 +2503,7 @@ namespace logix.FAForm
 
                             /***************** For Re-Transfer *******************/
 
-                            DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
+                           // DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
                             DataSet ds = new DataSet();
                             //DataTable dtnew = new DataTable();
                             DataTable dtnew1 = new DataTable();
@@ -2577,7 +2622,7 @@ namespace logix.FAForm
 
                             /***************** For Re-Transfer *******************/
 
-                            DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
+                           // DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
                             DataSet ds = new DataSet();
                             //DataTable dtnew = new DataTable();
                             DataTable dtnew1 = new DataTable();
@@ -2691,7 +2736,7 @@ namespace logix.FAForm
 
                             /***************** For Re-Transfer *******************/
 
-                            DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
+                           // DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
                             DataSet ds = new DataSet();
                             //DataTable dtnew = new DataTable();
                             DataTable dtnew1 = new DataTable();
@@ -2820,7 +2865,7 @@ namespace logix.FAForm
 
                             /***************** For Re-Transfer *******************/
 
-                            DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
+                           // DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
                             DataSet ds = new DataSet();
                             //DataTable dtnew = new DataTable();
                             DataTable dtnew1 = new DataTable();
@@ -2909,8 +2954,8 @@ namespace logix.FAForm
         private int Fn_Getcustomergroupid(string str_voucher, int Cid)
         {
             int int_Subgroupid = 0, int_Groupid = 0, int_Ledgerid = 0;
-            DataAccess.Masters.MasterCustomer obj_da_Customer = new DataAccess.Masters.MasterCustomer();
-            DataAccess.FAMaster.MasterLedger obj_da_Ledger = new DataAccess.FAMaster.MasterLedger();
+            //DataAccess.Masters.MasterCustomer obj_da_Customer = new DataAccess.Masters.MasterCustomer();
+            //DataAccess.FAMaster.MasterLedger obj_da_Ledger = new DataAccess.FAMaster.MasterLedger();
             if (str_voucher == "Purchase Invoice")
             {
                 if (obj_da_Customer.GetCustomerType(Cid) == "P")
@@ -3129,7 +3174,7 @@ namespace logix.FAForm
             double BL_Amount = 0, BL_Expense = 0, BL_debit = 0, BL_credit = 0;
             int JobType = 0, MLO = 0, int_Cont20 = 0, int_Cont40 = 0;
             DateTime dtdate = CDate;
-            DataAccess.CostingTemp obj_da_Cost = new DataAccess.CostingTemp();
+            //DataAccess.CostingTemp obj_da_Cost = new DataAccess.CostingTemp();
             if (int_bid == 0 || int_bid == null)
             {
                 int_bid = Convert.ToInt32(Session["LoginBranchid"].ToString());
@@ -3341,7 +3386,7 @@ namespace logix.FAForm
         {
             double MBL_Amount = 0, MBL_credit = 0, MBL_debit = 0, MBL_Expense = 0, BL_Amount = 0, BL_Expense = 0, BL_debit = 0, BL_credit = 0, Total_CBM = 0, Total_Tues = 0, JobChargeWT = 0, BL_CBM = 0, BL_Tues = 0, BL_ChargeWT = 0;
             int JobType = 0, MLO = 0, int_Cont20 = 0, int_Cont40 = 0;
-            DataAccess.CostingTemp obj_da_Cost = new DataAccess.CostingTemp();
+            //DataAccess.CostingTemp obj_da_Cost = new DataAccess.CostingTemp();
             // obj_da_Cost.DelCostingDetailsRpt(jobno, trantype, "V", int_bid, 0, "");
             DataTable obj_dt = new DataTable();
             DataTable obj_dttemp = new DataTable();
@@ -3585,10 +3630,10 @@ namespace logix.FAForm
                 DateTime dtdate = obj_da_Log.GetDate();
                 DataTable dtrev = new DataTable();
 
-                DataAccess.Accounts.Payment obj_da_payment = new DataAccess.Accounts.Payment();
-                DataAccess.Accounts.Invoice obj_da_invoice = new DataAccess.Accounts.Invoice();
-                DataAccess.Accounts.OSDNCN obj_da_OSDNCN = new DataAccess.Accounts.OSDNCN();
-                DataAccess.Accounts.Approval obj_da_Approval = new DataAccess.Accounts.Approval();
+                //DataAccess.Accounts.Payment obj_da_payment = new DataAccess.Accounts.Payment();
+                //DataAccess.Accounts.Invoice obj_da_invoice = new DataAccess.Accounts.Invoice();
+                //DataAccess.Accounts.OSDNCN obj_da_OSDNCN = new DataAccess.Accounts.OSDNCN();
+                //DataAccess.Accounts.Approval obj_da_Approval = new DataAccess.Accounts.Approval();
                 DataTable obj_dt = new DataTable();
                 DataTable dt = new DataTable();
                 DataTable dt_list = new DataTable();
@@ -4120,8 +4165,8 @@ namespace logix.FAForm
                     if (hid_Chk_Mbl.Value == "M")
                     {
 
-                        DataAccess.Accounts.DCAdvise DCAdviseObj = new DataAccess.Accounts.DCAdvise();
-                        DataAccess.Accounts.Invoice da_obj_INVOICEobj = new DataAccess.Accounts.Invoice();
+                        //DataAccess.Accounts.DCAdvise DCAdviseObj = new DataAccess.Accounts.DCAdvise();
+                        //DataAccess.Accounts.Invoice da_obj_INVOICEobj = new DataAccess.Accounts.Invoice();
                         doublevolume1 = INVOICEobj.Getchargepallet(hid_blno.Value, strTranType, Convert.ToInt32(Session["LoginBranchid"])).ToString();
                         amount = rate * exrate * Convert.ToDouble(doublevolume1);
                         hdnUnit.Value = doublevolume1.ToString();
@@ -4130,8 +4175,8 @@ namespace logix.FAForm
                     }
                     else
                     {
-                        DataAccess.Accounts.DCAdvise DCAdviseObj = new DataAccess.Accounts.DCAdvise();
-                        DataAccess.Accounts.Invoice da_obj_INVOICEobj = new DataAccess.Accounts.Invoice();
+                        //DataAccess.Accounts.DCAdvise DCAdviseObj = new DataAccess.Accounts.DCAdvise();
+                        //DataAccess.Accounts.Invoice da_obj_INVOICEobj = new DataAccess.Accounts.Invoice();
                         doublevolume1 = INVOICEobj.Getchargepallet(hid_blno.Value, strTranType, Convert.ToInt32(Session["LoginBranchid"])).ToString();
                         amount = rate * exrate * Convert.ToDouble(doublevolume1);
                         hdnUnit.Value = doublevolume1.ToString();
@@ -4150,8 +4195,8 @@ namespace logix.FAForm
                 {
                     if (hid_Chk_Mbl.Value == "M")
                     {
-                        DataAccess.Accounts.DCAdvise DCAdviseObj = new DataAccess.Accounts.DCAdvise();
-                        DataAccess.Accounts.Invoice da_obj_INVOICEobj = new DataAccess.Accounts.Invoice();
+                        //DataAccess.Accounts.DCAdvise DCAdviseObj = new DataAccess.Accounts.DCAdvise();
+                        //DataAccess.Accounts.Invoice da_obj_INVOICEobj = new DataAccess.Accounts.Invoice();
                         doublevolume1 = INVOICEobj.Getchargetruck(hid_blno.Value, strTranType, Convert.ToInt32(Session["LoginBranchid"])).ToString();
                         amount = rate * exrate * Convert.ToDouble(doublevolume1);
                         hdnUnit.Value = doublevolume1.ToString();
@@ -4160,8 +4205,8 @@ namespace logix.FAForm
                     }
                     else
                     {
-                        DataAccess.Accounts.DCAdvise DCAdviseObj = new DataAccess.Accounts.DCAdvise();
-                        DataAccess.Accounts.Invoice da_obj_INVOICEobj = new DataAccess.Accounts.Invoice();
+                        //DataAccess.Accounts.DCAdvise DCAdviseObj = new DataAccess.Accounts.DCAdvise();
+                        //DataAccess.Accounts.Invoice da_obj_INVOICEobj = new DataAccess.Accounts.Invoice();
                         doublevolume1 = INVOICEobj.Getchargetruck(hid_blno.Value, strTranType, Convert.ToInt32(Session["LoginBranchid"])).ToString();
                         amount = rate * exrate * Convert.ToDouble(doublevolume1);
                         hdnUnit.Value = doublevolume1.ToString();
@@ -4451,7 +4496,7 @@ namespace logix.FAForm
                 trantype = hid_trantype.Value;
                 double MBL_Amount = 0, MBL_credit = 0, MBL_debit = 0, MBL_Expense = 0, BL_Amount = 0, BL_Expense = 0, BL_debit = 0, BL_credit = 0, Total_CBM = 0, Total_Tues = 0, JobChargeWT = 0, BL_CBM = 0, BL_Tues = 0, BL_ChargeWT = 0;
                 int JobType = 0, MLO = 0, int_Cont20 = 0, int_Cont40 = 0;
-                DataAccess.CostingTemp obj_da_Cost = new DataAccess.CostingTemp();
+              //  DataAccess.CostingTemp obj_da_Cost = new DataAccess.CostingTemp();
                 //obj_da_Cost.DelCostingDetailsRpt(Jobno, trantype, "V", int_bid, 0, "");
                 DataTable obj_dt = new DataTable();
                 DataTable obj_dttemp = new DataTable();
@@ -4793,7 +4838,7 @@ namespace logix.FAForm
             this.ModalPopupExtenderlog.Show();
             recedit = false;
             //txtmont.Value = Convert.ToInt32(txtdate.Month).ToString();
-            DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+            //DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
             DataTable dts = new DataTable();
 
             if (txtmont.Value == "")
@@ -5053,6 +5098,8 @@ namespace logix.FAForm
             string dataval = null;
             string tokenvalue = null;
             DataAccess.Documents objnew = new DataAccess.Documents();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            objnew.GetDataBase(Ccode);
             if (System.Net.ServicePointManager.MaxServicePointIdleTime > 10000)
             {
                 System.Net.ServicePointManager.MaxServicePointIdleTime = 10000;
@@ -5194,7 +5241,7 @@ namespace logix.FAForm
             GridViewlog11.Visible = true;
             Panel111.Visible = true;
             DataTable obj_dtlogdetails = new DataTable();
-            DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+            //DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
             if (Session["str_ModuleName"].ToString() == "FA")
             {
                 obj_dtlogdetails = Logobj.InsTempGrpLogdtlsGet(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginBranchid"]), 1904, "", "", "", Session["StrTranType"].ToString());

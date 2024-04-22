@@ -235,10 +235,10 @@ namespace logix.FAForm
             {
                 //ds1 = FARepobj.FAselAllLedgerFTdate_web(int.Parse(Session["LoginBranchid"].ToString()), FromDate, ToDate, Session["FADbname"].ToString());
                 //ds1 = FARepobj.FAselAllLedgerFTdate(int.Parse(Session["LoginBranchid"].ToString()), FromDate, ToDate, Session["FADbname"].ToString(), dispname);
-                 Ccode = Request.QueryString["Ccode"].ToString();
+                Ccode = Convert.ToString(Session["Ccode"]);
 
 
-                    FARepobj.GetDataBase(Ccode);
+                FARepobj.GetDataBase(Ccode);
                     ds1 = FARepobj.FAselAllLedgerFTdate(int.Parse(Session["LoginBranchid"].ToString()), FromDate, ToDate, Session["FADbname"].ToString(), dispname, Convert.ToInt32(Session["LoginEmpId"].ToString()));
             }
 

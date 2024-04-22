@@ -96,10 +96,7 @@
             height: 377px !important;
         }
 
-        .ChangePasword {
-            width: 750px !important;
-        }
-
+     
         .crumbs1 {
             display: none;
         }
@@ -167,7 +164,7 @@
     top: 0px !important;
     padding-top: 65px !important;
 }
-            .FixedButtonsss {
+          /*  .FixedButtonsss {
     position: fixed;
     top: 30px;
     left: 0;
@@ -177,7 +174,7 @@
     width: calc(100vw - 530px);
     border-bottom: 0.5px solid #00000010;
     padding: 1px 0 5px 10px;
-}
+}*/
     </style>
     <link href="../Styles/EmpChangepass.css" type="text/css" rel="Stylesheet" />
 </asp:Content>
@@ -185,7 +182,7 @@
 
     <div class="ChangePasword">
 
-        <div>
+       
             <div class="col-md-12  maindiv">
 
                 <div class="widget box" runat="server">
@@ -282,6 +279,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
     </div>
 </asp:Content>
