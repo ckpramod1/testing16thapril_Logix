@@ -154,18 +154,18 @@ table .chzn-container-single .chzn-single {
 .modalPopup {
     position: fixed !important;
     /* background-color: rgba(0, 0, 0, 0.75) !important; */
-    background-color: rgb(0 0 0 / 0%) !important;
+    background: #8c8a8a94 !important;
     width: 100% !important;
     height: 100% !important;
     /* margin-left: 7px !important; */
     margin-top: 31px !important;
-    border: 0px solid white;
+    border: none !important;
     justify-content: center;
     align-items: center;
     top: 0px !important;
     left: 0px !important;
 }
-    
+
 
 .DivSecPanel {
     width: 20px !important;
@@ -24378,7 +24378,7 @@ span.emphasis {
     border-bottom: 0.5px solid #00000010;
     padding: 1px 0 5px 10px;
     top: 36px !important;
-    width:1280px !important
+    width: 1280px !important
 }
 
 /*
@@ -24663,7 +24663,7 @@ button.ajs-close {
     }
 
 
-@media only screen and (max-width: 1280px)  {
+@media only screen and (max-width: 1280px) {
     form {
         height: 100vh !important;
         overflow: hidden;
@@ -24671,8 +24671,11 @@ button.ajs-close {
     }
 }
 
-.maindiv{
-    width:1280px !important;
-    margin:0 auto !important
+.maindiv {
+    width: 1280px !important;
+    margin: 0 auto !important
+}
 
+.ui-menu .ui-menu-item a {
+    padding: 10px .4em !important;
 }

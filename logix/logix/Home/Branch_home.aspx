@@ -1243,7 +1243,7 @@
             margin: 5px 0px 0 10px !important;
         }
 
-        .modalPopupss {
+        .modalPopup {
             top: 40px !important;
         }
 
@@ -1413,7 +1413,7 @@
         .group1 {
             display: flex;
             row-gap: 86px;
-            width: 93%;
+            width: 96%;
             column-gap: 150px;
             margin: 0px 0px 10px 29px;
             padding: 34px 38px 28px 44px;
@@ -1422,7 +1422,7 @@
         .group2 {
             display: flex;
             row-gap: 86px;
-            width: 93%;
+            width: 96%;
             column-gap: 150px;
             margin: 0px 0px 10px 29px;
             padding: 34px 38px 28px 44px;
@@ -1431,7 +1431,7 @@
         .group3 {
             display: flex;
             row-gap: 86px;
-            width: 93%;
+            width: 96%;
             column-gap: 150px;
             margin: 0px 0px 10px 29px;
             padding: 34px 38px 28px 44px;
@@ -1440,7 +1440,7 @@
         .group4 {
             display: flex;
             row-gap: 86px;
-            width: 93%;
+            width: 96%;
             column-gap: 150px;
             margin: 0px 0px 10px 29px;
             padding: 34px 38px 28px 44px;
@@ -1449,7 +1449,7 @@
         .group5 {
             display: flex;
             row-gap: 86px;
-            width: 93%;
+            width: 96%;
             column-gap: 150px;
             margin: 0px 0px 10px 29px;
             padding: 34px 38px 28px 44px;
@@ -1459,6 +1459,10 @@
             width: 100%;
             margin-left: -61px;
         }
+        .gridcontent {
+    width: 76%;
+    margin-left: 183px;
+}
     </style>
 
     <script src="../Script_Date/jquery-ui.js" type="text/javascript"></script>
@@ -1821,7 +1825,7 @@ Your browser does not support JavaScript!
     
    <a  class="span1">Payment Request Approval</a>
  </div>
- <div class="cardfa box-shadow" style="margin-left: 533px;" >
+ <div class="cardfa box-shadow" style="margin-left: 549px;" >
      <img src="../Theme/assets/img/BranchFaDashBoardIcon/folder-open.png" />
    <a  class="span1">open Jobs</a>
 
@@ -1883,7 +1887,7 @@ Your browser does not support JavaScript!
                         <%--For Finance Sales, Receipt, Purchase adn Payment Details--%>
                         <div class="FormGroupContent4">
                             <div class="Clear"></div>
-                            <asp:Panel ID="PnlBranchSPRDet" runat="server" CssClass="gridpnl" Width="50%">
+                            <asp:Panel ID="PnlBranchSPRDet" runat="server" CssClass="gridpnl" Width="100%">
                                 <asp:GridView ID="grdBranchSPRDet" runat="server" AutoGenerateColumns="false" OnRowDataBound="grdBranchSPRDet_RowDataBound" 
                                     ShowHeaderWhenEmpty="true" EmptyDataText="No Record Found" OnRowCommand="grdBranchSPRDet_RowCommand" DataKeyNames="voumonth" > 
                                     <Columns>
@@ -2048,7 +2052,7 @@ Your browser does not support JavaScript!
              </div>
 
                         <div runat="server" id="div_ComApproval" class="PendingRightnewComapp" visible="false">
-                            <div class="col-md-12  maindiv">
+                            <div class="col-md-12">
 
                                 <div class="widget box boxheight" runat="server" id="div_iframe">
 

@@ -554,38 +554,22 @@ border-bottom-right-radius: 5px;*/
     margin: 0 !important;
     border: 0 !important;
 }
-   .modalPopup {
+    .modalPopup {
     position: fixed !important;
     /* background-color: rgba(0, 0, 0, 0.75) !important; */
-    background-color: rgba(0, 0, 0, 0.25) !important;
+    background-color: white !important;
     width: 100% !important;
     height: 89% !important;
     /* margin-left: 7px !important; */
     margin-top: 29px !important;
-    border: 1px solid var(--lightgrey) !important;
+    border: none !important;
     display: flex;
     justify-content: center;
     align-items: center;
     top: 0px !important;
-} top: 0px !important;
 }
-      /*div#logix_CPH_popupfro{
-          position: fixed !important;*/
-    /* background-color: rgba(0, 0, 0, 0.75) !important; */
-    /*background-color: rgba(0, 0, 0, 0.25) !important;
-    width:25% !important;
-    height:69% !important;
-    margin-left: 0% !important;
-    margin-top: 29px !important;
-    border: 1px solid var(--lightgrey) !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0px !important;
-      }
-      div#logix_CPH_popupfro .DivSecPanel.ico-close-sm {
-    margin-left: 96% !important;
-}*/
+
+    
     </style>
     <script type="text/javascript">
         function ShowpImagePreview(input) {
@@ -2729,7 +2713,7 @@ border-bottom-right-radius: 5px;*/
 
         <!-- Breadcrumbs line End -->
         <div>
-            <div class="col-md-12 maindiv" >
+            <div class="col-md-12 maindiv"  >
 
                 <div class="widget box" runat="server" id="div_iframe">
                     <div class="widget-header">

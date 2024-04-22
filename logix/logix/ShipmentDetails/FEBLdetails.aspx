@@ -428,31 +428,30 @@
         }
 
 
-        div#logix_CPH_pnl_emp {
-            position: fixed !important;
-            background-color: rgb(0 0 0 / 30%) !important;
-            width: 100% !important;
-            height: 100% !important;
-            margin-left: 0% !important;
-            margin-top: 0% !important;
-            border: 1px solid var(--lightgrey) !important;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            top: 0px !important;
-            left: 0px !important;
-        }
+     div#logix_CPH_pnl_emp {
+    position: fixed !important;
 
-            div#logix_CPH_pnl_emp .divRoated {
-                width: 47% !important;
-                height: 30vh !important;
-                overflow: hidden !important;
-                background: var(--white);
-                border-radius: 3px;
-                margin: 0px !important;
-                position: relative;
-            }
+    width: 100% !important;
+    height: 100% !important;
+    margin-left: 0% !important;
+    margin-top: 0% !important;
+    border: none !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0px !important;
+    left: 0px !important;
+}
 
+          div#logix_CPH_pnl_emp .divRoated {
+    width: 47% !important;
+    height: 30vh !important;
+    overflow: hidden !important;
+    background: var(--white);
+    border-radius: 3px;
+    margin: 0px !important;
+    position: relative;
+}
             div#logix_CPH_pnl_emp .DivSecPanel {
                 position: relative;
                 right: 18px;
@@ -1106,29 +1105,29 @@
                     },--%>
                     select: function (e, i) {
                         $("#<%=hid_consigneeid.ClientID %>").val(i.item.val);
-                         $("#<%=txt_consignee.ClientID %>").val(i.item.text);
-                         $("#<%=txt_consignee.ClientID %>").val($.trim(i.item.label));
-                         $("#<%=txt_consigneeaddress.ClientID %>").val(i.item.address);
-                         $("#<%=txt_consignee.ClientID %>").change();
+                        $("#<%=txt_consignee.ClientID %>").val(i.item.text);
+                        $("#<%=txt_consignee.ClientID %>").val($.trim(i.item.label));
+                        $("#<%=txt_consigneeaddress.ClientID %>").val(i.item.address);
+                        $("#<%=txt_consignee.ClientID %>").change();
                     },
                     change: function (e, i) {
                         if (i.item) {
                             $("#<%=hid_consigneeid.ClientID %>").val(i.item.val);
-                             $("#<%=txt_consignee.ClientID %>").val(i.item.text);
-                             $("#<%=txt_consigneeaddress.ClientID %>").val(i.item.address);
-                             $("#<%=txt_consignee.ClientID %>").val($.trim(i.item.label));
+                            $("#<%=txt_consignee.ClientID %>").val(i.item.text);
+                            $("#<%=txt_consigneeaddress.ClientID %>").val(i.item.address);
+                            $("#<%=txt_consignee.ClientID %>").val($.trim(i.item.label));
                         }
                     },
                     focus: function (e, i) {
                         $("#<%=hid_consigneeid.ClientID %>").val(i.item.val);
-                         $("#<%=txt_consignee.ClientID %>").val(i.item.text);
-                         $("#<%=txt_consigneeaddress.ClientID %>").val(i.item.address);
+                        $("#<%=txt_consignee.ClientID %>").val(i.item.text);
+                        $("#<%=txt_consigneeaddress.ClientID %>").val(i.item.address);
 
-                         var result = $("#<%=txt_consignee.ClientID %>").val().toString();
-                         var res = result.substring(0, result.lastIndexOf(' ,'));
-                         var out = res.substring(0, res.lastIndexOf(' ,'));
-                         if (out != "") {
-                             $("#<%=txt_consignee.ClientID %>").val($.trim(out));
+                        var result = $("#<%=txt_consignee.ClientID %>").val().toString();
+                        var res = result.substring(0, result.lastIndexOf(' ,'));
+                        var out = res.substring(0, res.lastIndexOf(' ,'));
+                        if (out != "") {
+                            $("#<%=txt_consignee.ClientID %>").val($.trim(out));
                          }
                          else {
                              $("#<%=txt_consignee.ClientID %>").val($.trim(res));
@@ -1136,15 +1135,15 @@
                     },
                     close: function (e, i) {
                         var result = $("#<%=txt_consignee.ClientID %>").val().toString();
-                         var res = result.substring(0, result.lastIndexOf(' ,'));
-                         var out = res.substring(0, res.lastIndexOf(' ,'));
-                         if (out != "") {
-                             $("#<%=txt_consignee.ClientID %>").val($.trim(out));
+                        var res = result.substring(0, result.lastIndexOf(' ,'));
+                        var out = res.substring(0, res.lastIndexOf(' ,'));
+                        if (out != "") {
+                            $("#<%=txt_consignee.ClientID %>").val($.trim(out));
                          }
                          else {
                              $("#<%=txt_consignee.ClientID %>").val($.trim(res));
-                         }
-                         $("#<%=txt_consigneeaddress.ClientID %>").val(i.item.address);
+                        }
+                        $("#<%=txt_consigneeaddress.ClientID %>").val(i.item.address);
                     },
 
                     minLength: 1
@@ -1202,16 +1201,16 @@
 
                     select: function (e, i) {
                         $("#<%=hid_notifyid.ClientID %>").val(i.item.val);
-                         $("#<%=txt_notify.ClientID %>").val(i.item.text);
-                         $("#<%=txt_notify.ClientID %>").val($.trim(i.item.label));
-                         $("#<%=txt_notifyaddress.ClientID %>").val(i.item.address);
-                         $("#<%=txt_notify.ClientID %>").change();
+                        $("#<%=txt_notify.ClientID %>").val(i.item.text);
+                        $("#<%=txt_notify.ClientID %>").val($.trim(i.item.label));
+                        $("#<%=txt_notifyaddress.ClientID %>").val(i.item.address);
+                        $("#<%=txt_notify.ClientID %>").change();
                     },
                     change: function (e, i) {
                         if (i.item) {
                             $("#<%=hid_notifyid.ClientID %>").val(i.item.val);
-                             $("#<%=txt_notify.ClientID %>").val(i.item.text);
-                             $("#<%=txt_notifyaddress.ClientID %>").val(i.item.address);
+                            $("#<%=txt_notify.ClientID %>").val(i.item.text);
+                            $("#<%=txt_notifyaddress.ClientID %>").val(i.item.address);
                              $("#<%=txt_notify.ClientID %>").val($.trim(i.item.label));
                         }
                     },
@@ -2256,7 +2255,7 @@
 
     <!-- /Breadcrumbs line -->
     <div>
-        <div class="col-md-12  maindiv">
+        <div class="col-md-12 maindiv">
 
             <div class="widget box" runat="server" id="div_iframe">
 

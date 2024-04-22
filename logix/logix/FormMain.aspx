@@ -497,11 +497,11 @@ margin-right :auto;
     margin: 0 auto;
     padding-top: 64px;
 }
-    input#Booking {
-    border: 1px solid #8080803b !important;
-    height: 30px !important;
-    border-radius: 30px !important;
-    /*color:#8080803b !important*/
+   input#Booking {
+    border: 0px solid #8080803b !important;
+    margin: 6px !important;
+    padding: 0px !important;
+    width: 80%;
 }
     </style>
 
@@ -780,13 +780,16 @@ margin-right :auto;
 .booking {
     width: 127%;
     float: left;
-        margin-top: 11px;
+    margin-top: 11px;
+    border: 1px solid #8080803b !important;
+    height: 30px !important;
+    border-radius: 30px !important;
 }
 a#linkBooking {
     margin-right: 20px;
     position: relative;
-    left: 12px;
-    top: -5px;
+    left: 16px;
+    top: -4px;
     border: none;
 }
 .nav.navbar-nav.navbar-right {
@@ -1062,8 +1065,8 @@ a#linkBooking {
                     <!-- /Top Right Menu -->
                      <div class="nav navbar-nav navbar-right">
      <li>
-         <div class="booking">
-         <asp:TextBox ID="Booking" runat="server" ToolTip="" AutoPostBack="false" PlaceHolder="HBL # / HAWB #  " CssClass="form-control" Visible="false"></asp:TextBox>
+         <div class="booking"  id="Booking_div" runat="server" visible="false" >
+         <asp:TextBox ID="Booking" runat="server" ToolTip="" AutoPostBack="false" PlaceHolder="HBL # / HAWB #  " CssClass="" Visible="false"></asp:TextBox>
 
          </div>
          <div class="hide">
