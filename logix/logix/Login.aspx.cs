@@ -318,11 +318,6 @@ namespace logix
             //}
             //cos.GetDataBase(Ccode);
 
-           
-
-
-
-
 
             if (CName.Text == "SWENLOG" || CName.Text == "MARINAIR" || CName.Text == "OCEANKARE" || CName.Text == "DEMO")
             {
@@ -342,6 +337,11 @@ namespace logix
                 CName.Text = "";
                 return;
             }
+
+
+
+
+
 
             DataTable obj_DB2 = new DataTable();
             obj_DB2 = da_obj_Branch.GetDBName(Ccode);

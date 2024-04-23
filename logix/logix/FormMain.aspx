@@ -780,17 +780,20 @@ margin-right :auto;
 .booking {
     width: 127%;
     float: left;
-    margin-top: 11px;
+    margin-top: 20px;
     border: 1px solid #8080803b !important;
     height: 30px !important;
     border-radius: 30px !important;
+        z-index: 10;
+
 }
 a#linkBooking {
     margin-right: 20px;
     position: relative;
     left: 16px;
-    top: -4px;
+    top: 2px;
     border: none;
+        z-index: 10;
 }
 .nav.navbar-nav.navbar-right {
     padding-top: 7px;

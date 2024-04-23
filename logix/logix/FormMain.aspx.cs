@@ -1187,6 +1187,7 @@ namespace logix
                         lnkbtn.Text = "AIR IMPORTS";
                         BL_Booking.Visible = true;
                         Booking.Visible = true;
+                        Booking_div.Visible = true;
                         linkBooking.Visible = true;
                         Booking.Text = "";
                         //AIOpsDocsHome_Click(sender, e);
@@ -1202,6 +1203,7 @@ namespace logix
                         lnkbtn.Text = "AIR EXPORTS";
                         BL_Booking.Visible = true;
                         Booking.Visible = true;
+                        Booking_div.Visible = true;
                         linkBooking.Visible = true;
                         Booking.Text = "";
                         //   AEOpsDocsHome_Click(sender, e);
@@ -1217,6 +1219,7 @@ namespace logix
                         lnkbtn.Text = "OCEAN IMPORTS";
                         BL_Booking.Visible = true;
                         Booking.Visible = true;
+                        Booking_div.Visible = true;
                         linkBooking.Visible = true;
                         Booking.Text = "";
                         //   OIOpsDocsHome_Click(sender, e);
@@ -1234,10 +1237,11 @@ namespace logix
                         lnkbtn.Text = "OCEAN EXPORTS";
                         BL_Booking.Visible = true;
                         Booking.Visible = true;
+                        Booking_div.Visible = true;
                         linkBooking.Visible = true;
                         Booking.Text = "";
                         // OEOpsDocsHome_Click(sender, e);
-                       // ifrmaster.Attributes["src"] = "Mainpage/OceanExportsOps_Docs.aspx?Ccode=" + Ccode;
+                        // ifrmaster.Attributes["src"] = "Mainpage/OceanExportsOps_Docs.aspx?Ccode=" + Ccode;
                         //ifrmaster.Attributes["src"] = "Mainpage/OEOpsAndDocs.aspx?Ccode=" + Ccode;
                     }
                     else if (lnkbtn.Text == "MAINTENANCE")
@@ -1257,6 +1261,7 @@ namespace logix
                         Session["FAAccounts"] = "FAAccounts";
                         lnkbtn.Text = "FINANCIAL ACCOUNTS";
                         Booking.Visible = false;
+                        Booking_div.Visible = false;
                         linkBooking.Visible = false;
                         BL_Booking.Visible = false;
                         Booking.Text = "";
@@ -1272,6 +1277,7 @@ namespace logix
                         lnkbtn.Text = "MIS & ANALYTICS";
                         Session["MIS"] = "MIS";
                         Booking.Visible = false;
+                        Booking_div.Visible = false;
                         linkBooking.Visible = false;
                         BL_Booking.Visible = false;
                         Booking.Text = "";
@@ -1287,11 +1293,34 @@ namespace logix
 
                         Session["sales"] = "sales";
                         Booking.Visible = false;
+                        Booking_div.Visible = false;
                         linkBooking.Visible = false;
                         BL_Booking.Visible = false;
                         Booking.Text = "";
                         // ifrmaster.Attributes["src"] = "Mainpage/SalesDocked.aspx";
 
+                    }
+
+                    else if (lnkbtn.Text == "CHA")
+                    {
+                        Session["Process1"] = "CHA";
+
+                        Session["CHA"] = "CHA";
+                        lnkbtn.Visible = true;
+                        lnkbtn.Text = "CHA";
+                        Booking.Visible = true;
+                        Booking_div.Visible = true;
+                        linkBooking.Visible = true;
+                        Booking.Text = "";
+
+                        //lnkbtn.Visible = true;
+                        //lnkbtn.Text = "CHA";
+                        //Session["CHA"] = "CHA";
+                        //Booking.Visible = false;Booking_div.Visible = false;
+                        //linkBooking.Visible = false;
+                        //BL_Booking.Visible = false;
+                        //Booking.Text = "";
+                        // ifrmaster.Attributes["src"] = "Mainpage/CHADocked.aspx";
                     }
                     //Session["iframeid"] = "Home";
                     //ifrmaster.Attributes["src"] = "Mainmodule_product.aspx?finaddlyear=" + ddl_FAYear.Text;
@@ -1713,6 +1742,7 @@ namespace logix
             if (lnkbranch.Text == "CORPORATE")
             {
                 Booking.Visible = false;
+                Booking_div.Visible = false;
                 linkBooking.Visible = false;
                 BL_Booking.Visible = false;
                 Booking.Text = "";
@@ -1734,6 +1764,7 @@ namespace logix
             Session["sales"] = "sales";
             BL_Booking.Visible = false;
             Booking.Visible = false;
+            Booking_div.Visible = false;
             linkBooking.Visible = false;
             Booking.Text = "";
 
@@ -1812,9 +1843,9 @@ namespace logix
             Session["OE_ops"] = "OE_ops";
           
             lnkbtn.Visible = true;
-
             BL_Booking.Visible = true;
             Booking.Visible = true;
+            Booking_div.Visible = true;
             linkBooking.Visible = true;
             Booking.Text = "";
 
@@ -1833,6 +1864,7 @@ namespace logix
             lnkbtn.Visible = true;
             BL_Booking.Visible = true;
             Booking.Visible = true;
+            Booking_div.Visible = true;
             linkBooking.Visible = true;
             Booking.Text = "";
 
@@ -1849,9 +1881,9 @@ namespace logix
             lnkbtn.Visible = true;
             BL_Booking.Visible = true;
             Booking.Visible = true;
+            Booking_div.Visible = true;
             linkBooking.Visible = true;
             Booking.Text = "";
-
         }
 
         protected void AIOpsDocsHome_Click(object sender, EventArgs e)
@@ -1865,6 +1897,7 @@ namespace logix
             lnkbtn.Visible = true;
             BL_Booking.Visible = true;
             Booking.Visible = true;
+            Booking_div.Visible = true;
             linkBooking.Visible = true;
             Booking.Text = "";
 
@@ -1894,6 +1927,7 @@ namespace logix
             Session["MIS"] = "MIS";
             BL_Booking.Visible = false;
             Booking.Visible = false;
+            Booking_div.Visible = false;
             linkBooking.Visible = false;
             Booking.Text = "";
         }
@@ -1912,6 +1946,7 @@ namespace logix
             Session["FAAccounts"] = "FAAccounts";
             BL_Booking.Visible = false;
             Booking.Visible = false;
+            Booking_div.Visible = false;
             linkBooking.Visible = false;
             Booking.Text = "";
 
@@ -2627,17 +2662,17 @@ namespace logix
         {
 
 
-            if (Booking.Text != "")
-            {
+           
 
                 //ifrmaster.Attributes["src"] = "Mainmodule_product.aspx";
                 if (lnkbtn.Text == "OCEAN EXPORTS")
                 {
-                    //DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
-                    //DataTable dtblnoFE = masterObj.GetBLDetails2(Booking.Text);
-                    //if (dtblnoFE.Rows.Count > 0)
-                    //{
-
+                //DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
+                //DataTable dtblnoFE = masterObj.GetBLDetails2(Booking.Text);
+                //if (dtblnoFE.Rows.Count > 0)
+                //{
+                if (Booking.Text != "")
+                {
 
                     string BL_No = Booking.Text;
                     //string feblDetailsUrl = ResolveUrl("ShipmentDetails/FEBLdetails.aspx?BL_No=" + BL_No);
@@ -2656,12 +2691,28 @@ namespace logix
                     //    return;
 
                     //}
+                }
+                else
+                {
+                    //ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
+                    string BL_No = Booking.Text;
+                    ifrmaster.Attributes["src"] = "Mainpage/OceanExportsOps_Docs.aspx";
+                    Booking.Focus();
+                    return;
 
 
                 }
-                if (lnkbtn.Text == "OCEAN IMPORTS")
-                {
 
+            }
+
+
+
+
+            if (lnkbtn.Text == "OCEAN IMPORTS")
+            {
+                if (Booking.Text != "")
+                {
                     //DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
                     //DataTable dtblnoFI = masterObj.ShowBLDetailsBLNO(Booking.Text);
 
@@ -2680,13 +2731,29 @@ namespace logix
                     //    return;
 
                     //}
+                }
+
+                else
+                {
+                    //ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
+                    string BL_No = Booking.Text;
+                    ifrmaster.Attributes["src"] = "Mainpage/OceanImports_ops.aspx";
+                    Booking.Focus();
+                    return;
+
 
                 }
+            }
+
+           
+          
                 if (lnkbtn.Text == "AIR IMPORTS")
+             {
+                //string trantype = "AI";
+
+                if (Booking.Text != "")
                 {
-                    //string trantype = "AI";
-
-
                     //DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
                     //DataTable dtblnoAI = masterObj.GetAIEDetailBLNO(Booking.Text, trantype);
                     //if (dtblnoAI.Rows.Count > 0)
@@ -2705,13 +2772,30 @@ namespace logix
 
                     //}
 
+
+                }
+                else
+                {
+                    //ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
+                    string BL_No = Booking.Text;
+                    ifrmaster.Attributes["src"] = "Mainpage/AirImports_ops.aspx";
+                    Booking.Focus();
+                    return;
+
+
                 }
 
+            }
+            
+           
 
+           
                 if (lnkbtn.Text == "AIR EXPORTS")
                 {
-                    //string trantype = "AE";
-
+                //string trantype = "AE";
+                if (Booking.Text != "")
+                {
                     //DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
                     //DataTable dtblnoAE = masterObj.GetAIEDetailBLNO(Booking.Text, trantype);
                     //if (dtblnoAE.Rows.Count > 0)
@@ -2730,19 +2814,34 @@ namespace logix
                     //    //Booking.Focus();
                     //    //return;
 
-                    //}
                 }
+                else
+                {
+                    //ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
+                    string BL_No = Booking.Text;
+                    ifrmaster.Attributes["src"] = "Mainpage/AirExports_ops.aspx";
+                    Booking.Focus();
+                    return;
 
+
+                }
             }
-            else
-            {
-                //ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
-                Booking.Focus();
-                return;
+            
+           
+
+          //  }
+            //else
+            //{
+            //    //ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
+            //    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "alert", "alertify.alert('Please Enter BL NO');", true);
+            //    string BL_No = Booking.Text;
+            //    ifrmaster.Attributes["src"] = "Mainpage/OceanExportsOps_Docs.aspx";
+            //    Booking.Focus();
+            //    return;
 
 
-            }
+            //}
             //BL_Booking.Visible = false;
             //Booking.Visible = false;
             //linkBooking.Visible = false;
@@ -2976,6 +3075,7 @@ namespace logix
                 Session["RightsTranType"] = "MI";
                 BL_Booking.Visible = false;
                 Booking.Visible = false;
+                Booking_div.Visible = false;
                 linkBooking.Visible = false;
                 Booking.Text = "";
                 //Response.Redirect("Cor_MainModuleNew.aspx");
@@ -2986,6 +3086,7 @@ namespace logix
                         Maintenance_Click(sender, e);
                     BL_Booking.Visible = false;
                     Booking.Visible = false;
+                    Booking_div.Visible = false;
                     linkBooking.Visible = false;
                     Booking.Text = "";
                 }
@@ -2994,6 +3095,7 @@ namespace logix
                         MISandAnalysis_Click(sender, e);
                     BL_Booking.Visible = false;
                     Booking.Visible = false;
+                    Booking_div.Visible = false;
                     linkBooking.Visible = false;
                     Booking.Text = "";
                 }
@@ -3002,6 +3104,7 @@ namespace logix
                         FCAC_Click(sender, e);
                     BL_Booking.Visible = false;
                     Booking.Visible = false;
+                    Booking_div.Visible = false;
                     linkBooking.Visible = false;
                     Booking.Text = "";
                 }
@@ -3010,6 +3113,7 @@ namespace logix
                       Maintenance_Click(sender, e);
                     BL_Booking.Visible = false;
                     Booking.Visible = false;
+                    Booking_div.Visible = false;
                     linkBooking.Visible = false;
                     Booking.Text = "";
                 }
@@ -3030,6 +3134,7 @@ namespace logix
                         SalesHome_Click(sender, e);
                         BL_Booking.Visible = false;
                         Booking.Visible = false;
+                        Booking_div.Visible = false;
                         linkBooking.Visible = false;
                         Booking.Text = "";
                     }
@@ -3038,6 +3143,7 @@ namespace logix
                         OEOpsDocsHome_Click(sender, e);
                         BL_Booking.Visible = true;
                         Booking.Visible = true;
+                        Booking_div.Visible = true;
                         linkBooking.Visible = true;
                         Booking.Text = "";
                     }
@@ -3046,6 +3152,7 @@ namespace logix
                         OIOpsDocsHome_Click(sender, e);
                         BL_Booking.Visible = true;
                         Booking.Visible = true;
+                        Booking_div.Visible = true;
                         linkBooking.Visible = true;
                         Booking.Text = "";
                     }
@@ -3054,6 +3161,7 @@ namespace logix
                         AIOpsDocsHome_Click(sender, e);
                         BL_Booking.Visible = true;
                         Booking.Visible = true;
+                        Booking_div.Visible = true;
                         linkBooking.Visible = true;
                         Booking.Text = "";
 
@@ -3063,6 +3171,7 @@ namespace logix
                         AEOpsDocsHome_Click(sender, e);
                         BL_Booking.Visible = true;
                         Booking.Visible = true;
+                        Booking_div.Visible = true;
                         linkBooking.Visible = true;
                         Booking.Text = "";
                     }
@@ -3071,6 +3180,7 @@ namespace logix
                         MISHome_Click(sender, e);
                         BL_Booking.Visible = false;
                         Booking.Visible = false;
+                        Booking_div.Visible = false;
                         linkBooking.Visible = false;
                         Booking.Text = "";
 
@@ -3080,6 +3190,7 @@ namespace logix
                         FAHome_Click(sender, e);
                         BL_Booking.Visible = false;
                         Booking.Visible = false;
+                        Booking_div.Visible = false;
                         linkBooking.Visible = false;
                         Booking.Text = "";
                     }

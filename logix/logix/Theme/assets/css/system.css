@@ -24563,7 +24563,7 @@ button.ajs-close {
 .ajs-dialog {
     margin: 0px !important;
     position: sticky !important;
-    top: 29px;
+    top: 29px; 
 }
 
 .alertify .ajs-modal {
@@ -24679,4 +24679,7 @@ button.ajs-close {
 
 .ui-menu .ui-menu-item a {
     padding: 10px .4em !important;
+}
+.alertify .ajs-modal {
+    z-index: 999999 !important;
 }
