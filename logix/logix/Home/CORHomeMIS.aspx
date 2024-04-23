@@ -55,7 +55,11 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-
+     <script type="text/javascript">
+         function dropdownButton() {
+             $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+         }
+     </script>
     <script type="text/javascript" src="../js/helper.js"></script>
     <script>
         $(document).ready(function () {
@@ -1527,6 +1531,7 @@
             width: 2%;
             margin: 4px 0.5% 0px 0px;
             float: left;
+            display:none;
         }
         .ByDrop {
     width: 15%;
@@ -1569,7 +1574,7 @@
     width: 9% !important;
 }
         .MISBranch {
-    width: 10%;
+    width: 10.5%;
     margin: 0px 0.5% 0px 0px;
     float: left;
 }
@@ -1679,7 +1684,7 @@
             opacity: 0.7;
         }
 
-        /*.modalPopupss {
+        /*.modalPopup {
             background-color: #FFFFFF;
             border-width: 1px;
             border-style: solid;
@@ -1851,15 +1856,15 @@
             font-size: 11px;
             color: #ffffff;
         }
-
-        .MISCal1 {
-            width: 7%;
-            margin: 0px 0.5% 0px 11.9%;
-            float: left;
-        }
+.MISCal1 {
+    width: 8%;
+    margin: 0px 0.5% 0px 0px;
+    float: left;
+}
+div#ddl_branch_chzn {
 
         .MISCal2 {
-            width: 7%;
+            width: 8%;
             margin: 0px 0.5% 0px 0px;
             float: left;
         }
@@ -2727,9 +2732,9 @@
                     url: '../Home/CORHOMEMIS.aspx/GetChartPIE',
                     data: '{}',
                     success:
-                    function (response) {
-                        drawchart(response.d);
-                    },
+                        function (response) {
+                            drawchart(response.d);
+                        },
 
                     error: function () {
                         alertify.alert("Error loading data! Please try again.");
@@ -2746,7 +2751,7 @@
                 data.addRow([dataValues[i].Countryname, dataValues[i].Total]);
             }
             new google.visualization.PieChart(document.getElementById('chartdiv1')).
-            draw(data, { height: "300", title: "Outstanding", colors: ['#4ebcd5', '#bce3c8', '#408fdc', '#5765b2'], });
+                draw(data, { height: "300", title: "Outstanding", colors: ['#4ebcd5', '#bce3c8', '#408fdc', '#5765b2'], });
         }
     </script>
 
@@ -2949,14 +2954,14 @@
                     var $colName = $cell.closest("table")
                         .find('th:eq(' + $colIndex + ')').text();
                     $("#para").empty()
-                    .append("<b>Current Cell Text: </b>"
-                        + $currentCellText + "<br/>")
-                    .append("<b>Text to Left of Clicked Cell: </b>"
-                        + $leftCellText + "<br/>")
-                    .append("<b>Text to Right of Clicked Cell: </b>"
-                        + $rightCellText + "<br/>")
-                    .append("<b>Column Name of Clicked Cell: </b>"
-                        + $colName)
+                        .append("<b>Current Cell Text: </b>"
+                            + $currentCellText + "<br/>")
+                        .append("<b>Text to Left of Clicked Cell: </b>"
+                            + $leftCellText + "<br/>")
+                        .append("<b>Text to Right of Clicked Cell: </b>"
+                            + $rightCellText + "<br/>")
+                        .append("<b>Column Name of Clicked Cell: </b>"
+                            + $colName)
                 });
 
         });
@@ -3043,134 +3048,13 @@ top: 360px;
         <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="600">
         </asp:ScriptManager>
-            <div class="maindiv">
+            <div class="col-md-12 maindiv">
     <div class="Clear"></div>
     <div class="BandMiddle hide">
 
         <div class="BreadLabel" id="OptionDoc" runat="server">MIS and Analytics</div>
     </div>
 
-    <div class="BandTop">
-        <div class="FormGroupContent4">
-
-            <div class="MISFrom">
-                <asp:Label ID="lbl_from" Text="From" runat="server"></asp:Label>
-            </div>
-            <div class="MISCal1">
-                <asp:TextBox ID="txt_from" runat="server" CssClass="form-control" placeholder="From" TabIndex="4"></asp:TextBox>
-                <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_from"
-                    Format="dd/MM/yyyy"></asp:CalendarExtender>
-            </div>
-            <div class="MISTO">
-                <asp:Label ID="Label1" Text="To" runat="server"></asp:Label>
-            </div>
-            <div class="MISCal2">
-                <asp:TextBox ID="txt_to" runat="server" CssClass="form-control" placeholder="To" TabIndex="4"></asp:TextBox>
-                <asp:CalendarExtender ID="dt_validity" runat="server" TargetControlID="txt_to"
-                    Format="dd/MM/yyyy"></asp:CalendarExtender>
-            </div>
-
-            <%--   <div class="Droptbl">
-                <asp:DropDownList ID="ddlfroms" runat="server" CssClass="chzn-select" AutoPostBack="true" data-placeholder="Menus" ToolTip="Menus" OnSelectedIndexChanged="ddlfroms_SelectedIndexChanged">
-                    <asp:ListItem Text="" Value="0"></asp:ListItem>
-                </asp:DropDownList>
-            </div>--%>
-
-
-            <div class="MISBranch" id="ddl_branch_id" runat="server" >
-                <asp:DropDownList ID="ddl_branch" runat="server" ToolTip="Branch" TabIndex="1" data-placeholder="Branch" CssClass="chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddl_branch_SelectedIndexChanged">
-                    <asp:ListItem Text="" Value="0"></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="MISReport" id="ddl_Report_id" runat="server" >
-                <asp:DropDownList ID="ddl_Report" runat="server" ToolTip="Report" TabIndex="3" data-placeholder="Report" CssClass="chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddl_Report_SelectedIndexChanged">
-                    <asp:ListItem Text="" Value="0"></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="ForwardingDrop hide">
-                <asp:DropDownList ID="ddl_product" AutoPostBack="true" runat="server" Width="100%" OnSelectedIndexChanged="ddl_product_SelectedIndexChanged" AppendDataBoundItems="True" CssClass="chzn-select" ToolTip="Product" data-placeholder="Product">
-                    <asp:ListItem Text="" Value="0"></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div>
-                <div class="hide">
-                    <asp:Label ID="lbl_ret" runat="server" Text="Revenue >" Visible="false"></asp:Label>
-
-                </div>
-                <div class="RententionLblN1" id="RententionLb" runat="server">
-                    <asp:TextBox ID="txt_retention" runat="server" Width="100%" placeholder="Revenue >" CssClass="form-control" Visible="false">1</asp:TextBox>
-                </div>
-                <div class="right_btn MT0 MB05 MR20">  
-                    <div class="btn ico-view" id="btnview_id" runat="server" Visible="false" >
-                        <asp:Button ID="btnview" runat="server" Text="View" ToolTip="View" Visible="false" OnClick="btnview_Click" />
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="ByDrop" id="divby" runat="server">
-                <asp:DropDownList ID="ddl_by" runat="server" AppendDataBoundItems="True" CssClass="chzn-select"
-                    AutoPostBack="True" OnSelectedIndexChanged="ddl_by_SelectedIndexChanged" data-placeholder="By" ToolTip="By" Visible="false">
-                    <asp:ListItem Text="" Value="0"></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-
-            <div class="right_btn custom-mt-3" id="divstatistics" runat="server">
-                <div class="btn ico-get Mright5">
-                    <asp:Button ID="btnget" runat="server"  Text="Get" ToolTip="Get" OnClick="btnget_Click" />
-                </div>
-                <div class="btn ico-cancel" id="btncancel1" runat="server">
-                    <asp:Button ID="btncancel" runat="server"   Text="Cancel" ToolTip="Cancel" OnClick="btncancel_Click" />
-                </div>
-            </div>
-
-
-            <div class="MISCustomer" id="txt_agent_id" runat="server"  visible="false" >
-                <asp:TextBox ID="txt_agent" runat="server" CssClass="form-control" placeholder="Customer" ToolTip="Customer" TabIndex="2" Visible="false"></asp:TextBox>
-            </div>
-            <asp:TextBox ID="txt_Filter" runat="server" CssClass="Hide"></asp:TextBox>
-
-
-
-            <%-- <div class="FormGroupContent4">--%>
-
-            <div class="MISData1" style="display: none;">
-                <asp:DropDownList ID="ddl_graph1" runat="server" CssClass="chzn-select" ToolTip="Data Or Graph" AutoPostBack="True" data-placeholder="Data Or Graph" Width="100%" OnSelectedIndexChanged="ddl_graph1_SelectedIndexChanged">
-                    <asp:ListItem Value="0" Text=""></asp:ListItem>
-                    <asp:ListItem Value="1">Data</asp:ListItem>
-                    <asp:ListItem Value="2">Graph</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="MISData1" style="display: none;">
-                <asp:DropDownList ID="ddl_graph2" runat="server" CssClass="chzn-select" data-placeholder="Graph" ToolTip="Graph" AutoPostBack="True" Visible="false" Width="100%" OnSelectedIndexChanged="ddl_graph2_SelectedIndexChanged">
-                    <asp:ListItem Value="0" Text=""></asp:ListItem>
-                    <asp:ListItem Value="1">Line</asp:ListItem>
-                    <asp:ListItem Value="2">Bar</asp:ListItem>
-                    <asp:ListItem Value="3">Pie</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-
-            <div class="btn ico-get custom-mt-2" id="btn_get_id" runat="server" >
-                <asp:Button ID="btn_get" runat="server"  Text="Get" ToolTip="Get" OnClick="btn_get_Click" Visible="false" />
-
-            </div>
-
-            <%-- </div>--%>
-        </div>
-        <div class="BandLeft">
-            <%-- <h3>
-                    <img src="../Theme/assets/img/newcustomer_ic.png"/>
-                    <asp:LinkButton ID="lnkNewCustomerRequest" runat="server" Style="text-decoration: none">New Customer Request</asp:LinkButton></h3>--%>
-        </div>
-
-        <div class="BandRight">
-
-            <div style="float: left; margin-right: 20px;">
-                <%--<h3>
-                        <img src="../Theme/assets/img/stationary.png"/><asp:LinkButton ID="lnkauo" runat="server" Text="Quotation Multiport"></asp:LinkButton></h3>--%>
-            </div>
-        </div>
-    </div>
 
     <div class="homebox">
     <div class="HomeMenuBox custom-d-flex">
@@ -3299,7 +3183,129 @@ top: 360px;
 
 
     <div class="homecontent">
-        <div class="col-md-12  maindiv">
+    <div class="BandTop">
+        <div class="FormGroupContent4">
+
+            <div class="MISFrom">
+                <asp:Label ID="lbl_from" Text="From" runat="server"></asp:Label>
+            </div>
+            <div class="MISCal1">
+                <asp:TextBox ID="txt_from" runat="server" CssClass="form-control" placeholder="From" TabIndex="4"></asp:TextBox>
+                <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_from"
+                    Format="dd/MM/yyyy"></asp:CalendarExtender>
+            </div>
+            <div class="MISTO">
+                <asp:Label ID="Label1" Text="To" runat="server"></asp:Label>
+            </div>
+            <div class="MISCal2">
+                <asp:TextBox ID="txt_to" runat="server" CssClass="form-control" placeholder="To" TabIndex="4"></asp:TextBox>
+                <asp:CalendarExtender ID="dt_validity" runat="server" TargetControlID="txt_to"
+                    Format="dd/MM/yyyy"></asp:CalendarExtender>
+            </div>
+
+            <%--   <div class="Droptbl">
+                <asp:DropDownList ID="ddlfroms" runat="server" CssClass="chzn-select" AutoPostBack="true" data-placeholder="Menus" ToolTip="Menus" OnSelectedIndexChanged="ddlfroms_SelectedIndexChanged">
+                    <asp:ListItem Text="" Value="0"></asp:ListItem>
+                </asp:DropDownList>
+            </div>--%>
+
+
+            <div class="MISBranch" id="ddl_branch_id" runat="server" >
+                <asp:DropDownList ID="ddl_branch" runat="server" ToolTip="Branch" TabIndex="1" data-placeholder="Branch" CssClass="chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddl_branch_SelectedIndexChanged">
+                    <asp:ListItem Text="" Value="0"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div class="MISReport" id="ddl_Report_id" runat="server" >
+                <asp:DropDownList ID="ddl_Report" runat="server" ToolTip="Report" TabIndex="3" data-placeholder="Report" CssClass="chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddl_Report_SelectedIndexChanged">
+                    <asp:ListItem Text="" Value="0"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div class="ForwardingDrop hide">
+                <asp:DropDownList ID="ddl_product" AutoPostBack="true" runat="server" Width="100%" OnSelectedIndexChanged="ddl_product_SelectedIndexChanged" AppendDataBoundItems="True" CssClass="chzn-select" ToolTip="Product" data-placeholder="Product">
+                    <asp:ListItem Text="" Value="0"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div>
+                <div class="hide">
+                    <asp:Label ID="lbl_ret" runat="server" Text="Revenue >" Visible="false"></asp:Label>
+
+                </div>
+                <div class="RententionLblN1" id="RententionLb" runat="server">
+                    <asp:TextBox ID="txt_retention" runat="server" Width="100%" placeholder="Revenue >" CssClass="form-control" Visible="false">1</asp:TextBox>
+                </div>
+                <div class="right_btn MT0 MB05 MR20">  
+                    <div class="btn ico-view" id="btnview_id" runat="server" Visible="false" >
+                        <asp:Button ID="btnview" runat="server" Text="View" ToolTip="View" Visible="false" OnClick="btnview_Click" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="ByDrop" id="divby" runat="server">
+                <asp:DropDownList ID="ddl_by" runat="server" AppendDataBoundItems="True" CssClass="chzn-select"
+                    AutoPostBack="True" OnSelectedIndexChanged="ddl_by_SelectedIndexChanged" data-placeholder="By" ToolTip="By" Visible="false">
+                    <asp:ListItem Text="" Value="0"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+
+            <div class="right_btn custom-mt-3" id="divstatistics" runat="server">
+                <div class="btn ico-get Mright5">
+                    <asp:Button ID="btnget" runat="server"  Text="Get" ToolTip="Get" OnClick="btnget_Click" />
+                </div>
+                <div class="btn ico-cancel" id="btncancel1" runat="server">
+                    <asp:Button ID="btncancel" runat="server"   Text="Cancel" ToolTip="Cancel" OnClick="btncancel_Click" />
+                </div>
+            </div>
+
+
+            <div class="MISCustomer" id="txt_agent_id" runat="server"  visible="false" >
+                <asp:TextBox ID="txt_agent" runat="server" CssClass="form-control" placeholder="Customer" ToolTip="Customer" TabIndex="2" Visible="false"></asp:TextBox>
+            </div>
+            <asp:TextBox ID="txt_Filter" runat="server" CssClass="Hide"></asp:TextBox>
+
+
+
+            <%-- <div class="FormGroupContent4">--%>
+
+            <div class="MISData1" style="display: none;">
+                <asp:DropDownList ID="ddl_graph1" runat="server" CssClass="chzn-select" ToolTip="Data Or Graph" AutoPostBack="True" data-placeholder="Data Or Graph" Width="100%" OnSelectedIndexChanged="ddl_graph1_SelectedIndexChanged">
+                    <asp:ListItem Value="0" Text=""></asp:ListItem>
+                    <asp:ListItem Value="1">Data</asp:ListItem>
+                    <asp:ListItem Value="2">Graph</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div class="MISData1" style="display: none;">
+                <asp:DropDownList ID="ddl_graph2" runat="server" CssClass="chzn-select" data-placeholder="Graph" ToolTip="Graph" AutoPostBack="True" Visible="false" Width="100%" OnSelectedIndexChanged="ddl_graph2_SelectedIndexChanged">
+                    <asp:ListItem Value="0" Text=""></asp:ListItem>
+                    <asp:ListItem Value="1">Line</asp:ListItem>
+                    <asp:ListItem Value="2">Bar</asp:ListItem>
+                    <asp:ListItem Value="3">Pie</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+
+            <div class="btn ico-get custom-mt-2" id="btn_get_id" runat="server" >
+                <asp:Button ID="btn_get" runat="server"  Text="Get" ToolTip="Get" OnClick="btn_get_Click" Visible="false" />
+
+            </div>
+
+            <%-- </div>--%>
+        </div>
+        <div class="BandLeft">
+            <%-- <h3>
+                    <img src="../Theme/assets/img/newcustomer_ic.png"/>
+                    <asp:LinkButton ID="lnkNewCustomerRequest" runat="server" Style="text-decoration: none">New Customer Request</asp:LinkButton></h3>--%>
+        </div>
+
+        <div class="BandRight">
+
+            <div style="float: left; margin-right: 20px;">
+                <%--<h3>
+                        <img src="../Theme/assets/img/stationary.png"/><asp:LinkButton ID="lnkauo" runat="server" Text="Quotation Multiport"></asp:LinkButton></h3>--%>
+            </div>
+        </div>
+    </div>
+
+        <div class="col-md-12">
             <!-- Tabs-->
             <div class="widget box borderremove">
 
@@ -5134,7 +5140,7 @@ top: 360px;
 
                     <div runat="server" id="div_retention" class="PendingRightnewComappnew position" visible="false">
                         <%-- <div >
-                            <div class="col-md-12  maindiv">--%>
+                            <div class="col-md-12">--%>
 
                         <div class="" runat="server">
                             <%-- <div class="widget-header">
@@ -6150,7 +6156,7 @@ top: 360px;
 
                     <div runat="server" id="div_Tradelane" class="PendingStatisticsN1 position" visible="false">
                         <div>
-                            <div class="col-md-12  maindiv">
+                            <div class="col-md-12">
 
                                 <div class="widget4 box4 borderremove">
 

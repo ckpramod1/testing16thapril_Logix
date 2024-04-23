@@ -216,34 +216,11 @@ namespace logix.Home
 
 
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "GenerateLabelAfter();", true);
-            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(bnt);
-            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_cancel);
-
-            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btncancel_billrpt);
-            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_export_billrpt);
-            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_cancel_trade);
-
-            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btnBack);
-            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btnExporttoexcel);
-            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_exportinb);
-            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_cancelinb);
-            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_exp_cutoff);
-            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(excportexc);
-            // ((ScriptManager)CORHomeMIS.FindControl("ScriptManager1")).RegisterPostBackControl(btnExport);
-
-
-            //if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
-            //{
-            //    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('"+ Session["Site"].ToString() + "/','_top');", true);
-            //}
-            //else if (Session["StrTranType"] == null)
-            //{
-            //    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('"+ Session["Site"].ToString() + "/FormMain.aspx','_top');", true);
-            //}
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "dropdownButton();GenerateLabelAfter();", true);
 
 
             string Ccode = Convert.ToString(Session["Ccode"]);
@@ -309,9 +286,34 @@ namespace logix.Home
                 cutobj.GetDataBase(Ccode);
                 da_obj_Costing.GetDataBase(Ccode);
                 obj_da_Log.GetDataBase(Ccode);
-               
+
 
             }
+
+            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(bnt);
+            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_cancel);
+
+            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btncancel_billrpt);
+            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_export_billrpt);
+            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_cancel_trade);
+
+            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btnBack);
+            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btnExporttoexcel);
+            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_exportinb);
+            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_cancelinb);
+            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_exp_cutoff);
+            //((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(excportexc);
+            // ((ScriptManager)CORHomeMIS.FindControl("ScriptManager1")).RegisterPostBackControl(btnExport);
+
+
+            //if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
+            //{
+            //    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('"+ Session["Site"].ToString() + "/','_top');", true);
+            //}
+            //else if (Session["StrTranType"] == null)
+            //{
+            //    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('"+ Session["Site"].ToString() + "/FormMain.aspx','_top');", true);
+            //}
 
             if (!IsPostBack)
             {
@@ -323,9 +325,9 @@ namespace logix.Home
                 LoadReport();
                 RententionLb.Attributes["class"] = "RententionLblnew";
                 divby.Visible = false;
-                ddl_branch.Visible = true;ddl_branch_id.Visible = true;
-                ddl_Report.Visible = true;ddl_Report_id.Visible = true;
-                txt_agent.Visible = true;txt_agent_id.Visible = true;
+                ddl_branch.Visible = true; ddl_branch_id.Visible = true;
+                ddl_Report.Visible = true; ddl_Report_id.Visible = true;
+                txt_agent.Visible = true; txt_agent_id.Visible = true;
                 div_JobDetails.Visible = false;
                 ddl_product.Visible = false;
                 ddl_by.Visible = false;
@@ -465,8 +467,8 @@ namespace logix.Home
                         txt_from.Visible = true;
                         txt_to.Visible = true;
                         ddl_product.Visible = true;
-                        ddl_Report.Visible = true;ddl_Report_id.Visible = true;
-                        btn_get.Visible = true;btn_get_id.Visible = true;
+                        ddl_Report.Visible = true; ddl_Report_id.Visible = true;
+                        btn_get.Visible = true; btn_get_id.Visible = true;
 
                     }
                     else
@@ -476,8 +478,8 @@ namespace logix.Home
                         txt_from.Visible = false;
                         txt_to.Visible = false;
                         ddl_product.Visible = false;
-                        ddl_Report.Visible = false;ddl_Report_id.Visible = false;
-                        btn_get.Visible = false;btn_get_id.Visible = false;
+                        ddl_Report.Visible = false; ddl_Report_id.Visible = false;
+                        btn_get.Visible = false; btn_get_id.Visible = false;
                     }
 
                     for (int i = 0; i < dt_MenuRights.Rows.Count; i++)
@@ -515,53 +517,53 @@ namespace logix.Home
                 }
                 else
                     if (Session["StrTranType"] != null)
+                {
+                    ddl_product.Items.Add("");
+                    if (Session["StrTranType"].ToString() == "FE")
                     {
-                        ddl_product.Items.Add("");
-                        if (Session["StrTranType"].ToString() == "FE")
-                        {
-                            ddl_product.Items.Add("Ocean Exports");
-                            //ddl_product.SelectedIndex = 1;
-                            ddl_product.SelectedValue = "Ocean Exports";
-                        }
-                        else if (Session["StrTranType"].ToString() == "FI")
-                        {
-                            ddl_product.Items.Add("Ocean Imports");
-                            ddl_product.SelectedValue = "Ocean Imports";
-                            //ddl_product.SelectedIndex = 1;
-                        }
-                        else if (Session["StrTranType"].ToString() == "AE")
-                        {
-                            ddl_product.Items.Add("Air Exports");
-                            ddl_product.SelectedValue = "Air Exports";
-                            //ddl_product.SelectedIndex = 1;
-                        }
-                        else if (Session["StrTranType"].ToString() == "AI")
-                        {
-                            ddl_product.Items.Add("Air Imports");
-                            ddl_product.SelectedValue = "Air Imports";
-                        }
-
-                        else if (Session["StrTranType"].ToString() == "AC")
-                        {
-                            ddl_product.Items.Add("ALL");
-                            ddl_product.SelectedValue = "ALL";
-                            ddl_product_SelectedIndexChanged(sender, e);
-                        }
-                        else if (Session["StrTranType"].ToString() == "CH")
-                        {
-                            //ddl_product.Items.Add("CHA");
-                            //ddl_product.SelectedValue = "CHA";
-                            //ddl_product_SelectedIndexChanged(sender, e);
-                        }
-                        else if (Session["StrTranType"].ToString() == "BT")
-                        {
-                            //ddl_product.Items.Add("Bonded Trucking");
-                            //ddl_product.SelectedValue = "Bonded Trucking";
-                            //ddl_product_SelectedIndexChanged(sender, e);
-                        }
-                        ddl_product.Enabled = false;
+                        ddl_product.Items.Add("Ocean Exports");
+                        //ddl_product.SelectedIndex = 1;
+                        ddl_product.SelectedValue = "Ocean Exports";
+                    }
+                    else if (Session["StrTranType"].ToString() == "FI")
+                    {
+                        ddl_product.Items.Add("Ocean Imports");
+                        ddl_product.SelectedValue = "Ocean Imports";
                         //ddl_product.SelectedIndex = 1;
                     }
+                    else if (Session["StrTranType"].ToString() == "AE")
+                    {
+                        ddl_product.Items.Add("Air Exports");
+                        ddl_product.SelectedValue = "Air Exports";
+                        //ddl_product.SelectedIndex = 1;
+                    }
+                    else if (Session["StrTranType"].ToString() == "AI")
+                    {
+                        ddl_product.Items.Add("Air Imports");
+                        ddl_product.SelectedValue = "Air Imports";
+                    }
+
+                    else if (Session["StrTranType"].ToString() == "AC")
+                    {
+                        ddl_product.Items.Add("ALL");
+                        ddl_product.SelectedValue = "ALL";
+                        ddl_product_SelectedIndexChanged(sender, e);
+                    }
+                    else if (Session["StrTranType"].ToString() == "CH")
+                    {
+                        //ddl_product.Items.Add("CHA");
+                        //ddl_product.SelectedValue = "CHA";
+                        //ddl_product_SelectedIndexChanged(sender, e);
+                    }
+                    else if (Session["StrTranType"].ToString() == "BT")
+                    {
+                        //ddl_product.Items.Add("Bonded Trucking");
+                        //ddl_product.SelectedValue = "Bonded Trucking";
+                        //ddl_product_SelectedIndexChanged(sender, e);
+                    }
+                    ddl_product.Enabled = false;
+                    //ddl_product.SelectedIndex = 1;
+                }
 
 
 
@@ -569,11 +571,11 @@ namespace logix.Home
                 str_CtrlLists = "txt_from~txt_to";
                 btnget.Attributes.Add("OnClick", "return IsDate('" + str_CtrlLists + "')");
                 //  Str_Trantype = Session["StrTranType"].ToString();
-              //  string Str_CurrrentDate = Utility.fn_ConvertDate(Logobj.GetDate().ToShortDateString());
+                //  string Str_CurrrentDate = Utility.fn_ConvertDate(Logobj.GetDate().ToShortDateString());
                 string firstDayOfMonth = Utility.fn_ConvertDate(new DateTime(Logobj.GetDate().Year, Logobj.GetDate().Month, 1).ToShortDateString());
                 txt_from.Text = firstDayOfMonth;
                 string Str_CurrrentDate = DateTime.Now.ToString("dd/MM/yyyy");
-               // txt_from.Text = Str_CurrrentDate;
+                // txt_from.Text = Str_CurrrentDate;
                 txt_to.Text = Str_CurrrentDate;
                 GrdJob.DataSource = new DataTable();
                 GrdJob.DataBind();
@@ -701,14 +703,14 @@ namespace logix.Home
         {
             div1.Visible = true;
             DataTable dt = new DataTable();
-            //DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
 
-            //DataAccess.Accounts.Approval Appobj = new DataAccess.Accounts.Approval();
+            //DataAccess.Accounts.Approval Appobj = new //DataAccess.Accounts.Approval();
 
 
-         //   dt = da_obj_misgrd.Getretentionforcustomerfordiv_NEWONE(Convert.ToInt32(Session["LoginBranchid"]));
+            //   dt = da_obj_misgrd.Getretentionforcustomerfordiv_NEWONE(Convert.ToInt32(Session["LoginBranchid"]));
 
-              dt = da_obj_misgrd.Getretentionforcustomerfordiv_NEWONE(Convert.ToDateTime(Utility.fn_ConvertDatetime(txt_from.Text).ToString()), Convert.ToDateTime(Utility.fn_ConvertDatetime(txt_to.Text).ToString()), Convert.ToInt32(Session["LoginBranchid"]),trantype);
+            dt = da_obj_misgrd.Getretentionforcustomerfordiv_NEWONE(Convert.ToDateTime(Utility.fn_ConvertDatetime(txt_from.Text).ToString()), Convert.ToDateTime(Utility.fn_ConvertDatetime(txt_to.Text).ToString()), Convert.ToInt32(Session["LoginBranchid"]), trantype);
 
 
             //end
@@ -755,11 +757,11 @@ namespace logix.Home
         }
         public void fn_Getnewoutstanding4MISHomeOutStndTotal()
         {
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             DataTable dt = new DataTable();
             int subgrpid = 40;
             // dt = da_obj_misgrd.Getnewoutstanding4MISHomeOutStndTotal(Convert.ToInt32(Session["LoginEmpId"].ToString()), Convert.ToInt32(Session["LoginBranchid"].ToString()), Convert.ToInt32(Session["LoginDivisionId"].ToString()), subgrpid);
-            dt = da_obj_misgrd2.Getnewoutstanding4MISHomeOutStndTotal(Convert.ToInt32(Session["LoginEmpId"].ToString()), 0, int.Parse(Session["LoginDivisionId"].ToString()), subgrpid);
+            dt = da_obj_misgrd.Getnewoutstanding4MISHomeOutStndTotal(Convert.ToInt32(Session["LoginEmpId"].ToString()), 0, int.Parse(Session["LoginDivisionId"].ToString()), subgrpid);
             ViewState["Getnewoutstanding4MISHomeOutStndTotal"] = dt;
             if (dt.Rows.Count > 0)
             {
@@ -883,11 +885,13 @@ namespace logix.Home
         [WebMethod]
         public static List<countrydetails> GetChartPIE()
         {
-            //DataAccess.BuyingRate objbu = new DataAccess.BuyingRate();
+            ////DataAccess.BuyingRate objbu = new //DataAccess.BuyingRate();
             //DataTable dtemptyfree = new DataTable();
             //dtemptyfree = objbu.selpendingBookcutomerwisecount_Chart(Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"]), HttpContext.Current.Session["StrTranType"].ToString());
 
             DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_misgrd.GetDataBase(Ccode);
             DataTable dt = new DataTable();
             int subgrpid = 40;
             dt = da_obj_misgrd.Getnewoutstanding4MISHomeOutStndTotal(Convert.ToInt32(HttpContext.Current.Session["LoginEmpId"].ToString()), 0, Convert.ToInt32(HttpContext.Current.Session["LoginDivisionId"].ToString()), subgrpid);
@@ -930,10 +934,10 @@ namespace logix.Home
 
             DataTable dt_OprProfit = new DataTable();
             DataTable dt = new DataTable();
-          //  DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             //string transtype = Session["StrTranType"].ToString();
             DateTime Todate = Convert.ToDateTime(Logobj.GetDate().ToString());
-          //  DataAccess.ForwardingExports.JobInfo objJob = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo objJob = new //DataAccess.ForwardingExports.JobInfo();
             int month = Todate.Month;
             int year = Todate.Year;
             DateTime fromdate = Convert.ToDateTime(month + "/01/" + year);
@@ -1101,7 +1105,7 @@ namespace logix.Home
         public void barchartdetails()
         {
             //            string color = "";
-            //            DataAccess.ForwardingExports.JobInfo objsales = new DataAccess.ForwardingExports.JobInfo();
+            //            //DataAccess.ForwardingExports.JobInfo objsales = new //DataAccess.ForwardingExports.JobInfo();
             //            dt = objsales.getbookingbar(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginBranchid"]), Convert.ToInt32(Session["LoginDivisionId"]));
             //            StringBuilder str = new StringBuilder();
             //            str.Append(@"<script type=*text/javascript*> google.load( *visualization*, *1*, {packages:[*corechart*]});
@@ -1139,7 +1143,7 @@ namespace logix.Home
             DataTable dt1 = new DataTable();
             DataTable dt2 = new DataTable();
             DataTable dt3 = new DataTable();
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             dt0 = da_obj_misgrd.GetOurAgentGrdhomeCount(0, Convert.ToInt32(Session["LoginDivisionId"]));
             StringBuilder str = new StringBuilder();
             str.Append(@"<script type=*text/javascript*> google.load( *visualization*, *1*, {packages:[*corechart*]});
@@ -1197,7 +1201,7 @@ namespace logix.Home
             DataTable dt1 = new DataTable();
             DataTable dt2 = new DataTable();
             DataTable dt3 = new DataTable();
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             // dt0 = da_obj_misgrd.GetOPsDocHomeCount(0, Convert.ToInt32(Session["LoginDivisionId"]));
             StringBuilder str = new StringBuilder();
             str.Append(@"<script type=*text/javascript*> google.load( *visualization*, *1*, {packages:[*corechart*]});
@@ -1291,10 +1295,10 @@ namespace logix.Home
             lbl_cut.Text = "Air Exports";
             DataTable dt_OprProfit = new DataTable();
             DataTable dt = new DataTable();
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             //string transtype = Session["StrTranType"].ToString();
             DateTime Todate = Convert.ToDateTime(Logobj.GetDate().ToString());
-           // DataAccess.ForwardingExports.JobInfo objJob = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo objJob = new //DataAccess.ForwardingExports.JobInfo();
             int month = Todate.Month;
             int year = Todate.Year;
             DateTime fromdate = Convert.ToDateTime(month + "/01/" + year);
@@ -1429,10 +1433,10 @@ namespace logix.Home
             lbl_cut.Text = "Air Imports";
             DataTable dt_OprProfit = new DataTable();
             DataTable dt = new DataTable();
-          // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             //string transtype = Session["StrTranType"].ToString();
             DateTime Todate = Convert.ToDateTime(Logobj.GetDate().ToString());
-           // DataAccess.ForwardingExports.JobInfo objJob = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo objJob = new //DataAccess.ForwardingExports.JobInfo();
             int month = Todate.Month;
             int year = Todate.Year;
             DateTime fromdate = Convert.ToDateTime(month + "/01/" + year);
@@ -1535,16 +1539,16 @@ namespace logix.Home
             lbl_cut.Text = "Bounded Trucking";
             DataTable dt_OprProfit = new DataTable();
             DataTable dt = new DataTable();
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             //string transtype = Session["StrTranType"].ToString();
             DateTime Todate = Convert.ToDateTime(Logobj.GetDate().ToString());
-           // DataAccess.ForwardingExports.JobInfo objJob = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo objJob = new //DataAccess.ForwardingExports.JobInfo();
             int month = Todate.Month;
             int year = Todate.Year;
             DateTime fromdate = Convert.ToDateTime(month + "/01/" + year);
             int count;
             DataTable dtemptyfree = new DataTable();
-           
+
             dtemptyfree.Columns.Add("S#");
             dtemptyfree.Columns.Add("Branch");
             dtemptyfree.Columns.Add("Product");
@@ -1641,10 +1645,10 @@ namespace logix.Home
             lbl_cut.Text = "Customs Broking";
             DataTable dt_OprProfit = new DataTable();
             DataTable dt = new DataTable();
-          //  DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             //string transtype = Session["StrTranType"].ToString();
             DateTime Todate = Convert.ToDateTime(Logobj.GetDate().ToString());
-          // DataAccess.ForwardingExports.JobInfo objJob = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo objJob = new //DataAccess.ForwardingExports.JobInfo();
             int month = Todate.Month;
             int year = Todate.Year;
             DateTime fromdate = Convert.ToDateTime(month + "/01/" + year);
@@ -1755,10 +1759,10 @@ namespace logix.Home
             lbl_cut.Text = "Ocean Exports";
             DataTable dt_OprProfit = new DataTable();
             DataTable dt = new DataTable();
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             //string transtype = Session["StrTranType"].ToString();
             DateTime Todate = Convert.ToDateTime(Logobj.GetDate().ToString());
-           // DataAccess.ForwardingExports.JobInfo objJob = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo objJob = new //DataAccess.ForwardingExports.JobInfo();
             int month = Todate.Month;
             int year = Todate.Year;
             DateTime fromdate = Convert.ToDateTime(month + "/01/" + year);
@@ -1876,10 +1880,10 @@ namespace logix.Home
             lbl_cut.Text = "Ocean Imports";
             DataTable dt_OprProfit = new DataTable();
             DataTable dt = new DataTable();
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             //string transtype = Session["StrTranType"].ToString();
             DateTime Todate = Convert.ToDateTime(Logobj.GetDate().ToString());
-           // DataAccess.ForwardingExports.JobInfo objJob = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo objJob = new //DataAccess.ForwardingExports.JobInfo();
             int month = Todate.Month;
             int year = Todate.Year;
             DateTime fromdate = Convert.ToDateTime(month + "/01/" + year);
@@ -1989,10 +1993,10 @@ namespace logix.Home
             lbl_cut.Text = "Total Retention";
             DataTable dt_OprProfit = new DataTable();
             DataTable dt = new DataTable();
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             //string transtype = Session["StrTranType"].ToString();
             DateTime Todate = Convert.ToDateTime(Logobj.GetDate().ToString());
-           // DataAccess.ForwardingExports.JobInfo objJob = new DataAccess.ForwardingExports.JobInfo();
+            //DataAccess.ForwardingExports.JobInfo objJob = new //DataAccess.ForwardingExports.JobInfo();
             int month = Todate.Month;
             int year = Todate.Year;
             DateTime fromdate = Convert.ToDateTime(month + "/01/" + year);
@@ -2219,7 +2223,7 @@ namespace logix.Home
             lbl_cut.Visible = true;
             lbl_cut.Attributes["class"] = "lbl_cutlnkAI";
             lbl_cut.Text = "Air Imports Outstanding";
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             DataTable dt_outstanting = new DataTable();
             int subgrpid = 40;
             dt_MenuRights = obj_UP.GetformuserrightsnewOUT(Convert.ToInt16(Session["LoginEmpId"].ToString()), "", Convert.ToInt16(Session["LoginBranchid"].ToString()), 21, "Outstanding - OnlineNew");
@@ -2278,7 +2282,7 @@ namespace logix.Home
             lbl_cut.Visible = true;
             lbl_cut.Attributes["class"] = "lbl_cutlnkAE";
             lbl_cut.Text = "Air Exports Outstanding";
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             DataTable dt_outstanting = new DataTable();
             int subgrpid = 40;
             dt_MenuRights = obj_UP.GetformuserrightsnewOUT(Convert.ToInt16(Session["LoginEmpId"].ToString()), "", Convert.ToInt16(Session["LoginBranchid"].ToString()), 21, "Outstanding - OnlineNew");
@@ -2340,7 +2344,7 @@ namespace logix.Home
             lbl_cut.Visible = true;
             lbl_cut.Attributes["class"] = "lbl_cutlnkBT";
             lbl_cut.Text = "Bounded Trucking Outstanding";
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             DataTable dt_outstanting = new DataTable();
             int subgrpid = 40;
             dt_MenuRights = obj_UP.GetformuserrightsnewOUT(Convert.ToInt16(Session["LoginEmpId"].ToString()), "", Convert.ToInt16(Session["LoginBranchid"].ToString()), 21, "Outstanding - OnlineNew");
@@ -2398,7 +2402,7 @@ namespace logix.Home
             lbl_cut.Visible = true;
             lbl_cut.Attributes["class"] = "lbl_cutlnkCH";
             lbl_cut.Text = "Customs Broking Outstanding";
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             DataTable dt_outstanting = new DataTable();
             int subgrpid = 40;
             dt_MenuRights = obj_UP.GetformuserrightsnewOUT(Convert.ToInt16(Session["LoginEmpId"].ToString()), "", Convert.ToInt16(Session["LoginBranchid"].ToString()), 21, "Outstanding - OnlineNew");
@@ -2458,7 +2462,7 @@ namespace logix.Home
             lbl_cut.Visible = true;
             lbl_cut.Attributes["class"] = "lbl_cutlnkOE";
             lbl_cut.Text = "Ocean Exports Outstanding";
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             DataTable dt_outstanting = new DataTable();
             int subgrpid = 40;
             dt_MenuRights = obj_UP.GetformuserrightsnewOUT(Convert.ToInt16(Session["LoginEmpId"].ToString()), "", Convert.ToInt16(Session["LoginBranchid"].ToString()), 21, "Outstanding - OnlineNew");
@@ -2516,7 +2520,7 @@ namespace logix.Home
             lbl_cut.Visible = true;
             lbl_cut.Attributes["class"] = "lbl_cutlnkOI";
             lbl_cut.Text = "Ocean Import Outstanding";
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             DataTable dt_outstanting = new DataTable();
             int subgrpid = 40;
             dt_MenuRights = obj_UP.GetformuserrightsnewOUT(Convert.ToInt16(Session["LoginEmpId"].ToString()), "", Convert.ToInt16(Session["LoginBranchid"].ToString()), 21, "Outstanding - OnlineNew");
@@ -2575,7 +2579,7 @@ namespace logix.Home
             lbl_cut.Visible = true;
             lbl_cut.Attributes["class"] = "lbl_cutlnkTotRen";
             lbl_cut.Text = "Total Outstanding";
-           // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
             DataTable dt_outstanting = new DataTable();
             int subgrpid = 40;
             dt_MenuRights = obj_UP.GetformuserrightsnewOUT(Convert.ToInt16(Session["LoginEmpId"].ToString()), "", Convert.ToInt16(Session["LoginBranchid"].ToString()), 21, "Outstanding - OnlineNew");
@@ -2986,10 +2990,10 @@ namespace logix.Home
         //        {
         //            DataTable dt_OprProfit = new DataTable();
         //            DataTable dt = new DataTable();
-        //            DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+        //            //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
         //            //string transtype = Session["StrTranType"].ToString();
         //            DateTime Todate = Convert.ToDateTime(Logobj.GetDate().ToString());
-        //            DataAccess.ForwardingExports.JobInfo objJob = new DataAccess.ForwardingExports.JobInfo();
+        //            //DataAccess.ForwardingExports.JobInfo objJob = new //DataAccess.ForwardingExports.JobInfo();
         //            int month = Todate.Month;
         //            int year = Todate.Year;
         //            DateTime fromdate = Convert.ToDateTime(month + "/01/" + year);
@@ -3051,7 +3055,8 @@ namespace logix.Home
                 if (port == "Port")
                 {
                     DataAccess.Masters.MasterPort da_obj_Port = new DataAccess.Masters.MasterPort();
-                    
+                    string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                    da_obj_Port.GetDataBase(Ccode);
                     obj_dt = da_obj_Port.GetLikePort(prefix.ToUpper());
                     HttpContext.Current.Session["DataTable"] = obj_dt;
                     customers = Utility.Fn_DatatableToList(obj_dt, "portname", "portid");
@@ -3062,8 +3067,9 @@ namespace logix.Home
                 agent = HttpContext.Current.Session["Agent"].ToString();
                 if (agent == "P")
                 {
-                   DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
-
+                    DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+                    string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                    da_obj_Customer.GetDataBase(Ccode);
                     obj_dt = da_obj_Customer.GetLikeCustomer(prefix.ToUpper(), "P");
                     HttpContext.Current.Session["DataTable"] = obj_dt;
                     customers = Utility.Fn_DatatableToList_Customer(obj_dt, "customer", "customerid");
@@ -3074,7 +3080,9 @@ namespace logix.Home
                 Consignee = HttpContext.Current.Session["Consignee"].ToString();
                 if (Consignee == "C")
                 {
-                   DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+                    DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+                    string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                    da_obj_Customer.GetDataBase(Ccode);
                     obj_dt = da_obj_Customer.GetLikeCustomer(prefix.ToUpper(), "C");
                     HttpContext.Current.Session["DataTable"] = obj_dt;
                     customers = Utility.Fn_DatatableToList_Customer(obj_dt, "customer", "customerid");
@@ -3086,6 +3094,8 @@ namespace logix.Home
                 if (name == "Name")
                 {
                     DataAccess.Masters.MasterEmployee da_obj_Employee = new DataAccess.Masters.MasterEmployee();
+                    string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                    da_obj_Employee.GetDataBase(Ccode);
                     obj_dt = da_obj_Employee.GetLikeEmployee(prefix.ToUpper());
                     HttpContext.Current.Session["DataTable"] = obj_dt;
                     customers = Utility.Fn_DatatableToList(obj_dt, "empnamecode", "employeeid");
@@ -3155,7 +3165,7 @@ namespace logix.Home
             ddl_Report.Items.Add("By Consignee");
             ddl_Report.Items.Add("Controlled By Us");
             ddl_Report.Items.Add("Jobwise  P&L");
-          //  ddl_Report.Items.Add("Log Details");
+            //  ddl_Report.Items.Add("Log Details");
             ddl_Report.Items.Add("Loss Jobs");
             ddl_Report.Items.Add("By Carrier");
             ddl_Report.Items.Add("Controlled By Agent");
@@ -3164,7 +3174,7 @@ namespace logix.Home
             ddl_Report.Items.Add("By POD");
             ddl_Report.Items.Add("By POL");
             ddl_Report.Items.Add("By Customer");
-          //  ddl_Report.Items.Add("Retention for N / F");
+            //  ddl_Report.Items.Add("Retention for N / F");
             ddl_Report.Items.Add("By Sales Person");
             ddl_Report.Items.Add("By Sector");
             ddl_Report.Items.Add("By BL /AWB");
@@ -3176,16 +3186,16 @@ namespace logix.Home
             //ddl_Report.Items.Add("Year M I S");
 
             DataTable dt_rights = Session["dt_UserRights"] as DataTable;
-           // DataAccess.UserPermission obj_UP = new DataAccess.UserPermission();
+            //DataAccess.UserPermission obj_UP = new //DataAccess.UserPermission();
             dt_rights = obj_UP.SelMainmenuWithRights4MIreport(Convert.ToInt16(Session["LoginEmpId"].ToString()), "MI", Convert.ToInt16(Session["LoginBranchid"].ToString()));
             for (int i = 0; i < dt_rights.Rows.Count; i++)
             {
 
                 ddl_Report.Items.Add(dt_rights.Rows[i]["submenuname"].ToString().Trim());
-            }       
+            }
 
 
-              
+
             //DataTable dtLi = new DataTable();
             //DataView data1 = dt_rights.DefaultView;
             //// data1.RowFilter = "menuname = '" + "Analysis" + "'";//uiname = '" + dtnew.Rows[i]["uiname"] + "' and  and trantype <> '" + "CH" + "' and trantype <> '" + "BT" + "'
@@ -3735,7 +3745,7 @@ namespace logix.Home
                     DataTable dt = new DataTable();
                     DataTable dta = new DataTable();
                     DataTable dtb = new DataTable();
-                   // DataAccess.Accounts.Reversal cutobj = new DataAccess.Accounts.Reversal();
+                    //DataAccess.Accounts.Reversal cutobj = new //DataAccess.Accounts.Reversal();
                     string sp;
                     dt = cutobj.GetCutoffBreakUpDetails(LoginDivisionId, "A", fdate, LoginEmpId);
 
@@ -4035,7 +4045,7 @@ namespace logix.Home
             DateTime frm_date, to_date;
             frm_date = Convert.ToDateTime(str_fromdate);
             to_date = Convert.ToDateTime(str_todate);
-          //  DataAccess.CostingTemp da_obj_Costing = new DataAccess.CostingTemp();
+            //DataAccess.CostingTemp da_obj_Costing = new //DataAccess.CostingTemp();
             string Trantype = "";
             Str_Export = "";
             Filename = "Retention For N/F for the period of  " + txt_from.Text + " to " + txt_to.Text;
@@ -4357,7 +4367,7 @@ namespace logix.Home
             DateTime frm_date, to_date;
             frm_date = Convert.ToDateTime(str_fromdate);
             to_date = Convert.ToDateTime(str_todate);
-           // DataAccess.CostingTemp da_obj_Costing = new DataAccess.CostingTemp();
+            //DataAccess.CostingTemp da_obj_Costing = new //DataAccess.CostingTemp();
             DataRow dr = obj_dt.NewRow();
             obj_dt.Columns.Add("column1");
             obj_dt.Columns.Add("column2");
@@ -5067,9 +5077,9 @@ namespace logix.Home
 
                         else
                             if (tran == "AD")
-                            {
-                                tran = "Admin";
-                            }
+                        {
+                            tran = "Admin";
+                        }
 
                         if (dt.Rows.Count > 0)
                         {
@@ -5091,7 +5101,8 @@ namespace logix.Home
                                         total40 = total40 + Convert.ToDouble(dt.Rows[j]["Retention"].ToString());
                                         cou = 0;
                                     }
-                                } cou = 1;
+                                }
+                                cou = 1;
                             }
                             if (cou == 1)
                             {
@@ -5107,7 +5118,8 @@ namespace logix.Home
                             }
                         }
 
-                    } Rc = Rc + 1;
+                    }
+                    Rc = Rc + 1;
 
                 }
 
@@ -5128,8 +5140,10 @@ namespace logix.Home
 
                             //dtemptyfree.Rows[i]["Total"] = total40.ToString("#,0.00");
                             //dtemptyfree.Rows[i]["Total"] = dtemptyfree.Rows[i]["Total"] + dtemptyfree.Rows[i][Rc];
-                        } Rc += 1;
-                    } dtemptyfree.Rows[i]["Total"] = total40.ToString("#,0.00");
+                        }
+                        Rc += 1;
+                    }
+                    dtemptyfree.Rows[i]["Total"] = total40.ToString("#,0.00");
 
                 }
 
@@ -5386,7 +5400,8 @@ namespace logix.Home
                                         total40 = total40 + Convert.ToDouble(dt.Rows[j]["Retention"].ToString());
                                         cou = 0;
                                     }
-                                } cou = 1;
+                                }
+                                cou = 1;
                             }
                             if (cou == 1)
                             {
@@ -5407,7 +5422,8 @@ namespace logix.Home
                             }
                         }
 
-                    } Rc = Rc + 1;
+                    }
+                    Rc = Rc + 1;
 
                 }
 
@@ -5428,8 +5444,10 @@ namespace logix.Home
 
                             //dtemptyfree.Rows[i]["Total"] = total40.ToString("#,0.00");
                             //dtemptyfree.Rows[i]["Total"] = dtemptyfree.Rows[i]["Total"] + dtemptyfree.Rows[i][Rc];
-                        } Rc += 1;
-                    } dtemptyfree.Rows[i]["Total"] = total40.ToString("#,0.00");
+                        }
+                        Rc += 1;
+                    }
+                    dtemptyfree.Rows[i]["Total"] = total40.ToString("#,0.00");
 
                 }
 
@@ -6071,7 +6089,8 @@ namespace logix.Home
 
                         }
 
-                    } dt.Rows.Clear();
+                    }
+                    dt.Rows.Clear();
 
                 }
 
@@ -9483,14 +9502,14 @@ namespace logix.Home
                 divstatistics.Visible = false;
 
                 RententionLb.Attributes["class"] = "RententionLbl";
-                btn_get.Visible = false;btn_get_id.Visible = false;
-                ddl_branch.Visible = false;ddl_branch_id.Visible = false;
-                ddl_Report.Visible = true;ddl_Report_id.Visible = true;
-                txt_agent.Visible = false;txt_agent_id.Visible = false;
+                btn_get.Visible = false; btn_get_id.Visible = false;
+                ddl_branch.Visible = false; ddl_branch_id.Visible = false;
+                ddl_Report.Visible = true; ddl_Report_id.Visible = true;
+                txt_agent.Visible = false; txt_agent_id.Visible = false;
 
                 lbl_ret.Visible = true;
                 txt_retention.Visible = true;
-                btnview.Visible = true;btnview_id.Visible = true;
+                btnview.Visible = true; btnview_id.Visible = true;
 
 
                 //txt_retention.Attributes.Add("OnKeypress", "return IntegerCheck(event);");
@@ -9539,7 +9558,7 @@ namespace logix.Home
 
                 }
             }
-            else if (ddl_Report.Text == "Statistics" ||ddl_Report.Text == "Volume Count")
+            else if (ddl_Report.Text == "Statistics" || ddl_Report.Text == "Volume Count")
             {
                 lbl_from.Visible = true;
                 txt_from.Visible = true;
@@ -9550,7 +9569,7 @@ namespace logix.Home
 
                 div_mis.Visible = false;
                 div_inbound.Visible = false;
-                ddl_Report.Visible = true;ddl_Report_id.Visible = true;
+                ddl_Report.Visible = true; ddl_Report_id.Visible = true;
                 Label5.Text = "Volume Count";
 
 
@@ -9743,18 +9762,18 @@ namespace logix.Home
                 ddl_by.Visible = true;
                 divstatistics.Visible = true;
 
-                ddl_branch.Visible = true;ddl_branch_id.Visible = true;
+                ddl_branch.Visible = true; ddl_branch_id.Visible = true;
 
                 div_retention.Visible = false;
                 RententionLb.Attributes["class"] = "RententionLblnew";
                 lbl_ret.Visible = false;
                 txt_retention.Visible = false;
-                btnview.Visible = false;btnview_id.Visible = false;
+                btnview.Visible = false; btnview_id.Visible = false;
 
-                btn_get.Visible = false;btn_get_id.Visible = false;
+                btn_get.Visible = false; btn_get_id.Visible = false;
                 Loadbranch();
                 // ddl_Report.Visible = false;ddl_Report_id.Visible = false;
-                txt_agent.Visible = false;txt_agent_id.Visible = false;
+                txt_agent.Visible = false; txt_agent_id.Visible = false;
                 div_Statistics.Visible = true;
 
 
@@ -9767,7 +9786,7 @@ namespace logix.Home
                 Label1.Visible = false;
                 txt_to.Visible = false;
 
-                ddl_branch.Visible = false;ddl_branch_id.Visible = false;
+                ddl_branch.Visible = false; ddl_branch_id.Visible = false;
                 div_mis.Visible = false;
                 divby.Visible = false;
                 ddl_product.Visible = false;
@@ -9775,14 +9794,14 @@ namespace logix.Home
                 divstatistics.Visible = false;
 
                 RententionLb.Attributes["class"] = "RententionLbl";
-                btn_get.Visible = false;btn_get_id.Visible = false;
+                btn_get.Visible = false; btn_get_id.Visible = false;
 
                 // ddl_Report.Visible = false;ddl_Report_id.Visible = false;
-                txt_agent.Visible = false;txt_agent_id.Visible = false;
+                txt_agent.Visible = false; txt_agent_id.Visible = false;
 
                 lbl_ret.Visible = false;
                 txt_retention.Visible = false;
-                btnview.Visible = false;btnview_id.Visible = false;
+                btnview.Visible = false; btnview_id.Visible = false;
                 div_inbound.Visible = true;
 
                 int i;
@@ -9803,7 +9822,7 @@ namespace logix.Home
                 ddlmonth.Text = DateTime.Today.Month.ToString();
                 ddltomonth.Text = DateTime.Today.Month.ToString();
 
-                  btncancel.Text = "Cancel";
+                btncancel.Text = "Cancel";
 
 
 
@@ -9820,9 +9839,9 @@ namespace logix.Home
 
                 div_mis.Visible = false;
                 div_BLVoucherwise.Visible = true;
-                btn_get.Visible = true;btn_get_id.Visible = true;
-                ddl_branch.Visible = false;ddl_branch_id.Visible = false;
-                ddl_Report.Visible = true;ddl_Report_id.Visible = true;
+                btn_get.Visible = true; btn_get_id.Visible = true;
+                ddl_branch.Visible = false; ddl_branch_id.Visible = false;
+                ddl_Report.Visible = true; ddl_Report_id.Visible = true;
                 div_inbound.Visible = false;
                 divby.Visible = false;
                 ddl_product.Visible = false;
@@ -9831,11 +9850,11 @@ namespace logix.Home
 
                 RententionLb.Attributes["class"] = "RententionLblnew";
 
-                txt_agent.Visible = false;txt_agent_id.Visible = false;
+                txt_agent.Visible = false; txt_agent_id.Visible = false;
 
                 lbl_ret.Visible = false;
                 txt_retention.Visible = false;
-                btnview.Visible = false;btnview_id.Visible = false;
+                btnview.Visible = false; btnview_id.Visible = false;
 
                 grdvoucher.DataSource = null;
                 grdvoucher.DataBind();
@@ -9856,9 +9875,9 @@ namespace logix.Home
                 div_mis.Visible = false;
 
                 div_JobDetails.Visible = true;
-                btn_get.Visible = true;btn_get_id.Visible = true;
-                ddl_branch.Visible = false;ddl_branch_id.Visible = false;
-                ddl_Report.Visible = true;ddl_Report_id.Visible = true;
+                btn_get.Visible = true; btn_get_id.Visible = true;
+                ddl_branch.Visible = false; ddl_branch_id.Visible = false;
+                ddl_Report.Visible = true; ddl_Report_id.Visible = true;
                 div_inbound.Visible = false;
                 divby.Visible = false;
                 ddl_product.Visible = false;
@@ -9867,11 +9886,11 @@ namespace logix.Home
 
                 RententionLb.Attributes["class"] = "RententionLblnew";
 
-                txt_agent.Visible = false;txt_agent_id.Visible = false;
+                txt_agent.Visible = false; txt_agent_id.Visible = false;
 
                 lbl_ret.Visible = false;
                 txt_retention.Visible = false;
-                btnview.Visible = false;btnview_id.Visible = false;
+                btnview.Visible = false; btnview_id.Visible = false;
 
                 Grdjobdetails.DataSource = new DataTable();
                 Grdjobdetails.DataBind();
@@ -9887,19 +9906,19 @@ namespace logix.Home
 
                 div_mis.Visible = false;
                 div_ExemptionList.Visible = true;
-                btn_get.Visible = true;btn_get_id.Visible = true;
-                ddl_branch.Visible = true;ddl_branch_id.Visible = true;
-                ddl_Report.Visible = true;ddl_Report_id.Visible = true;
+                btn_get.Visible = true; btn_get_id.Visible = true;
+                ddl_branch.Visible = true; ddl_branch_id.Visible = true;
+                ddl_Report.Visible = true; ddl_Report_id.Visible = true;
                 div_inbound.Visible = false;
                 divby.Visible = false;
                 ddl_product.Visible = false;
                 ddl_by.Visible = false;
                 divstatistics.Visible = false;
                 RententionLb.Attributes["class"] = "RententionLblnew";
-                txt_agent.Visible = false;txt_agent_id.Visible = false;
+                txt_agent.Visible = false; txt_agent_id.Visible = false;
                 lbl_ret.Visible = false;
                 txt_retention.Visible = false;
-                btnview.Visible = false;btnview_id.Visible = false;
+                btnview.Visible = false; btnview_id.Visible = false;
                 emptygrd();
             }
 
@@ -9913,19 +9932,19 @@ namespace logix.Home
 
                 div_mis.Visible = false;
                 div_BillingReport.Visible = true;
-               // btn_get.Visible = true;btn_get_id.Visible = true;
-                ddl_branch.Visible = true;ddl_branch_id.Visible = true;
+                // btn_get.Visible = true;btn_get_id.Visible = true;
+                ddl_branch.Visible = true; ddl_branch_id.Visible = true;
                 ddl_product.Visible = true;
                 divby.Visible = true;
                 ddl_by.Visible = true;
-                ddl_Report.Visible = true;ddl_Report_id.Visible = true;
+                ddl_Report.Visible = true; ddl_Report_id.Visible = true;
                 div_inbound.Visible = false;
                 divstatistics.Visible = false;
                 RententionLb.Attributes["class"] = "RententionLblnew";
-                txt_agent.Visible = false;txt_agent_id.Visible = false;
+                txt_agent.Visible = false; txt_agent_id.Visible = false;
                 lbl_ret.Visible = false;
                 txt_retention.Visible = false;
-                btnview.Visible = false;btnview_id.Visible = false;
+                btnview.Visible = false; btnview_id.Visible = false;
                 if (Session["StrTranType"] != null)
                 {
                     strTran = Session["StrTranType"].ToString();
@@ -10001,19 +10020,19 @@ namespace logix.Home
                 div_mis.Visible = false;
                 div_CutOffBreakUp.Visible = true;
                 //txt_to.Visible = false;
-                btn_get.Visible = true;btn_get_id.Visible = true;
-                ddl_branch.Visible = false;ddl_branch_id.Visible = false;
-                ddl_Report.Visible = true;ddl_Report_id.Visible = true;
+                btn_get.Visible = true; btn_get_id.Visible = true;
+                ddl_branch.Visible = false; ddl_branch_id.Visible = false;
+                ddl_Report.Visible = true; ddl_Report_id.Visible = true;
                 ddl_product.Visible = false;
                 divby.Visible = false;
                 ddl_by.Visible = false;
                 div_inbound.Visible = false;
                 divstatistics.Visible = false;
                 RententionLb.Attributes["class"] = "RententionLblnew";
-                txt_agent.Visible = false;txt_agent_id.Visible = false;
+                txt_agent.Visible = false; txt_agent_id.Visible = false;
                 lbl_ret.Visible = false;
                 txt_retention.Visible = false;
-                btnview.Visible = false;btnview_id.Visible = false;
+                btnview.Visible = false; btnview_id.Visible = false;
                 //Panel13.Visible = true;
                 inboundgrd.Attributes["class"] = "GridcutNewMt2";
                 GridView3.Visible = true;
@@ -10032,27 +10051,27 @@ namespace logix.Home
                 div_CutOffBreakUp.Visible = false;
                 //txt_to.Visible = false;
                 div_Tradelane.Visible = true;
-                btn_get.Visible = false;btn_get_id.Visible = false;
+                btn_get.Visible = false; btn_get_id.Visible = false;
                 btn_get_trade.Visible = true;
                 btn_cancel_trade.Visible = true;
-                ddl_branch.Visible = false;ddl_branch_id.Visible = false;
-                ddl_Report.Visible = true;ddl_Report_id.Visible = true;
+                ddl_branch.Visible = false; ddl_branch_id.Visible = false;
+                ddl_Report.Visible = true; ddl_Report_id.Visible = true;
                 ddl_product.Visible = false;
                 divby.Visible = false;
                 ddl_by.Visible = false;
                 div_inbound.Visible = false;
                 divstatistics.Visible = false;
                 RententionLb.Attributes["class"] = "RententionLblnew";
-                txt_agent.Visible = false;txt_agent_id.Visible = false;
+                txt_agent.Visible = false; txt_agent_id.Visible = false;
                 lbl_ret.Visible = false;
                 txt_retention.Visible = false;
-                btnview.Visible = false;btnview_id.Visible = false;
+                btnview.Visible = false; btnview_id.Visible = false;
 
                 Grd_product.DataSource = null;
                 Grd_product.DataBind();
                 Grd_Country.DataSource = null;
                 Grd_Country.DataBind();
-                   btncancel.Text = "Cancel";
+                btncancel.Text = "Cancel";
 
 
                 btncancel.ToolTip = "Cancel";
@@ -10079,11 +10098,11 @@ namespace logix.Home
                 RententionLb.Attributes["class"] = "RententionLblnew";
                 lbl_ret.Visible = false;
                 txt_retention.Visible = false;
-                btnview.Visible = false;btnview_id.Visible = false;
-                btn_get.Visible = true;btn_get_id.Visible = true;
-                ddl_branch.Visible = true;ddl_branch_id.Visible = true;
-                ddl_Report.Visible = true;ddl_Report_id.Visible = true;
-                txt_agent.Visible = true;txt_agent_id.Visible = true;
+                btnview.Visible = false; btnview_id.Visible = false;
+                btn_get.Visible = true; btn_get_id.Visible = true;
+                ddl_branch.Visible = true; ddl_branch_id.Visible = true;
+                ddl_Report.Visible = true; ddl_Report_id.Visible = true;
+                txt_agent.Visible = true; txt_agent_id.Visible = true;
                 //hf_date.Value = Utility.fn_ConvertDate(Logobj.GetDate().ToShortDateString());
                 //txt_from.Text = hf_date.Value;
                 //txt_to.Text = hf_date.Value;
@@ -10153,7 +10172,7 @@ namespace logix.Home
             DataTable dtsort = new DataTable();
             //int bid = Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString());
             int did = Convert.ToInt32(HttpContext.Current.Session["LoginDivisionid"].ToString());
-           // DataAccess.MISGrd obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd obj_misgrd = new //DataAccess.MISGrd();
             string transtype = HttpContext.Current.Session["StrTranType"].ToString();
             bid = HREmpobj.GetBranchId(did, ddl_branch.SelectedItem.Text);
             cust = "AG";
@@ -10603,7 +10622,7 @@ namespace logix.Home
             DataTable dtemptynew = new DataTable();
             //int bid = Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString());
             int did = Convert.ToInt32(HttpContext.Current.Session["LoginDivisionid"].ToString());
-           // DataAccess.MISGrd obj_misgrd = new DataAccess.MISGrd();
+            //DataAccess.MISGrd obj_misgrd = new //DataAccess.MISGrd();
             string transtype = HttpContext.Current.Session["StrTranType"].ToString();
             bid = HREmpobj.GetBranchId(did, ddl_branch.SelectedItem.Text);
             cust = "CO";
@@ -11557,7 +11576,7 @@ namespace logix.Home
             try
             {
                 int did = Convert.ToInt32(HttpContext.Current.Session["LoginDivisionid"].ToString());
-              //  DataAccess.MISGrd obj_misgrd = new DataAccess.MISGrd();
+                //DataAccess.MISGrd obj_misgrd = new //DataAccess.MISGrd();
                 bid = HREmpobj.GetBranchId(did, ddl_branch.SelectedItem.Text);
 
                 int int_jobno = 0;
@@ -11750,7 +11769,7 @@ namespace logix.Home
                 index = grd_Agent.SelectedRow.RowIndex;
                 string str_fromdate = Utility.fn_ConvertDate(txt_from.Text);
                 string str_todate = Utility.fn_ConvertDate(txt_to.Text);
-               // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+                //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
                 DataTable obj_dtjob = new DataTable();
 
                 if (bid == 0)
@@ -11952,7 +11971,7 @@ namespace logix.Home
                 index = grd_Consignee.SelectedRow.RowIndex;
                 string str_fromdate = Utility.fn_ConvertDate(txt_from.Text);
                 string str_todate = Utility.fn_ConvertDate(txt_to.Text);
-               // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+                //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
                 DataTable obj_dtjob = new DataTable();
                 if (bid == 0)
                 {
@@ -13645,7 +13664,7 @@ namespace logix.Home
                 index = grd_Shipper.SelectedRow.RowIndex;
                 string str_fromdate = Utility.fn_ConvertDate(txt_from.Text);
                 string str_todate = Utility.fn_ConvertDate(txt_to.Text);
-               // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+                //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
                 DataTable obj_dtjob = new DataTable();
 
                 if (bid == 0)
@@ -13847,7 +13866,7 @@ namespace logix.Home
 
                 string str_fromdate = Utility.fn_ConvertDate(txt_from.Text);
                 string str_todate = Utility.fn_ConvertDate(txt_to.Text);
-              //  DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+                //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
                 DataTable obj_dtjob = new DataTable();
 
                 if (bid == 0)
@@ -14646,24 +14665,24 @@ namespace logix.Home
                     Retention_Export();
                 }
 
-             /*   else if (ddl_Report.Text == "Trend Analysis - Customer")
-                {  
-                    
-                    if (grd_trendanalysis.Rows.Count > 0)
-                   {
-                    Filename = ddl_Report.Text + txt_from.Text + " to " + txt_to.Text;
-                    strtemp = Utility.Fn_ExportExcel(grd_trendanalysis, "<tr><td></td><td><FONT FACE=arial SIZE=2>" + Filename + "</td></tr><tr><td></td><td></td><td><FONT FACE=arial SIZE=2>" + Session["LoginDivisionName"].ToString() + " - " + Session["LoginBranchName"].ToString() + "</td></tr>");
+                /*   else if (ddl_Report.Text == "Trend Analysis - Customer")
+                   {  
 
-                    Response.Clear();
-                    Response.AddHeader("Content-Disposition", "Attachment;Filename=" + Filename + ".xls");
-                    Response.Buffer = true;
-                    Response.Charset = "UTF-8";
-                    Response.ContentType = "application/vnd.ms-excel";
-                    Response.Write(strtemp);
-                    Response.End();
-                   }
-                
-               }*/
+                       if (grd_trendanalysis.Rows.Count > 0)
+                      {
+                       Filename = ddl_Report.Text + txt_from.Text + " to " + txt_to.Text;
+                       strtemp = Utility.Fn_ExportExcel(grd_trendanalysis, "<tr><td></td><td><FONT FACE=arial SIZE=2>" + Filename + "</td></tr><tr><td></td><td></td><td><FONT FACE=arial SIZE=2>" + Session["LoginDivisionName"].ToString() + " - " + Session["LoginBranchName"].ToString() + "</td></tr>");
+
+                       Response.Clear();
+                       Response.AddHeader("Content-Disposition", "Attachment;Filename=" + Filename + ".xls");
+                       Response.Buffer = true;
+                       Response.Charset = "UTF-8";
+                       Response.ContentType = "application/vnd.ms-excel";
+                       Response.Write(strtemp);
+                       Response.End();
+                      }
+
+                  }*/
 
                 else if (ddl_Report.Text == "Trend Analysis - Customer")
                 {
@@ -16043,7 +16062,7 @@ namespace logix.Home
             try
             {
 
-              //  DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+                //DataAccess.LogDetails Logobj = new //DataAccess.LogDetails();
                 did = int.Parse(Session["LoginDivisionId"].ToString());
                 //int bid = Convert.ToInt32(Session["LoginBranchid"].ToString());
                 str_TranType = Session["StrTranType"].ToString();
@@ -17264,7 +17283,7 @@ namespace logix.Home
             GrdOI.Visible = false;
 
 
-           // DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+            //DataAccess.LogDetails obj_da_Log = new //DataAccess.LogDetails();
             if (txt_retention.Text.Trim().Length > 0)
             {
 
@@ -17315,7 +17334,7 @@ namespace logix.Home
 
         protected void btnExport_Click(object sender, EventArgs e)
         {
-           // DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+            //DataAccess.LogDetails obj_da_Log = new //DataAccess.LogDetails();
 
             //if (grdcustomer.Rows.Count > 0)
             //{
@@ -17550,7 +17569,7 @@ namespace logix.Home
                 ddl_product_SelectedIndexChanged(sender, e);
                 ddl_by_SelectedIndexChanged(sender, e);
 
-              //  DataAccess.HR.Employee da_obj_HrEmp = new DataAccess.HR.Employee();
+                //DataAccess.HR.Employee da_obj_HrEmp = new //DataAccess.HR.Employee();
                 int_bid = da_obj_HrEmp.GetBranchId(int_divid, ddl_branch.SelectedItem.Text);
 
                 DataSet obj_ds = new DataSet();
@@ -21123,7 +21142,7 @@ namespace logix.Home
                 txt_from.Text = hf_date.Value;
                 txt_to.Text = hf_date.Value;
                 emptygrd();
-                   btnBack.Text = "Back";
+                btnBack.Text = "Back";
 
                 btnBack.ToolTip = "Back"; ;
                 btnBack1.Attributes["class"] = "btn ico-back";
@@ -21222,7 +21241,7 @@ namespace logix.Home
 
 
                 EmptyCheck();
-                  btnBack.Text = "Cancel";
+                btnBack.Text = "Cancel";
                 btnBack.ToolTip = "Cancel";
                 btnBack1.Attributes["class"] = "btn ico-cancel";
 
@@ -21549,7 +21568,7 @@ namespace logix.Home
             DataTable dt = new DataTable();
             DataTable dta = new DataTable();
             DataTable dtb = new DataTable();
-           // DataAccess.Accounts.Reversal cutobj = new DataAccess.Accounts.Reversal();
+            //DataAccess.Accounts.Reversal cutobj = new //DataAccess.Accounts.Reversal();
             string sp;
             GridView3.Visible = false;
             GridView4.Visible = false;
@@ -22593,7 +22612,7 @@ namespace logix.Home
                 str_Branch = "";
                 DataTable dt_Liner = new DataTable();
                 DataTable dtemptyfree = new DataTable();
-              //  DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+                //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
                 if (hf_agent1.Value == "")
                 {
                     hf_agent1.Value = "0";
@@ -22756,7 +22775,8 @@ namespace logix.Home
                 if (e.Row.Cells[1].Text == "")
                 {
                     e.Row.ForeColor = System.Drawing.Color.Brown;
-                } if (e.Row.Cells[1].Text != "")
+                }
+                if (e.Row.Cells[1].Text != "")
                 {
                     e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(Gridliner, "Select$" + e.Row.RowIndex);
                     e.Row.Attributes["style"] = "cursor:pointer";
@@ -22781,7 +22801,7 @@ namespace logix.Home
                     DataTable obj_dtjob = new DataTable();
                     string str_fromdate = Utility.fn_ConvertDate(txt_from.Text);
                     string str_todate = Utility.fn_ConvertDate(txt_to.Text);
-                   // DataAccess.MISGrd da_obj_misgrd = new DataAccess.MISGrd();
+                    //DataAccess.MISGrd da_obj_misgrd = new //DataAccess.MISGrd();
                     obj_dtjob = da_obj_misgrd.GetshipmentDetailsfromjobno(Gridliner.SelectedDataKey.Values[0].ToString(), int_bid, Convert.ToDateTime(str_fromdate), Convert.ToDateTime(str_todate), int_jobno, Convert.ToInt32(Session["LoginDivisionId"].ToString()), " ");
                     if (obj_dtjob.Rows.Count > 0)
                     {

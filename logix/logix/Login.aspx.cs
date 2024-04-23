@@ -318,32 +318,38 @@ namespace logix
             //}
             //cos.GetDataBase(Ccode);
 
-            DataTable obj_DB = new DataTable();
-            obj_DB = da_obj_Branch.GetDBName(Ccode);
+           
+
+
+
+
+
+            if (CName.Text == "SWENLOG" || CName.Text == "MARINAIR" || CName.Text == "OCEANKARE" || CName.Text == "DEMO")
+            {
+
+
+                DataTable obj_DB = new DataTable();
+                obj_DB = da_obj_Branch.GetDBName(Ccode);
+                // obj_DB = obj_div.GetDBName(Ccode);
+                string DBName = obj_DB.Rows[0]["DBName"].ToString();
+                string Company = obj_DB.Rows[0]["ClientCode"].ToString();
+
+            }
+
+            else
+            {
+                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "logix", "alertify.alert('Invalid Company');", true);
+                CName.Text = "";
+                return;
+            }
+
+            DataTable obj_DB2 = new DataTable();
+            obj_DB2 = da_obj_Branch.GetDBName(Ccode);
             // obj_DB = obj_div.GetDBName(Ccode);
-            string DBName = obj_DB.Rows[0]["DBName"].ToString();
-            string Company = obj_DB.Rows[0]["ClientCode"].ToString();
+            string DBName2 = obj_DB2.Rows[0]["DBName"].ToString();
+            string Company2 = obj_DB2.Rows[0]["ClientCode"].ToString();
 
-
-
-
-
-            //if (CName.Text == "SWENLOG" || CName.Text == "MARINAIR" || CName.Text == "OCEANKARE" || CName.Text == "DEMO")
-            //{
-
-
-            //    cos.GetDataBase(Ccode);
-
-            //}
-
-            //else
-            //{
-            //    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "logix", "alertify.alert('Invalid Company');", true);
-            //    CName.Text = "";
-            //    return;
-            //}
-
-            if (CName.Text == Company)
+            if (CName.Text == Company2)
             {
 
 
