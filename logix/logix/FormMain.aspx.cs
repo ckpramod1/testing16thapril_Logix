@@ -2852,10 +2852,7 @@ namespace logix
 
         }
 
-        protected void ddl_FAYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         protected void CALB1_Click(object sender, EventArgs e)
         {

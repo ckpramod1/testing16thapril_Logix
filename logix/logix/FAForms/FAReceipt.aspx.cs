@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using DataAccess.Accounts;
 
 namespace logix.FAForm
 {
@@ -33,10 +34,33 @@ namespace logix.FAForm
         public static Boolean Flag = false;
         DataTable dttable = new DataTable();
         DataAccess.Accounts.Recipts Bank_Obj = new DataAccess.Accounts.Recipts();
+        DataAccess.LogDetails obj_Log = new DataAccess.LogDetails();
+        DataAccess.FAVoucher obj_FA = new DataAccess.FAVoucher();
+        DataAccess.HR.Employee obj_HREmp = new DataAccess.HR.Employee();
+        DataAccess.Accounts.Recipts obj_rec = new DataAccess.Accounts.Recipts();
+        DataAccess.Accounts.Payment obj_payment = new DataAccess.Accounts.Payment();
+        DataAccess.FAVoucher Obj_FAVoucher = new DataAccess.FAVoucher();
+        DataAccess.LogDetails Obj_LogDet = new DataAccess.LogDetails();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+                Bank_Obj.GetDataBase(Ccode);
+                obj_Log.GetDataBase(Ccode);
+                obj_FA.GetDataBase(Ccode);
+                obj_HREmp.GetDataBase(Ccode);
+                obj_rec.GetDataBase(Ccode);
+                obj_payment.GetDataBase(Ccode);
+                Obj_FAVoucher.GetDataBase(Ccode);
+                Obj_LogDet.GetDataBase(Ccode);
+               
+            }
 
             ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_back);
 
@@ -245,7 +269,7 @@ namespace logix.FAForm
         }
         public void txtClear()
         {
-            DataAccess.LogDetails obj_Log = new DataAccess.LogDetails();
+            //DataAccess.LogDetails obj_Log = new DataAccess.LogDetails();
             txt_narration.Text = "";
             txt_date.Text = "";
             txt_to.Text = "";
@@ -362,10 +386,10 @@ namespace logix.FAForm
                 gblvname = hf_gblvname.Value.ToString();
                 temp_formname = lbl_header.Text.ToString();
 
-                DataAccess.FAVoucher obj_FA = new DataAccess.FAVoucher();
-                DataAccess.HR.Employee obj_HREmp = new DataAccess.HR.Employee();
-                DataAccess.Accounts.Recipts obj_rec = new DataAccess.Accounts.Recipts();
-                DataAccess.Accounts.Payment obj_payment = new DataAccess.Accounts.Payment();
+                //DataAccess.FAVoucher obj_FA = new DataAccess.FAVoucher();
+                //DataAccess.HR.Employee obj_HREmp = new DataAccess.HR.Employee();
+                //DataAccess.Accounts.Recipts obj_rec = new DataAccess.Accounts.Recipts();
+                //DataAccess.Accounts.Payment obj_payment = new DataAccess.Accounts.Payment();
 
                 DataTable dt_FA = new DataTable();
                 DataTable dt_info = new DataTable();
@@ -855,8 +879,8 @@ namespace logix.FAForm
                 string Str_sp = "", Str_sf = "", Str_RptName = "", Str_Script = "";
                 Session["str_sfs"] = ""; Session["str_sp"] = "";
 
-                DataAccess.FAVoucher Obj_FAVoucher = new DataAccess.FAVoucher();
-                DataAccess.LogDetails Obj_LogDet = new DataAccess.LogDetails();
+                //DataAccess.FAVoucher Obj_FAVoucher = new DataAccess.FAVoucher();
+                //DataAccess.LogDetails Obj_LogDet = new DataAccess.LogDetails();
                 Obj_FAVoucher.SelFAAllVoucher(Convert.ToInt32(hid_vou.Value), Convert.ToInt32(Session["LoginEmpId"].ToString()), Session["FADbname"].ToString());
                 GetFormTypeMode();
 

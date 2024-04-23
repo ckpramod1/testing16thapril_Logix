@@ -351,7 +351,7 @@ namespace logix
                             string str_dispyearnew = "";
                             if (Session["countryid"].ToString() == "1102" || Session["countryid"].ToString() == "102")
                             {
-                                for (int i = 2023; i < dt_Date.Year; i++)
+                                for (int i = 2024; i < dt_Date.Year; i++)
                                 {
                                     str_dispyear = Convert.ToString(i);
                                     str_dispyear = str_dispyear.Substring(2, 2);
@@ -385,7 +385,7 @@ namespace logix
                             {
 
 
-                                for (int i = 2023; i <= dt_Date.Year; i++)
+                                for (int i = 2024; i <= dt_Date.Year; i++)
                                 {
                                     str_dispyearnew = Convert.ToString(i);
                                     str_dispyear = Convert.ToString(i);
@@ -1544,7 +1544,7 @@ namespace logix
             Session["HeadTranType"] = "FA";
             Session["home"] = "FABR";
             string Ccode = Convert.ToString(Session["Ccode"]);
-            Response.Redirect("MainPage/Main_Branch.aspx?Ccode=" + Ccode);
+            Response.Redirect("MainPage/Main_Branch.aspx");
         }
         public void MIS_Click(object sender, EventArgs e)
         {

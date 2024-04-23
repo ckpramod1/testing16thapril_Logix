@@ -218,10 +218,11 @@
         <div class="col-md-12  maindiv">
             <div class="widget box" runat="server">
                 <div class="widget-header">
+                    <div>
                     <h4><i class="icon-umbrella hide"></i>
                         <asp:Label ID="lbl_header" runat="server" Text="Receipt"></asp:Label></h4>
                 </div>
-
+                    </div>
 
                 <div class="widget-content">
 
