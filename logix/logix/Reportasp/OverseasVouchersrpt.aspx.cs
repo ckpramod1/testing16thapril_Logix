@@ -10,7 +10,6 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.html.simpleparser;
 using System.IO;
-using System.Runtime.Remoting;
 namespace logix.Reportasp
 {
     public partial class OverseasVouchersrpt : System.Web.UI.Page
@@ -52,8 +51,7 @@ namespace logix.Reportasp
         DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-
+          //  DataAccess.LogDetails logobj1 = new DataAccess.LogDetails();
 
             string Ccode = Convert.ToString(Session["Ccode"]);
 
@@ -75,6 +73,7 @@ namespace logix.Reportasp
                 masterObj.GetDataBase(Ccode);
 
             }
+
             try
             {
 
@@ -235,7 +234,7 @@ namespace logix.Reportasp
                     jobno = Convert.ToInt32(Request.QueryString["jobno"]);
                     invoice = Convert.ToInt32(Request.QueryString["refno"]);
                     lbl_invoice.Text = invoice.ToString();
-                  //  DataAccess.LogDetails logobj = new DataAccess.LogDetails();
+                    //DataAccess.LogDetails logobj = new //DataAccess.LogDetails();
                     DateTime joudate = logobj.GetDate();
                     lbl_invoice.Text = invoice.ToString();
                     bid = Convert.ToInt32(Session["LoginBranchid"]);
@@ -268,7 +267,7 @@ namespace logix.Reportasp
                     lbl_branch.Text = Session["LoginDivisionName"].ToString();
                     for_comapny.InnerText = lbl_branch.Text.ToUpper();
 
-                  //  DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
+                    //DataAccess.Masters.MasterDivision masterObj = new //DataAccess.Masters.MasterDivision();
                     DataTable dtlogo = masterObj.Getlogo(Convert.ToInt32(Session["LoginDivisionId"]));
                     if (dtlogo.Rows.Count > 0)
                     {
@@ -407,7 +406,7 @@ namespace logix.Reportasp
                         //    td_tax_basecurr.InnerText = "(" + currency + ")";
                         //    //th_curr.InnerText = "(" + currency + ")";
                         //}
-                        if (Dt_sort.Rows.Count >0)
+                        if (Dt_sort.Rows.Count > 0)
                         {
                             currency = Dt_sort.Rows[0]["curr"].ToString().ToUpper();
                             td_tax_basecurr.InnerText = "(" + currency + ")";
@@ -421,13 +420,13 @@ namespace logix.Reportasp
 
                         if (str_trantype == "OE")
                         {
-                            lbl_ourjob.Text = "OCEAN EXPORT / " + jobno;
+                            lbl_ourjob.Text = "OCEAN EXPORT  /" + jobno;
                         }
-                       else if (str_trantype == "OI")
+                        else if (str_trantype == "OI")
                         {
                             lbl_ourjob.Text = "OCEAN IMPORT / " + jobno;
                         }
-                       else if (str_trantype == "AE")
+                        else if (str_trantype == "AE")
                         {
                             lbl_ourjob.Text = "AIR EXPORT / " + jobno;
                         }
@@ -606,7 +605,7 @@ namespace logix.Reportasp
                             }
                             dnno = Convert.ToInt32(dt.Rows[0]["refno"].ToString().ToUpper());
                             DataTable dataTable = new DataTable();
-                            
+
                             dataTable = obj_inv.Getspgetosdncngrwtntwt(bid, str_trantype, dnno, vouyear, bltype);
                             if (dataTable.Rows.Count > 0)
                             {

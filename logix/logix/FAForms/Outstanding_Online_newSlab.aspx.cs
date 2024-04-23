@@ -41,6 +41,7 @@ namespace logix.FAForms
         int saleid = 0;
         DataTable dt = new DataTable();
         int Time;
+        int a;
         DataView dv = new DataView();
         DataTable dtl = new DataTable();
         DataTable dtcustomer = new DataTable();
@@ -88,6 +89,7 @@ namespace logix.FAForms
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "GenerateLabelAfter();", true);
 
+
             string Ccode = Convert.ToString(Session["Ccode"]);
 
             if (Ccode != "")
@@ -109,6 +111,7 @@ namespace logix.FAForms
 
             }
 
+
             try
             {
                 ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btnClear);
@@ -116,7 +119,7 @@ namespace logix.FAForms
 
                 if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('"+ Session["Site"].ToString() + "/','_top');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('" + Session["Site"].ToString() + "/','_top');", true);
                 }
 
                 Vouyear = Convert.ToInt32(Session["Vouyear"].ToString());
@@ -231,7 +234,7 @@ namespace logix.FAForms
             slbnew.Visible = true;
             slab_out.Visible = true;
 
-          //  days = 0;
+            //  days = 0;
             //for (int i = 0; i <= 6; i++)
             //{
             //    days = days + 15;
@@ -262,7 +265,7 @@ namespace logix.FAForms
             //    ddl_slab5.Items.Add(days.ToString());
             //}
 
-           // ddl_slab1.SelectedItem.Text = "15";
+            // ddl_slab1.SelectedItem.Text = "15";
             lbl_sltxt1.Text = "16";
             //ddl_slab2.SelectedItem.Text = "30";
             lbl_sltxt2.Text = "31";
@@ -336,8 +339,11 @@ namespace logix.FAForms
                 List<string> customername = new List<string>();
                 DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
                 string Ccode = HttpContext.Current.Session["Ccode"].ToString();
-                customerobj.GetDataBase(Ccode);
-
+                sobj.GetDataBase(Ccode);
+                if (txtSubGroupName.Text == "TRADE CREDITORS-INTERNATIONAL" || txtSubGroupName.Text == "TRADE DEBTORS-INTERNATIONAL")
+                {
+                    chk_FCurr.Checked = true;
+                }
                 if (hdf_name.Value != "")
                 {
                     if (hdf_id.Value != "")
@@ -389,7 +395,7 @@ namespace logix.FAForms
                     cbocheck.Enabled = true;
                     cbocheck.Checked = false;
                 }
-
+                chk_FCurr.Checked = false;
                 cboxLedgerAgeing.Checked = false;
                 cboxSalesAgeing.Checked = false;
                 ChkTill.Checked = false;
@@ -454,7 +460,7 @@ namespace logix.FAForms
                 }
 
 
-               // ddl_slab1.SelectedItem.Text = "15";
+                // ddl_slab1.SelectedItem.Text = "15";
 
                 ddlProduct.SelectedIndex = -1;
                 ddlbranch.SelectedIndex = -1;
@@ -479,7 +485,7 @@ namespace logix.FAForms
                 dwb_Clear();
                 dt = new DataTable();
                 Date = Convert.ToDateTime(Utility.fn_ConvertDate(txt_date.Text)); //da_obj_Log.GetDate(); 
-              //  DataAccess.FAMaster.MasterSubGroup sobj = new DataAccess.FAMaster.MasterSubGroup();
+                //DataAccess.FAMaster.MasterSubGroup sobj = new //DataAccess.FAMaster.MasterSubGroup();
                 DataTable obj_dt = new DataTable();
                 obj_dt = sobj.GetLikesubGroupname4outstd(txtSubGroupName.Text.ToUpper(), Session["FADbname"].ToString());
                 if (obj_dt.Rows.Count > 0)
@@ -671,7 +677,7 @@ namespace logix.FAForms
                         ddlcurency.Items.Clear();
                         ddlcurency.Items.Add("Curr");
                         ddlcurency.Items.Add("ALL");
-
+                        ddlcurency.Items.Add("Fcurr");
                         for (int i = 0; i <= dtl.Rows.Count - 1; i++)
                         {
                             if ((dtl.Rows[i]["fcurr"].ToString()) != "")
@@ -912,7 +918,7 @@ namespace logix.FAForms
 
                 //if (ddl_slab1.Text != "" || ddl_slab1.ToolTip != "Slab")
                 //{
-                   
+
                 //    if (ddl_slab2.Text != "" && ddl_slab3.Text != "" && ddl_slab4.Text != "" && ddl_slab5.Text!="")
                 //    {
 
@@ -982,6 +988,11 @@ namespace logix.FAForms
                             else
                             {
 
+                                if (chk_FCurr.Checked == true)
+                                {
+                                    dtage = outsobj.OutStdageingNewOnlineFormatnewfordate_USD(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginDivisionId"].ToString()), branch, sgroupid, HttpContext.Current.Session["FADbname"].ToString(), Convert.ToInt32(hf_custname.Value), check, Convert.ToDateTime(Utility.fn_ConvertDate(hid_date.Value)));
+
+                                }
                                 //dtage = outsobj.OutStdageingNewOnlineFormatnew(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginDivisionId"].ToString()), branch, sgroupid, HttpContext.Current.Session["FADbname"].ToString(), Convert.ToInt32(hf_custname.Value), check);
                                 dtage = outsobj.OutStdageingNewOnlineFormatnewfordate(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginDivisionId"].ToString()), branch, sgroupid, HttpContext.Current.Session["FADbname"].ToString(), Convert.ToInt32(hf_custname.Value), check, Convert.ToDateTime(Utility.fn_ConvertDate(hid_date.Value)));
 
@@ -1027,17 +1038,17 @@ namespace logix.FAForms
                     {
                         panel1.Visible = false;
                         check_data();
-                        double slab1=0.00;
-                        double slab2=0.00;
-                        double slab3=0.00;
-                        double slab4=0.00;
-                        double slab5=0.00;
+                        double slab1 = 0.00;
+                        double slab2 = 0.00;
+                        double slab3 = 0.00;
+                        double slab4 = 0.00;
+                        double slab5 = 0.00;
 
-                        slab1= Convert.ToDouble(ddl_slab1.Text);
-                        slab2=Convert.ToDouble(ddl_slab2.Text);
-                        slab3=Convert.ToDouble(ddl_slab3.Text);
-                        slab4=Convert.ToDouble(ddl_slab4.Text);
-                        slab5=Convert.ToDouble(ddl_slab5.Text);
+                        slab1 = Convert.ToDouble(ddl_slab1.Text);
+                        slab2 = Convert.ToDouble(ddl_slab2.Text);
+                        slab3 = Convert.ToDouble(ddl_slab3.Text);
+                        slab4 = Convert.ToDouble(ddl_slab4.Text);
+                        slab5 = Convert.ToDouble(ddl_slab5.Text);
                         //if (ddl_slab1.Text != "" || ddl_slab1.ToolTip != "Slab")
                         //{
 
@@ -1055,7 +1066,7 @@ namespace logix.FAForms
 
                         //}
 
-                       // pnlslb.Visible = true;
+                        // pnlslb.Visible = true;
                         Pnlslnnew.Visible = true;
                         GrdAgeing.Visible = false;
                         grd_newslb.Visible = true;
@@ -1156,12 +1167,12 @@ namespace logix.FAForms
                         //}
                         grd_newslb.Columns[1].HeaderText = "Ledger";
 
-                      //  grd_newslb.Columns[2].HeaderText = ddl_slab1.Text;
-                        grd_newslb.HeaderRow.Cells[2].Text ="0~"+ ddl_slab1.Text;
-                          grd_newslb.HeaderRow.Cells[3].Text =ddl_slab1.Text+"~"+ ddl_slab2.Text;
-                          grd_newslb.HeaderRow.Cells[4].Text = ddl_slab2.Text + "~" + ddl_slab3.Text;
-                          grd_newslb.HeaderRow.Cells[5].Text = ddl_slab3.Text + "~" + ddl_slab4.Text;
-                          grd_newslb.HeaderRow.Cells[6].Text = ddl_slab4.Text + "~" + ddl_slab5.Text;
+                        //  grd_newslb.Columns[2].HeaderText = ddl_slab1.Text;
+                        grd_newslb.HeaderRow.Cells[2].Text = "0~" + ddl_slab1.Text;
+                        grd_newslb.HeaderRow.Cells[3].Text = ddl_slab1.Text + "~" + ddl_slab2.Text;
+                        grd_newslb.HeaderRow.Cells[4].Text = ddl_slab2.Text + "~" + ddl_slab3.Text;
+                        grd_newslb.HeaderRow.Cells[5].Text = ddl_slab3.Text + "~" + ddl_slab4.Text;
+                        grd_newslb.HeaderRow.Cells[6].Text = ddl_slab4.Text + "~" + ddl_slab5.Text;
                         //grd_newslb.Columns[3].HeaderText = "Ledger";
                         //grd_newslb.Columns[4].HeaderText = "Ledger";
 
@@ -1456,7 +1467,56 @@ namespace logix.FAForms
             {
                 try
                 {
-                    if (ddlcurency.Text != "ALL")
+                    if (ddlcurency.Text == "Fcurr")
+                    {
+                        for (int i = 0; i < ddlcurency.Items.Count; i++)
+                        {
+                            if (a == 0)
+                            {
+                                if (str_SelFormula != "")
+                                {
+                                    ddlcurency.SelectedIndex = i;
+                                    if (ddlcurency.Text != "INR" && ddlcurency.Text != "ALL" && ddlcurency.Text != "Fcurr" && ddlcurency.Text != "Curr")
+                                    {
+                                        a = 1;
+                                        str_SelFormula = str_SelFormula + " and fcurr ='" + ddlcurency.SelectedItem.Text + "'";
+                                    }
+                                }
+                                else
+                                {
+                                    ddlcurency.SelectedIndex = i;
+                                    if (ddlcurency.Text != "INR" || ddlcurency.Text != "ALL" || ddlcurency.Text != "Fcurr")
+                                    {
+                                        a = 1;
+                                        str_SelFormula = "fcurr = '" + ddlcurency.SelectedItem.Text + "'";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (str_SelFormula != "")
+                                {
+                                    ddlcurency.SelectedIndex = i;
+                                    if (ddlcurency.Text != "INR" && ddlcurency.Text != "ALL" && ddlcurency.Text != "Fcurr" && ddlcurency.Text != "Curr")
+                                    {
+                                        str_SelFormula = str_SelFormula + " or fcurr ='" + ddlcurency.SelectedItem.Text + "'";
+                                    }
+                                }
+                                else
+                                {
+                                    ddlcurency.SelectedIndex = i;
+                                    if (ddlcurency.Text != "INR" || ddlcurency.Text != "ALL" || ddlcurency.Text != "Fcurr")
+                                    {
+                                        str_SelFormula = "fcurr = '" + ddlcurency.SelectedItem.Text + "'";
+                                    }
+                                }
+                            }
+                        }
+                        ddlcurency.SelectedItem.Text = "Fcurr";
+                    }
+
+
+                    else if (ddlcurency.Text != "ALL")
                     {
                         if (str_SelFormula != "")
                         {
@@ -2036,7 +2096,7 @@ namespace logix.FAForms
                             {
                                 dtvou = outsobj.Outstdagingvounew(lid, fda, tda, Convert.ToInt32(Session["LoginEmpId"].ToString()), HttpContext.Current.Session["FADbname"].ToString(), branch);
                             }
-                           // dtvou = outsobj.Outstdagingvounew(lid, fda, tda, Convert.ToInt32(Session["LoginEmpId"].ToString()), HttpContext.Current.Session["FADbname"].ToString(), branch);
+                            // dtvou = outsobj.Outstdagingvounew(lid, fda, tda, Convert.ToInt32(Session["LoginEmpId"].ToString()), HttpContext.Current.Session["FADbname"].ToString(), branch);
                         }
                         else
                         {
@@ -2066,6 +2126,7 @@ namespace logix.FAForms
                 custname.Visible = true;
                 txtSubGroupName.Visible = false;
                 btnGet.Visible = false;
+                btn_cancel1.Visible = false;
                 btnClear.Visible = false;
                 btnExpertExcel.Visible = true;
                 cboxSalesAgeing.Visible = false;
@@ -3504,18 +3565,18 @@ namespace logix.FAForms
 
         //protected void ddl_slab1_TextChanged(object sender, EventArgs e)
         //{
-            
-         
+
+
         //}
 
         //protected void ddl_slab2_TextChanged(object sender, EventArgs e)
         //{
-            
+
         //}
 
         protected void ddl_slab3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (ddl_slab3.SelectedItem.Text != "")
             {
 
@@ -3532,7 +3593,7 @@ namespace logix.FAForms
 
         protected void ddl_slab4_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             if (ddl_slab4.SelectedItem.Text != "")
             {
 
@@ -3549,8 +3610,8 @@ namespace logix.FAForms
 
         //protected void ddl_slab5_TextChanged(object sender, EventArgs e)
         //{
-            
-            
+
+
         //}
 
         //protected void grdslabnew_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -3597,7 +3658,7 @@ namespace logix.FAForms
             if (ddl_slab2.SelectedItem.Text != "")
             {
 
-                  ddl_slab3.Items.Clear();
+                ddl_slab3.Items.Clear();
                 lbl_sltxt2.Text = Convert.ToInt32(ddl_slab2.SelectedItem.Text) + 1 + " to ";
                 days = Convert.ToInt32(ddl_slab2.SelectedItem.Text);
                 for (int i = 0; i <= 6; i++)
@@ -3622,7 +3683,7 @@ namespace logix.FAForms
                 //    ddl_slab2.Items.Add(days.ToString());
                 //}
 
-                 ddl_slab2.Items.Clear();
+                ddl_slab2.Items.Clear();
                 lbl_sltxt1.Text = Convert.ToInt32(ddl_slab1.SelectedItem.Text) + 1 + " to ";
                 days = Convert.ToInt32(ddl_slab1.SelectedItem.Text);
                 for (int i = 0; i <= 6; i++)

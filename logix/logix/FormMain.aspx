@@ -1,5 +1,4 @@
-﻿
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FormMain.aspx.cs" EnableEventValidation="false" Inherits="logix.FormMain" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FormMain.aspx.cs" EnableEventValidation="false" Inherits="logix.FormMain" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -118,33 +117,33 @@
 
     </script>
 
-                            <%-- Alertify --%>
+    <%-- Alertify --%>
 
 
     <!-- JavaScript -->
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
-<!-- CSS -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 
-<!-- 
+    <!-- 
     RTL version
 -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.rtl.min.css"/>
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.rtl.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.rtl.min.css"/>
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.rtl.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.rtl.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.rtl.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css" />
 
-    
+
 
     <script src="../alertifyjs/alertify.min.js"></script>
     <link href="../alertifyjs/css/themes/default.min.css" rel="stylesheet" />
@@ -161,7 +160,7 @@
             /*width: 100%;*/
             width: 1280px;
             /*margin: 0px auto;*/
-                height: 64px;
+            height: 64px;
         }
 
         form#form1 {
@@ -205,10 +204,11 @@
         }
 
         .div_Menu {
-             height: 100% !important;
-               width:100%!important;;
-margin-left:auto;
-margin-right :auto;
+            height: 100% !important;
+            width: 100% !important;
+            ;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .modalPopupss2 {
@@ -477,32 +477,38 @@ margin-right :auto;
         a#Sales {
             display: none;
         }
+
         i.fa.fa-power-off {
-    font-size: 20px !important;
-    color: #f67e09;
-}
+            font-size: 20px !important;
+            color: #f67e09;
+        }
+
         div#branches ul.dropdown-menu.extended.notification {
-    position: absolute;
-    top: 28px;
-}
+            position: absolute;
+            top: 28px;
+        }
+
         a#lnkbtn {
-    font-weight: normal !important;
-}
+            font-weight: normal !important;
+        }
+
         a#Linkcorpor {
-    font-weight: normal !important;
-}
-    .total {
-    width: 100%;
-    height: 100vh;
-    margin: 0 auto;
-    padding-top: 64px;
-}
-   input#Booking {
-    border: 0px solid #8080803b !important;
-    margin: 6px !important;
-    padding: 0px !important;
-    width: 80%;
-}
+            font-weight: normal !important;
+        }
+
+        .total {
+            width: 100%;
+            height: 100vh;
+            margin: 0 auto;
+            padding-top: 64px;
+        }
+
+        input#Booking {
+            border: 0px solid #8080803b !important;
+            margin: 6px !important;
+            padding: 0px !important;
+            width: 80%;
+        }
     </style>
 
     <link href="Styles/menu_style.css" rel="stylesheet" type="text/css" />
@@ -682,13 +688,13 @@ margin-right :auto;
 
 
         .GridAlign td {
-               border-bottom: 1px solid #e6e6e6;
-    color: #2f3c4d;
-    padding-left: 10px;
-    /* text-transform: lowercase; */
-    font-size: 14px;
-    padding-top: 4px;
-    padding-bottom: 0px;
+            border-bottom: 1px solid #e6e6e6;
+            color: #2f3c4d;
+            padding-left: 10px;
+            /* text-transform: lowercase; */
+            font-size: 14px;
+            padding-top: 4px;
+            padding-bottom: 0px;
         }
 
         .GridAlign td {
@@ -727,7 +733,7 @@ margin-right :auto;
             line-height: 25px;
             background: white;
             display: inline-block;
-    color: #f67e09;
+            color: #f67e09;
             border-radius: 50%;
         }
 
@@ -775,42 +781,44 @@ margin-right :auto;
         }
 
         .ico-find-sm {
-    background: url("../Theme/assets/img/buttonIcon/active/find-sm.png") no-repeat center !important;
-}
-.booking {
-    width: 127%;
-    float: left;
-    margin-top: 20px;
-    border: 1px solid #8080803b !important;
-    height: 30px !important;
-    border-radius: 30px !important;
-        z-index: 10;
+            background: url("../Theme/assets/img/buttonIcon/active/find-sm.png") no-repeat center !important;
+        }
 
-}
-a#linkBooking {
-    margin-right: 20px;
-    position: relative;
-    left: 16px;
-    top: 2px;
-    border: none;
-        z-index: 10;
-}
-.nav.navbar-nav.navbar-right {
-    padding-top: 7px;
-}
+        .booking {
+            width: 127%;
+            float: left;
+            margin-top: 20px;
+            border: 1px solid #8080803b !important;
+            height: 30px !important;
+            border-radius: 30px !important;
+            z-index: 10;
+        }
 
-.anc {
-    display: inline-block;
-    text-align: center;
-    left: 0px;
-    float: left;
-    padding: 1px;
-    height: 22px;
-    width: 22px;
-    border-radius: 4px !important;
-    border: 0.5px solid #ebd3c1;
-    margin-top: 16px;
-}
+        a#linkBooking {
+            margin-right: 20px;
+            position: relative;
+            left: 16px;
+            top: 2px;
+            border: none;
+            z-index: 10;
+        }
+
+        .nav.navbar-nav.navbar-right {
+            padding-top: 7px;
+        }
+
+        .anc {
+            display: inline-block;
+            text-align: center;
+            left: 0px;
+            float: left;
+            padding: 1px;
+            height: 22px;
+            width: 22px;
+            border-radius: 4px !important;
+            border: 0.5px solid #ebd3c1;
+            margin-top: 16px;
+        }
     </style>
 </head>
 
@@ -818,243 +826,248 @@ a#linkBooking {
 
     <form id="form1" runat="server">
         <%--div style restored to maintain 1366px screen size    Dhayanithi & Praveen 2023-05-18--%>
-        
+
         <div>
 
             <!-- Header -->
             <header class=" navbar navbar-fixed-top" role="banner">
                 <div class="header">
-                <!-- Top Navigation Bar -->
+                    <!-- Top Navigation Bar -->
 
-                <div class="container">
-                    <!-- Only visible on smartphones, menu toggle -->
-                    <!-- Logo -->
-                    <!-- /Logo -->
+                    <div class="container">
+                        <!-- Only visible on smartphones, menu toggle -->
+                        <!-- Logo -->
+                        <!-- /Logo -->
 
-                    <!-- Sidebar Toggler -->
-                    <!-- <a href="#" class="toggle-sidebar bs-tooltip" data-placement="bottom" data-original-title="Toggle navigation"><i class="icon-reorder"></i></a> -->
-                    <!-- /Sidebar Toggler -->
+                        <!-- Sidebar Toggler -->
+                        <!-- <a href="#" class="toggle-sidebar bs-tooltip" data-placement="bottom" data-original-title="Toggle navigation"><i class="icon-reorder"></i></a> -->
+                        <!-- /Sidebar Toggler -->
 
-                    <!-- Top Left Menu -->
-                    <div class="LoginCompanyName">
-                        <a class="navbar-brand" href="#">
-                            <div class="companyLogo">
-                                <asp:Image ID="img_Logo" runat="server" ImageUrl="~/images/companylogo.png" />
-                            </div>
-                            <asp:Label ID="lblcompany" runat="server" Style="text-transform: capitalize;"></asp:Label>
-                            
-                        </a>
-                    </div>
-                    <!-- /Top Left Menu -->
+                        <!-- Top Left Menu -->
+                        <div class="LoginCompanyName">
+                            <a class="navbar-brand" href="#">
+                                <div class="companyLogo">
+                                    <asp:Image ID="img_Logo" runat="server" ImageUrl="~/images/companylogo.png" />
+                                </div>
+                                <asp:Label ID="lblcompany" runat="server" Style="text-transform: capitalize;"></asp:Label>
 
-                    <ul class="nav navbar-nav navbar-left custom-ml-3">
-                        <li>
-                            <asp:LinkButton ID="lnkhome" runat="server" OnClick="lnkhome_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none;" ToolTip="Home">
+                            </a>
+                        </div>
+                        <!-- /Top Left Menu -->
+
+                        <ul class="nav navbar-nav navbar-left custom-ml-3">
+                            <li>
+                                <asp:LinkButton ID="lnkhome" runat="server" OnClick="lnkhome_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none;" ToolTip="Home">
                             <%--<img src="Theme/assets/icon/home_ic.png" />--%>
                             <i class="icon-home"></i>
-                            </asp:LinkButton>
-                        </li>
-                    </ul>
+                                </asp:LinkButton>
+                            </li>
+                        </ul>
 
-                    <!-- Top Right Menu -->
-                    <ul class="nav navbar-nav navbar-left">
-                        <!-- Temp Manoj for Appraisal -->
+                        <!-- Top Right Menu -->
+                        <ul class="nav navbar-nav navbar-left">
+                            <!-- Temp Manoj for Appraisal -->
 
-                        <li>
-                            <asp:LinkButton ID="lnkcomrev" runat="server" OnClick="lnkcomrev_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none; padding: 13px 10px 10px 10px!important;"></asp:LinkButton></li>
-                        <li>
-                            <asp:LinkButton ID="lnkreviewer" runat="server" OnClick="lnkreviewer_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none; padding: 13px 10px 10px 10px!important;"></asp:LinkButton></li>
-                        <li>
-                            <asp:LinkButton ID="lnkbtnapp" runat="server" OnClick="lnkbtnapp_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none; padding: 13px 10px 10px 10px!important;"></asp:LinkButton></li>
-                        <li>
-                            <asp:LinkButton ID="lnkbtnpendemp" runat="server" OnClick="lnkbtnpendemp_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none; padding: 13px 10px 10px 10px!important;"></asp:LinkButton></li>
-                        <li id="lbl" runat="server">
-                            <asp:LinkButton ID="lnkbtncoo" runat="server" OnClick="lnkbtncoo_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none; padding: 13px 10px 10px 10px!important;"></asp:LinkButton></li>
+                            <li>
+                                <asp:LinkButton ID="lnkcomrev" runat="server" OnClick="lnkcomrev_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none; padding: 13px 10px 10px 10px!important;"></asp:LinkButton></li>
+                            <li>
+                                <asp:LinkButton ID="lnkreviewer" runat="server" OnClick="lnkreviewer_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none; padding: 13px 10px 10px 10px!important;"></asp:LinkButton></li>
+                            <li>
+                                <asp:LinkButton ID="lnkbtnapp" runat="server" OnClick="lnkbtnapp_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none; padding: 13px 10px 10px 10px!important;"></asp:LinkButton></li>
+                            <li>
+                                <asp:LinkButton ID="lnkbtnpendemp" runat="server" OnClick="lnkbtnpendemp_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none; padding: 13px 10px 10px 10px!important;"></asp:LinkButton></li>
+                            <li id="lbl" runat="server">
+                                <asp:LinkButton ID="lnkbtncoo" runat="server" OnClick="lnkbtncoo_Click" Style="text-transform: capitalize; color: #ffffff; text-decoration: none; padding: 13px 10px 10px 10px!important;"></asp:LinkButton></li>
 
-                        <%--BRANCH DROPDOWN--%>
-                        <li class="dropdown user">
-                            <asp:LinkButton ID="lnkbranch" runat="server" Style="text-transform: capitalize; color: #ffffff; text-decoration: none; " Enabled="false">
-                                <%--OnClick="lnkbranch_Click"--%>
-                                <%--<i class="icon-sitemap"></i>--%>
-                                <span>
-                                    <asp:Label ID="brname" runat="server"></asp:Label>
-                                </span>
-                                <%--<img src="Theme/assets/icon/branch_ic.png" />--%>
-                            </asp:LinkButton>
-                            <div id="branches" runat="server">
-                                <ul class="dropdown-menu extended notification">
-                                    <asp:GridView ID="grd_branch" runat="server" Width="100%" CssClass="GridAlign" AutoGenerateColumns="false"
-                                        OnRowDataBound="grd_branch_RowDataBound" OnSelectedIndexChanged="grd_branch_SelectedIndexChanged">
-                                        <Columns>
-                                            <asp:BoundField DataField="branchName" HeaderStyle-CssClass="hide" />
-                                            <asp:BoundField DataField="branchID" HeaderStyle-CssClass="hide" ItemStyle-CssClass="hide" />
-                                        </Columns>
-                                    </asp:GridView>
+                            <%--BRANCH DROPDOWN--%>
+                            <li class="dropdown user">
+                                <asp:LinkButton ID="lnkbranch" runat="server" Style="text-transform: capitalize; color: #ffffff; text-decoration: none;" Enabled="false">
+                                    <%--OnClick="lnkbranch_Click"--%>
+                                    <%--<i class="icon-sitemap"></i>--%>
+                                    <span>
+                                        <asp:Label ID="brname" runat="server"></asp:Label>
+                                    </span>
+                                    <%--<img src="Theme/assets/icon/branch_ic.png" />--%>
+                                </asp:LinkButton>
+                                <div id="branches" runat="server">
+                                    <ul class="dropdown-menu extended notification">
+                                        <asp:GridView ID="grd_branch" runat="server" Width="100%" CssClass="GridAlign" AutoGenerateColumns="false"
+                                            OnRowDataBound="grd_branch_RowDataBound" OnSelectedIndexChanged="grd_branch_SelectedIndexChanged">
+                                            <Columns>
+                                                <asp:BoundField DataField="branchName" HeaderStyle-CssClass="hide" />
+                                                <asp:BoundField DataField="branchID" HeaderStyle-CssClass="hide" ItemStyle-CssClass="hide" />
+                                            </Columns>
+                                        </asp:GridView>
 
-                                    <%-- <li style="text-transform:capitalize!important;"><a id="B1" runat="server" href="#"><asp:LinkButton ID="AHB1" runat="server"  OnClick="AHB1_Click" ></asp:LinkButton></a></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="BAB1" runat="server" OnClick="BAB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;" ><asp:LinkButton ID="CALB1" runat="server" OnClick="CALB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="CHEB1" runat="server" OnClick="CHEB1_Click"></asp:LinkButton></li>--%>
-                                    <%--  <li style="text-transform:capitalize!important;"><asp:LinkButton ID="COCB1" runat="server" OnClick="COCB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="COIB1" runat="server" OnClick="COIB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="CORB1" runat="server" OnClick="CORB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="HYDB1" runat="server" OnClick="HYDB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="LUDB1" runat="server" OnClick="LUDB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="MUMB1" runat="server" OnClick="MUMB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="NEWB1" runat="server" OnClick="NEWB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="TUTB1" runat="server" OnClick="TUTB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="TIRB1" runat="server" OnClick="TIRB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="TUTB1" runat="server" OnClick="TUTB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="VISB1" runat="server" OnClick="VISB1_Click"></asp:LinkButton></li>--%>
-                                    <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="WARB1" runat="server" OnClick="WARB1_Click"></asp:LinkButton></li>--%>
-                                </ul>
-                            </div>
-                        </li>
+                                        <%-- <li style="text-transform:capitalize!important;"><a id="B1" runat="server" href="#"><asp:LinkButton ID="AHB1" runat="server"  OnClick="AHB1_Click" ></asp:LinkButton></a></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="BAB1" runat="server" OnClick="BAB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;" ><asp:LinkButton ID="CALB1" runat="server" OnClick="CALB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="CHEB1" runat="server" OnClick="CHEB1_Click"></asp:LinkButton></li>--%>
+                                        <%--  <li style="text-transform:capitalize!important;"><asp:LinkButton ID="COCB1" runat="server" OnClick="COCB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="COIB1" runat="server" OnClick="COIB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="CORB1" runat="server" OnClick="CORB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="HYDB1" runat="server" OnClick="HYDB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="LUDB1" runat="server" OnClick="LUDB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="MUMB1" runat="server" OnClick="MUMB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="NEWB1" runat="server" OnClick="NEWB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="TUTB1" runat="server" OnClick="TUTB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="TIRB1" runat="server" OnClick="TIRB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="TUTB1" runat="server" OnClick="TUTB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="VISB1" runat="server" OnClick="VISB1_Click"></asp:LinkButton></li>--%>
+                                        <%-- <li style="text-transform:capitalize!important;"><asp:LinkButton ID="WARB1" runat="server" OnClick="WARB1_Click"></asp:LinkButton></li>--%>
+                                    </ul>
+                                </div>
+                            </li>
 
-                        <%--PROCESS DROPDOWN - [FOR BRANCHES] --%>
-                        <li class="dropdown user">
-                            <asp:LinkButton ID="lnkbtn" runat="server"  Enabled="false"  OnClick="lnkbtn_Click1" Style="text-transform: capitalize; border-right: 1.5px solid #f8a350; color: #06529c; text-decoration: none; padding: 0px 8px 0px 0px !important;">
+                            <%--PROCESS DROPDOWN - [FOR BRANCHES] --%>
+                            <li class="dropdown user">
+                                <asp:LinkButton ID="lnkbtn" runat="server" Enabled="false" OnClick="lnkbtn_Click1" Style="text-transform: capitalize; border-right: 1.5px solid #f8a350; color: #06529c; text-decoration: none; padding: 0px 8px 0px 0px !important;">
 								<%--<img src="Theme/assets/icon/Process.png" />--%>
 							    <%-- <span> <asp:Label ID="productname" runat="server"></asp:Label></span>--%>
                             
-                            </asp:LinkButton>
-                            <div id="ProcessBranch" runat="server">
-                                <ul class="dropdown-menu extended notification">
-                                    <li>
-                                        <asp:LinkButton ID="AEOpsDocsHome" runat="server" OnClick="AEOpsDocsHome_Click">Air Exports</asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="AIOpsDocsHome" runat="server" OnClick="AIOpsDocsHome_Click">Air Imports</asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="FAHome" runat="server" OnClick="FAHome_Click">
-                                            Financial Accounts 
-                                        <asp:DropDownList ID="ddl_FAYear" runat="server" Width="67px" Style="margin-left: 5px" dataplaceholder="Financial Year" TabIndex="2"
-                                             AutoPostBack="true" OnSelectedIndexChanged="ddl_FAYear_SelectedIndexChanged" CssClass="chzn-select">
-                                            <asp:ListItem Value="0">Financial Year</asp:ListItem>
-                                        </asp:DropDownList>
-                                        </asp:LinkButton>
-                                        <span style="display: inline-block; float: right; margin: 0px 10px 0px 10px; width: 100px; position: absolute; right: 5px; top: 183px;"></span></li>
-                                    <li>
-                                        <asp:LinkButton ID="br_Mainten" runat="server" OnClick="br_Mainten_Click" style="display:none">Maintenance</asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="MISHome" runat="server" OnClick="MISHome_Click">MIS & Analytics</asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="OEOpsDocsHome" runat="server" OnClick="OEOpsDocsHome_Click">Ocean Exports</asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="OIOpsDocsHome" runat="server" OnClick="OIOpsDocsHome_Click">Ocean Imports</asp:LinkButton></li>
-                                    <li><a id="Sales" runat="server" href="#">
-                                        <asp:LinkButton ID="SalesHome" runat="server" OnClick="SalesHome_Click">Sales</asp:LinkButton></a></li>
+                                </asp:LinkButton>
+                                <div id="ProcessBranch" runat="server">
+                                    <ul class="dropdown-menu extended notification">
+                                        <li>
+                                            <asp:LinkButton ID="AEOpsDocsHome" runat="server" OnClick="AEOpsDocsHome_Click">Air Exports</asp:LinkButton></li>
+                                        <li>
+                                            <asp:LinkButton ID="AIOpsDocsHome" runat="server" OnClick="AIOpsDocsHome_Click">Air Imports</asp:LinkButton></li>
+                                        <li>
+                                            <asp:LinkButton ID="FAHome" runat="server" OnClick="FAHome_Click">
+                                            Financial Accounts  </asp:LinkButton>
+                                            <span style="display: inline-block; float: right; margin: 0px 0px 0px 0px; width: 75px; position: absolute; right: 7px; top: 72px !important;">     
+                                                <asp:DropDownList ID="ddl_FAYear" runat="server" Width="67px" Style="margin-left: 5px" dataplaceholder="Financial Year" TabIndex="2"
+                                                    AutoPostBack="false" OnSelectedIndexChanged="ddl_FAYear_SelectedIndexChanged" CssClass="chzn-select">
+                                                    <asp:ListItem Value="0">Financial Year</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </span>
+
+                                            <%--<span style="display: inline-block; float: right; margin: 0px 10px 0px 10px; width: 100px; position: absolute; right: 5px; top: 183px;"></span>--%>
+
+                                        </li>
+                                        <li>
+                                            <asp:LinkButton ID="br_Mainten" runat="server" OnClick="br_Mainten_Click" Style="display: none">Maintenance</asp:LinkButton></li>
+                                        <li>
+                                            <asp:LinkButton ID="MISHome" runat="server" OnClick="MISHome_Click">MIS & Analytics</asp:LinkButton></li>
+                                        <li>
+                                            <asp:LinkButton ID="OEOpsDocsHome" runat="server" OnClick="OEOpsDocsHome_Click">Ocean Exports</asp:LinkButton></li>
+                                        <li>
+                                            <asp:LinkButton ID="OIOpsDocsHome" runat="server" OnClick="OIOpsDocsHome_Click">Ocean Imports</asp:LinkButton></li>
+                                        <li><a id="Sales" runat="server" href="#">
+                                            <asp:LinkButton ID="SalesHome" runat="server" OnClick="SalesHome_Click">Sales</asp:LinkButton></a></li>
 
 
-                                    <%-- <li><asp:LinkButton ID="AECSHome" runat="server" OnClick="AECSHome_Click">Air Export - Customer Support</asp:LinkButton></li>
+                                        <%-- <li><asp:LinkButton ID="AECSHome" runat="server" OnClick="AECSHome_Click">Air Export - Customer Support</asp:LinkButton></li>
 	                                     <li><asp:LinkButton ID="AICSHome" runat="server"  OnClick="AICSHome_Click">Air Import - Customer Support</asp:LinkButton></li>--%>
 
-                                    <%-- <li><asp:LinkButton ID="BondedTruckingHome" runat="server" OnClick="BondedTruckingHome_Click">Bonded Trucking</asp:LinkButton></li>--%>
-                                    <%-- <li><asp:LinkButton ID="CHAHome" runat="server"  OnClick="CHAHome_Click">CHA</asp:LinkButton></li>--%>
-                                    <%-- <li><asp:LinkButton ID="CRM" runat="server" OnClick="CRM_Click">CRM</asp:LinkButton></li> Yuv--%>
-                                    <%-- yuvaraj 30/09/2022--%>
+                                        <%-- <li><asp:LinkButton ID="BondedTruckingHome" runat="server" OnClick="BondedTruckingHome_Click">Bonded Trucking</asp:LinkButton></li>--%>
+                                        <%-- <li><asp:LinkButton ID="CHAHome" runat="server"  OnClick="CHAHome_Click">CHA</asp:LinkButton></li>--%>
+                                        <%-- <li><asp:LinkButton ID="CRM" runat="server" OnClick="CRM_Click">CRM</asp:LinkButton></li> Yuv--%>
+                                        <%-- yuvaraj 30/09/2022--%>
 
-                                    <%--End--%>
+                                        <%--End--%>
 
-                                    <%-- <li><asp:LinkButton ID="OECSHome" runat="server" OnClick="OECSHome_Click">Ocean Export - Customer Support</asp:LinkButton></li>--%>
-                                    <%-- <li><asp:LinkButton ID="OICSHome" runat="server" OnClick="OICSHome_Click">Ocean Import - Customer Support</asp:LinkButton></li>   --%>
-                                    <%-- <li><asp:LinkButton ID="OAHome" runat="server"  OnClick="OAHome_Click">Operating Accounts</asp:LinkButton></li> yu--%>
-                                </ul>
+                                        <%-- <li><asp:LinkButton ID="OECSHome" runat="server" OnClick="OECSHome_Click">Ocean Export - Customer Support</asp:LinkButton></li>--%>
+                                        <%-- <li><asp:LinkButton ID="OICSHome" runat="server" OnClick="OICSHome_Click">Ocean Import - Customer Support</asp:LinkButton></li>   --%>
+                                        <%-- <li><asp:LinkButton ID="OAHome" runat="server"  OnClick="OAHome_Click">Operating Accounts</asp:LinkButton></li> yu--%>
+                                    </ul>
 
-                            </div>
-                        </li>
+                                </div>
+                            </li>
 
-                        <%--PROCESS DROPDOWN - [FOR CORPORATE] --%>
-                        <li class="dropdown user">
-                            <asp:LinkButton ID="Linkcorpor" runat="server"  Enabled="false" OnClick="Linkcorpor_Click" Style="text-transform: capitalize; border-right: 1.5px solid #f8a350; color: #06529c; text-decoration: none;" ToolTip="Process">
+                            <%--PROCESS DROPDOWN - [FOR CORPORATE] --%>
+                            <li class="dropdown user">
+                                <asp:LinkButton ID="Linkcorpor" runat="server" Enabled="false" OnClick="Linkcorpor_Click" Style="text-transform: capitalize; border-right: 1.5px solid #f8a350; color: #06529c; text-decoration: none;" ToolTip="Process">
 								<%-- <img src="Theme/assets/icon/Process.png"/> --%>
 							    <%-- <span> <asp:Label ID="corpproductname" runat="server"></asp:Label> </span>--%>
-                            </asp:LinkButton>
-                            <div id="ProcessCorporate" runat="server">
-                                <ul class="dropdown-menu extended notification">
+                                </asp:LinkButton>
+                                <div id="ProcessCorporate" runat="server">
+                                    <ul class="dropdown-menu extended notification">
 
-                                    <%--  <li><a id="A1" runat="server" href="#">
+                                        <%--  <li><a id="A1" runat="server" href="#">
 	                                <asp:LinkButton ID="AccountsFinance" runat="server"  OnClick="AccountsFinance_Click" >Accounts and Finance</asp:LinkButton></a></li>--%>
-                                    <li style="display: none">
-                                        <asp:LinkButton ID="Budget" runat="server" OnClick="Budget_Click">Budget</asp:LinkButton></li>
-                                    <li style="display: none">
-                                        <asp:LinkButton ID="CreditControl" runat="server" OnClick="CreditControl_Click">Credit Control</asp:LinkButton></li>
-                                    <li style="display: none">
-                                        <asp:LinkButton ID="CRMCO" runat="server" OnClick="CRMCO_Click">CRM</asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="FCAC" runat="server" OnClick="FCAC_Click">Financial Accounts</asp:LinkButton>
-                                        <span style="display: inline-block; float: right; margin: -3px 10px 0px 0px; width: 67px; position: absolute; right: -2px; top: 118px;">
-                                            <asp:DropDownList ID="ddl_FCYear" runat="server" Width="100%" dataplaceholder="Financial Year" TabIndex="2" CssClass="chzn-select">
-                                                <asp:ListItem Value="0">Financial Year</asp:ListItem>
-                                            </asp:DropDownList></span>
+                                        <li style="display: none">
+                                            <asp:LinkButton ID="Budget" runat="server" OnClick="Budget_Click">Budget</asp:LinkButton></li>
+                                        <li style="display: none">
+                                            <asp:LinkButton ID="CreditControl" runat="server" OnClick="CreditControl_Click">Credit Control</asp:LinkButton></li>
+                                        <li style="display: none">
+                                            <asp:LinkButton ID="CRMCO" runat="server" OnClick="CRMCO_Click">CRM</asp:LinkButton></li>
+                                        <li>
+                                            <asp:LinkButton ID="FCAC" runat="server" OnClick="FCAC_Click">Financial Accounts</asp:LinkButton>
+                                            <span style="display: inline-block; float: right; margin: -3px 10px 0px 0px; width: 67px; position: absolute; right: -2px; top: 118px;">
+                                                <asp:DropDownList ID="ddl_FCYear" runat="server" Width="100%" dataplaceholder="Financial Year" TabIndex="2" CssClass="chzn-select">
+                                                    <asp:ListItem Value="0">Financial Year</asp:ListItem>
+                                                </asp:DropDownList></span>
+                                        </li>
+                                        <%--<li><asp:LinkButton ID="HRM" runat="server" OnClick="HRM_Click" >Human Resources</asp:LinkButton></li>--%>
+                                        <li>
+                                            <asp:LinkButton ID="Maintenance" runat="server" OnClick="Maintenance_Click">Maintenance</asp:LinkButton></li>
+                                        <li>
+                                            <asp:LinkButton ID="MISandAnalysis" runat="server" OnClick="MISandAnalysis_Click">MIS and Analysis</asp:LinkButton></li>
+                                        <li style="display: none">
+                                            <asp:LinkButton ID="Utility" runat="server" OnClick="Utility_Click">Utility</asp:LinkButton></li>
+                                        <li>
+                                            <asp:LinkButton ID="Tasks" runat="server" OnClick="Tasks_Click">Task Managment</asp:LinkButton></li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <%--  <li><a href="#" >HOME</a></li>--%>
+                            <!-- Project Switcher Button -->
+                            <!--<li class="dropdown"><a href="#" class="project-switcher-btn dropdown-toggle"><i class="icon-arrow-down"></i></a></li>-->
+                            <!-- User Login Dropdown -->
+
+
+                            <%-- USER PROFILE DISPLAY POP-UP --%>
+                            <li class="dropdown user">
+                                <a href="#" data-toggle="dropdown" style="margin-left: 4px; pointer-events: none;"><%-- "pointer-events" style added to remove the cursor pointer praveen 5june2023--%>
+                                    <span>
+                                        <asp:Label ID="empname" runat="server"></asp:Label></span>
+                                    <asp:Image ID="img_emp" CssClass="hide" runat="server" Width="32" Height="32" data-toggle="dropdown" ImageUrl="~/images/CImage.png" />
+                                </a>
+
+                                <ul class="dropdown-menu extended notification hide">
+                                    <%--hide - class added to remove the hover element praveen 5june2023--%>
+                                    <li class="profile_div">
+                                        <asp:Image ID="img_emp1" runat="server" CssClass="user_profile_pic" data-toggle="dropdown" ImageUrl="~/images/CImage.png" />
+                                        <div class="user_profile_name">
+                                            <asp:Label ID="lblcname" runat="server" Style="text-transform: capitalize;"></asp:Label>
+                                        </div>
+                                        <div class="user_profile_name">
+                                            <asp:Label ID="lbldesg" runat="server" CssClass="LabelValue" Style="text-transform: capitalize;"></asp:Label>
+                                        </div>
+                                        <div class="user_profile_name">
+                                            <asp:Label ID="lbldept" runat="server" CssClass="LabelValue" Style="text-transform: capitalize;"></asp:Label>
+                                        </div>
+                                        <div class="user_profile_name">
+                                            <asp:Label ID="lblport" runat="server" CssClass="LabelValue" Style="text-transform: capitalize;"></asp:Label>
+                                        </div>
+                                        <div class="user_profile_email">
+                                            <asp:Label ID="Label1" runat="server" CssClass="LabelValue" Style="text-transform: capitalize;"></asp:Label>
+                                        </div>
                                     </li>
-                                    <%--<li><asp:LinkButton ID="HRM" runat="server" OnClick="HRM_Click" >Human Resources</asp:LinkButton></li>--%>
-                                    <li>
-                                        <asp:LinkButton ID="Maintenance" runat="server" OnClick="Maintenance_Click">Maintenance</asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="MISandAnalysis" runat="server" OnClick="MISandAnalysis_Click">MIS and Analysis</asp:LinkButton></li>
-                                    <li style="display: none">
-                                        <asp:LinkButton ID="Utility" runat="server" OnClick="Utility_Click">Utility</asp:LinkButton></li>
-                                                                    <li>
-<asp:LinkButton ID="Tasks" runat="server" OnClick="Tasks_Click">Task Managment</asp:LinkButton></li>
-
+                                    <li class="footer">
+                                        <div class="floatl user_profile_btn">
+                                            <%-- <button class="btn btn-xs btn-primary" onclick="window.location='EmployeeBenefits.aspx'">View Profile</button>--%>
+                                            <%-- <button class="btn btn-xs btn-primary" id="btnview" runat="server" onclick="window.location='EmployeeBenefits.aspx'">View Profile</button>--%>
+                                            <%-- <asp:LinkButton role="menuitem"  ID="viewlinkbutton"  CssClass="btn btn-xs btn-primary" OnClick="viewlinkbutton_Click" runat="server" Visible="false"  >View Profile</asp:LinkButton>--%>
+                                            <asp:LinkButton role="menuitem" ID="viewlinkbutton" CssClass="btn btn-xs btn-primary" OnClick="viewlinkbutton_Click" runat="server">Change Password</asp:LinkButton>
+                                        </div>
+                                        <div class="floatr user_profile_btn">
+                                            <%--<asp:LinkButton role="menuitem" ID="LinkButton2" CssClass="btn btn-xs btn-default" OnClick="LinkButton1_Click" runat="server">Sign Out</asp:LinkButton>--%>
+                                        </div>
+                                    </li>
                                 </ul>
-                            </div>
-                        </li>
-
-                        <%--  <li><a href="#" >HOME</a></li>--%>
-                        <!-- Project Switcher Button -->
-                        <!--<li class="dropdown"><a href="#" class="project-switcher-btn dropdown-toggle"><i class="icon-arrow-down"></i></a></li>-->
-                        <!-- User Login Dropdown -->
+                            </li>
+                            <%-- /USER PROFILE DISPLAY POP-UP --%>
 
 
-                        <%-- USER PROFILE DISPLAY POP-UP --%>
-                        <li class="dropdown user">
-                            <a href="#" data-toggle="dropdown" style="margin-left: 4px;pointer-events:none;">  <%-- "pointer-events" style added to remove the cursor pointer praveen 5june2023--%>
-                                <span>
-                                    <asp:Label ID="empname" runat="server"></asp:Label></span>
-                                <asp:Image ID="img_emp" CssClass="hide" runat="server" Width="32" Height="32" data-toggle="dropdown" ImageUrl="~/images/CImage.png" />
-                            </a>
+                            <li class="dropdown user">
+                                <asp:LinkButton role="menuitem" ID="LinkButton2" CssClass="btn btn-xs btn-default" OnClick="LinkButton1_Click" runat="server"><i class="fa fa-power-off"  ></i></asp:LinkButton>
+                            </li>
 
-                            <ul class="dropdown-menu extended notification hide"> <%--hide - class added to remove the hover element praveen 5june2023--%>
-                                <li class="profile_div">
-                                    <asp:Image ID="img_emp1" runat="server" CssClass="user_profile_pic" data-toggle="dropdown" ImageUrl="~/images/CImage.png" />
-                                    <div class="user_profile_name">
-                                        <asp:Label ID="lblcname" runat="server" Style="text-transform: capitalize;"></asp:Label>
-                                    </div>
-                                    <div class="user_profile_name">
-                                        <asp:Label ID="lbldesg" runat="server" CssClass="LabelValue" Style="text-transform: capitalize;"></asp:Label>
-                                    </div>
-                                    <div class="user_profile_name">
-                                        <asp:Label ID="lbldept" runat="server" CssClass="LabelValue" Style="text-transform: capitalize;"></asp:Label>
-                                    </div>
-                                    <div class="user_profile_name">
-                                        <asp:Label ID="lblport" runat="server" CssClass="LabelValue" Style="text-transform: capitalize;"></asp:Label>
-                                    </div>
-                                    <div class="user_profile_email">
-                                        <asp:Label ID="Label1" runat="server" CssClass="LabelValue" Style="text-transform: capitalize;"></asp:Label>
-                                    </div>
-                                </li>
-                                <li class="footer">
-                                    <div class="floatl user_profile_btn">
-                                        <%-- <button class="btn btn-xs btn-primary" onclick="window.location='EmployeeBenefits.aspx'">View Profile</button>--%>
-                                        <%-- <button class="btn btn-xs btn-primary" id="btnview" runat="server" onclick="window.location='EmployeeBenefits.aspx'">View Profile</button>--%>
-                                        <%-- <asp:LinkButton role="menuitem"  ID="viewlinkbutton"  CssClass="btn btn-xs btn-primary" OnClick="viewlinkbutton_Click" runat="server" Visible="false"  >View Profile</asp:LinkButton>--%>
-                                        <asp:LinkButton role="menuitem" ID="viewlinkbutton" CssClass="btn btn-xs btn-primary" OnClick="viewlinkbutton_Click" runat="server">Change Password</asp:LinkButton>
-                                    </div>
-                                    <div class="floatr user_profile_btn">
-                                        <%--<asp:LinkButton role="menuitem" ID="LinkButton2" CssClass="btn btn-xs btn-default" OnClick="LinkButton1_Click" runat="server">Sign Out</asp:LinkButton>--%>
-                                    </div>
-                                </li>
-                            </ul> 
-                        </li>
-                        <%-- /USER PROFILE DISPLAY POP-UP --%>
-
-
-                        <li class="dropdown user">
-                            <asp:LinkButton role="menuitem" ID="LinkButton2" CssClass="btn btn-xs btn-default"  OnClick="LinkButton1_Click" runat="server"><i class="fa fa-power-off"  ></i></asp:LinkButton>
-                        </li>
-
-                      <%--   
+                            <%--   
                        <div>
                             <asp:TextBox ID="Booking" runat="server" ToolTip="" PlaceHolder="" CssClass="form-control"  Visible="false"></asp:TextBox>
                        </div>
@@ -1063,43 +1076,43 @@ a#linkBooking {
                             <asp:LinkButton ID="linkBooking" CssClass="anc ico-find-sm" runat="server" Visible="false" OnClick="linkBooking_Click" OnClientClick="redirectToFEBL();"></asp:LinkButton>
                         </div>--%>
 
-                        <!-- /user login dropdown -->
-                    </ul>
-                    <!-- /Top Right Menu -->
-                     <div class="nav navbar-nav navbar-right">
-     <li>
-         <div class="booking"  id="Booking_div" runat="server" visible="false" >
-         <asp:TextBox ID="Booking" runat="server" ToolTip="" AutoPostBack="false" PlaceHolder="HBL # / HAWB #  " CssClass="" Visible="false"></asp:TextBox>
-
-         </div>
-         <div class="hide">
-         <asp:Label ID="BL_Booking" runat="server" Text="" Visible="false"></asp:Label>
-
-         </div>
-         <li>
-             <li>
-         <asp:LinkButton ID="linkBooking" CssClass="anc ico-find-sm" runat="server" Visible="false" OnClick="linkBooking_Click" OnClientClick="redirectToFEBL();"></asp:LinkButton>
-
-             </li>
- </div>
-                </div>
-                <!-- /top navigation bar -->
-
-                <!--=== Project Switcher ===-->
-                <div id="project-switcher" class="container project-switcher">
-                    <div id="scrollbar">
-                        <div class="handle"></div>
-                    </div>
-                    <div id="frame">
-                        <ul class="project-list">
-                            <li class="current"><a href="javascript:void(0);"><span class="image"><i class="icon-envelope"></i></span><span class="title">Email</span> </a></li>
-                            <li><a href="javascript:void(0);"><span class="image"><i class="icon-comments-alt"></i></span><span class="title">Message</span> </a></li>
+                            <!-- /user login dropdown -->
                         </ul>
+                        <!-- /Top Right Menu -->
+                        <div class="nav navbar-nav navbar-right">
+                            <li>
+                                <div class="booking" id="Booking_div" runat="server" visible="false">
+                                    <asp:TextBox ID="Booking" runat="server" ToolTip="" AutoPostBack="false" PlaceHolder="HBL # / HAWB #  " CssClass="" Visible="false"></asp:TextBox>
+
+                                </div>
+                                <div class="hide">
+                                    <asp:Label ID="BL_Booking" runat="server" Text="" Visible="false"></asp:Label>
+
+                                </div>
+                                <li>
+                                    <li>
+                                        <asp:LinkButton ID="linkBooking" CssClass="anc ico-find-sm" runat="server" Visible="false" OnClick="linkBooking_Click" OnClientClick="redirectToFEBL();"></asp:LinkButton>
+
+                                    </li>
+                        </div>
                     </div>
-                    <!-- /#frame -->
+                    <!-- /top navigation bar -->
+
+                    <!--=== Project Switcher ===-->
+                    <div id="project-switcher" class="container project-switcher">
+                        <div id="scrollbar">
+                            <div class="handle"></div>
+                        </div>
+                        <div id="frame">
+                            <ul class="project-list">
+                                <li class="current"><a href="javascript:void(0);"><span class="image"><i class="icon-envelope"></i></span><span class="title">Email</span> </a></li>
+                                <li><a href="javascript:void(0);"><span class="image"><i class="icon-comments-alt"></i></span><span class="title">Message</span> </a></li>
+                            </ul>
+                        </div>
+                        <!-- /#frame -->
+                    </div>
+                    <!-- /#project-switcher -->
                 </div>
-                <!-- /#project-switcher -->
-                    </div>
             </header>
             <!-- /header -->
 
@@ -1215,7 +1228,7 @@ a#linkBooking {
 
                 <iframe id="ifrmaster" name="centerfrm" class="div_Menu" frameborder="0" src="" scrolling="no" runat="server"></iframe>
 
-                
+
 
                 <div class="FormGroupContent">
                     <asp:Panel ID="pln_cheque" runat="server" CssClass="modalPopup" BorderStyle="Solid" BorderWidth="2px" Style="display: none;">
@@ -1255,12 +1268,12 @@ a#linkBooking {
                 <asp:HiddenField ID="hid_WARB1" runat="server" />
             </div>
         </div>
-            
+
 
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
     </form>
 
-    
+
 </body>
 </html>

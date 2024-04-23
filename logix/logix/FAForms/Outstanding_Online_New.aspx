@@ -406,7 +406,7 @@
         }
 
         .SalesPerson1 {
-            width: 41.5%;
+            width: 38.5%;
             float: left;
             margin: 0px 0.5% 0px 0px;
         }
@@ -585,13 +585,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="logix_CPH" runat="server">
 
     <div>
-        <div class="col-md-12 maindiv">
+        <div class="col-md-12">
 
             <div class="widget box" runat="server">
 
                 <div class="widget-header">
                     <div>
                     <h4 class="hide"><i class="icon-umbrella"></i>
+                        
                         <asp:Label ID="lblOutstanding" runat="server" Text="OutStanding"></asp:Label></h4>
                     <div class="crumbs">
                         <ul id="breadcrumbs1" class="breadcrumb">
@@ -620,7 +621,6 @@
         </div>
     </div>
 </div>
-
 
                 </div>
                 <div class="widget-content">
@@ -709,6 +709,18 @@
                                     </label>
                                 </center>
                             </div>
+
+                            <div class="LedgerChk" style="width:13% !important" >
+
+    <span>Ledger Ageing With Fcurr</span>
+    <center>
+        <label class="switch">
+            <asp:CheckBox ID="chk_FCurr" runat="server" AutoPostBack="true" />
+
+        </label>
+    </center>
+</div>
+
                             <div class="SalesAeging" style="display: none;">
                                 <asp:CheckBox ID="cboxSalesAgeing" runat="server" Text="SalesAgeing" AutoPostBack="true" OnCheckedChanged="cboxSalesAgeing_CheckedChanged" />
                             </div>

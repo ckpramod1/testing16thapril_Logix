@@ -61,7 +61,7 @@ namespace logix.FAForms
         int NoofDays;
         Double amtt;
         int appday;
-
+        int a;
         Double overdue1;
         int overdays;
         String shipper;
@@ -80,6 +80,7 @@ namespace logix.FAForms
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
 
+
             string Ccode = Convert.ToString(Session["Ccode"]);
 
             if (Ccode != "")
@@ -96,6 +97,7 @@ namespace logix.FAForms
 
             }
 
+
             try
             {
                 ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btnClear);
@@ -103,7 +105,7 @@ namespace logix.FAForms
 
                 if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('"+ Session["Site"].ToString() + "/','_top');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('" + Session["Site"].ToString() + "/','_top');", true);
                 }
 
                 Vouyear = Convert.ToInt32(Session["Vouyear"].ToString());
@@ -178,8 +180,9 @@ namespace logix.FAForms
             DataAccess.FAMaster.MasterSubGroup sobj = new DataAccess.FAMaster.MasterSubGroup();
             string Ccode = HttpContext.Current.Session["Ccode"].ToString();
             sobj.GetDataBase(Ccode);
+         
             string FADbname = HttpContext.Current.Session["FADbname"].ToString();
-           // if (HttpContext.Current.Session["LoginBranchId"].ToString() == "40" || HttpContext.Current.Session["LoginBranchId"].ToString() == "66" || HttpContext.Current.Session["LoginBranchId"].ToString() == "82" || HttpContext.Current.Session["LoginBranchId"].ToString() == "5")
+            // if (HttpContext.Current.Session["LoginBranchId"].ToString() == "40" || HttpContext.Current.Session["LoginBranchId"].ToString() == "66" || HttpContext.Current.Session["LoginBranchId"].ToString() == "82" || HttpContext.Current.Session["LoginBranchId"].ToString() == "5")
             if (HttpContext.Current.Session["LoginBranchName"].ToString() == "CORPORATE")
             {
                 obj_dt = sobj.GetLikesubGroupname4outstd(prefix.ToUpper(), FADbname);
@@ -214,6 +217,7 @@ namespace logix.FAForms
             DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
             string Ccode = HttpContext.Current.Session["Ccode"].ToString();
             customerobj.GetDataBase(Ccode);
+       
             obj_dt = (DataTable)HttpContext.Current.Session["customer"];
             DataView dt_ldg = new DataView(obj_dt);
             dt_ldg.RowFilter = "customer like '" + prefix.ToUpper() + "%'";
@@ -264,8 +268,13 @@ namespace logix.FAForms
                 sgroupid = 0;
                 DataTable obj_dt = new DataTable();
                 List<string> customername = new List<string>();
-              //  DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
-
+                DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+                string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                customerobj.GetDataBase(Ccode);
+                if (txtSubGroupName.Text == "TRADE CREDITORS-INTERNATIONAL" || txtSubGroupName.Text == "TRADE DEBTORS-INTERNATIONAL")
+                {
+                    chk_FCurr.Checked = true;
+                }
                 if (hdf_name.Value != "")
                 {
                     if (hdf_id.Value != "")
@@ -285,6 +294,7 @@ namespace logix.FAForms
         {
             if (btnClear.ToolTip == "Cancel")
             {
+
                 cbocheck.Enabled = true;
                 txtSubGroupName.Text = "";
                 txtSalesPerson.Text = "";
@@ -294,7 +304,7 @@ namespace logix.FAForms
                 ddlbranch.SelectedIndex = -1;
                 GrdLW.DataSource = Utility.Fn_GetEmptyDataTable();
                 GrdLW.DataBind();
-                GrdLW_sl .DataSource = Utility.Fn_GetEmptyDataTable();
+                GrdLW_sl.DataSource = Utility.Fn_GetEmptyDataTable();
                 GrdLW_sl.DataBind();
                 GrdLW.Visible = true;
                 GrdLW_sl.Visible = false;
@@ -317,7 +327,7 @@ namespace logix.FAForms
                     cbocheck.Enabled = true;
                     cbocheck.Checked = false;
                 }
-
+                chk_FCurr.Checked = false;
                 cboxLedgerAgeing.Checked = false;
                 cboxSalesAgeing.Checked = false;
                 ChkTill.Checked = false;
@@ -398,7 +408,7 @@ namespace logix.FAForms
                 dwb_Clear();
                 dt = new DataTable();
                 Date = Convert.ToDateTime(Utility.fn_ConvertDate(txt_date.Text)); //da_obj_Log.GetDate(); 
-              //  DataAccess.FAMaster.MasterSubGroup sobj = new DataAccess.FAMaster.MasterSubGroup();
+                //DataAccess.FAMaster.MasterSubGroup sobj = new //DataAccess.FAMaster.MasterSubGroup();
                 DataTable obj_dt = new DataTable();
                 obj_dt = sobj.GetLikesubGroupname4outstd(txtSubGroupName.Text.ToUpper(), Session["FADbname"].ToString());
                 if (obj_dt.Rows.Count > 0)
@@ -589,6 +599,7 @@ namespace logix.FAForms
                         ddlcurency.Items.Clear();
                         ddlcurency.Items.Add("Curr");
                         ddlcurency.Items.Add("ALL");
+                        ddlcurency.Items.Add("Fcurr");
 
                         for (int i = 0; i <= dtl.Rows.Count - 1; i++)
                         {
@@ -665,8 +676,8 @@ namespace logix.FAForms
                     dr["foverdue"] = dt1.Compute("sum(foverdue)", "");
                     dt1.Rows.Add(dr);
                     //GC.Collect();
-                    GrdLW.Visible=false;
-                    GrdLW_sl.Visible=true; 
+                    GrdLW.Visible = false;
+                    GrdLW_sl.Visible = true;
                     GrdLW.DataSource = dt1;
                     GrdLW.DataBind();
                     GrdLW_sl.DataSource = dt1;
@@ -739,7 +750,7 @@ namespace logix.FAForms
                         if (ddlbranch.SelectedItem.Text == "ALL")
                         {
                             dtage = outsobj.OutStdageingNew(Convert.ToInt32(Session["LoginEmpId"].ToString()), Convert.ToInt32(Session["LoginDivisionId"].ToString()), 0, sgroupid, HttpContext.Current.Session["FADbname"].ToString(), customerid);
-                            
+
                             GrdLW.DataSource = dtage;
                             GrdLW.DataBind();
                             GrdLW.Visible = false;
@@ -789,7 +800,7 @@ namespace logix.FAForms
                 {
                     flag = false;
                     GrdLW.Visible = false;
-                    GrdLW_sl.Visible = false;   
+                    GrdLW_sl.Visible = false;
                     ddlbranch.Enabled = false;
                     ddlProduct.Enabled = false;
                     DropDownList1.Enabled = false;
@@ -837,9 +848,16 @@ namespace logix.FAForms
                         else
                         {
 
-                            //dtage = outsobj.OutStdageingNewOnlineFormatnew(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginDivisionId"].ToString()), branch, sgroupid, HttpContext.Current.Session["FADbname"].ToString(), Convert.ToInt32(hf_custname.Value), check);
-                            dtage = outsobj.OutStdageingNewOnlineFormatnewfordate(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginDivisionId"].ToString()), branch, sgroupid, HttpContext.Current.Session["FADbname"].ToString(), Convert.ToInt32(hf_custname.Value), check, Convert.ToDateTime(Utility.fn_ConvertDate(hid_date.Value)));
+                            if (chk_FCurr.Checked == true)
+                            {
+                                dtage = outsobj.OutStdageingNewOnlineFormatnewfordate_USD(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginDivisionId"].ToString()), branch, sgroupid, HttpContext.Current.Session["FADbname"].ToString(), Convert.ToInt32(hf_custname.Value), check, Convert.ToDateTime(Utility.fn_ConvertDate(hid_date.Value)));
 
+                            }
+                            else
+                            {
+                                //dtage = outsobj.OutStdageingNewOnlineFormatnew(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginDivisionId"].ToString()), branch, sgroupid, HttpContext.Current.Session["FADbname"].ToString(), Convert.ToInt32(hf_custname.Value), check);
+                                dtage = outsobj.OutStdageingNewOnlineFormatnewfordate(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginDivisionId"].ToString()), branch, sgroupid, HttpContext.Current.Session["FADbname"].ToString(), Convert.ToInt32(hf_custname.Value), check, Convert.ToDateTime(Utility.fn_ConvertDate(hid_date.Value)));
+                            }
                         }
                     }
                     else
@@ -919,7 +937,7 @@ namespace logix.FAForms
                 {
                     flag = false;
                     GrdLW.Visible = false;
-                    GrdLW_sl.Visible=false;
+                    GrdLW_sl.Visible = false;
                     ddlbranch.Enabled = false;
                     ddlProduct.Enabled = false;
                     DropDownList1.Enabled = false;
@@ -1146,7 +1164,57 @@ namespace logix.FAForms
             {
                 try
                 {
-                    if (ddlcurency.Text != "ALL")
+
+                    if (ddlcurency.Text == "Fcurr")
+                    {
+                        for (int i = 0; i < ddlcurency.Items.Count; i++)
+                        {
+                            if (a == 0)
+                            {
+                                if (str_SelFormula != "")
+                                {
+                                    ddlcurency.SelectedIndex = i;
+                                    if (ddlcurency.Text != "INR" && ddlcurency.Text != "ALL" && ddlcurency.Text != "Fcurr" && ddlcurency.Text != "Curr")
+                                    {
+                                        a = 1;
+                                        str_SelFormula = str_SelFormula + " and fcurr ='" + ddlcurency.SelectedItem.Text + "'";
+                                    }
+                                }
+                                else
+                                {
+                                    ddlcurency.SelectedIndex = i;
+                                    if (ddlcurency.Text != "INR" || ddlcurency.Text != "ALL" || ddlcurency.Text != "Fcurr")
+                                    {
+                                        a = 1;
+                                        str_SelFormula = "fcurr = '" + ddlcurency.SelectedItem.Text + "'";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (str_SelFormula != "")
+                                {
+                                    ddlcurency.SelectedIndex = i;
+                                    if (ddlcurency.Text != "INR" && ddlcurency.Text != "ALL" && ddlcurency.Text != "Fcurr" && ddlcurency.Text != "Curr")
+                                    {
+                                        str_SelFormula = str_SelFormula + " or fcurr ='" + ddlcurency.SelectedItem.Text + "'";
+                                    }
+                                }
+                                else
+                                {
+                                    ddlcurency.SelectedIndex = i;
+                                    if (ddlcurency.Text != "INR" || ddlcurency.Text != "ALL" || ddlcurency.Text != "Fcurr")
+                                    {
+                                        str_SelFormula = "fcurr = '" + ddlcurency.SelectedItem.Text + "'";
+                                    }
+                                }
+                            }
+                        }
+                        ddlcurency.SelectedItem.Text = "Fcurr";
+                    }
+
+
+                    else if (ddlcurency.Text != "ALL")
                     {
                         if (str_SelFormula != "")
                         {
@@ -1218,7 +1286,7 @@ namespace logix.FAForms
             DataRow dr2 = dt2.NewRow();
             dr2["amount"] = dt2.Compute("sum(amount)", "");
             dr2["vamount"] = dt2.Compute("sum(vamount)", "");
-            dr2["Receivedamount"] = dt2.Compute("sum(Receivedamount)", "");         
+            dr2["Receivedamount"] = dt2.Compute("sum(Receivedamount)", "");
             dr2["famount"] = dt2.Compute("sum(famount)", "");
 
             dr2["recefamount"] = dt2.Compute("sum(recefamount)", "");
@@ -1312,7 +1380,7 @@ namespace logix.FAForms
                     //return;
                 }
                 DataTable obj_dt = new DataTable();
-               // DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+                //DataAccess.Masters.MasterCustomer customerobj = new //DataAccess.Masters.MasterCustomer();
 
                 obj_dt = (DataTable)HttpContext.Current.Session["Sales"];
                 DataView dt_ldg = new DataView(obj_dt);
@@ -1352,7 +1420,7 @@ namespace logix.FAForms
         protected void get_Ledger_filter()
         {
             DataTable obj_dt = new DataTable();
-          //  DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+            //DataAccess.Masters.MasterCustomer customerobj = new //DataAccess.Masters.MasterCustomer();
             if (Session["customer"] == null)
             {
                 return;
@@ -1798,7 +1866,7 @@ namespace logix.FAForms
                     Tillyear = (Date.Year);
                 }
 
-                if (Tillyear > 2013) 
+                if (Tillyear > 2013)
                 {
                     if (st == "Total O/S" && Session["LoginBranchName"].ToString() == "CORPORATE") ////05-07-2022 HARI
                     {
@@ -1811,7 +1879,7 @@ namespace logix.FAForms
                         {
                             dtvou = outsobj.Getoutstd_breakuopdetails(Convert.ToInt32(Session["LoginEmpId"].ToString()), lid);
                         }
-                        
+
                         //dtvou = outsobj.Getoutstd_breakuopdetails(Convert.ToInt32(Session["LoginEmpId"].ToString()), lid);
 
                     }
@@ -2955,7 +3023,7 @@ namespace logix.FAForms
 
         protected void btnprint_Click(object sender, EventArgs e)
         {
-           // DataAccess.Masters.MasterEmployee EmpObj = new DataAccess.Masters.MasterEmployee();
+            //DataAccess.Masters.MasterEmployee EmpObj = new //DataAccess.Masters.MasterEmployee();
             string Str_sp = "", Str_sf = "", Str_RptName = "", Str_Script = "", vendorrefno = "";
             outsobj.deleteTempOutstandingOnline(Convert.ToInt32(Session["LoginEmpId"].ToString()));
             string voucher = "";

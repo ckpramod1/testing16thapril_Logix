@@ -183,51 +183,51 @@
             $(document).ready(function () {
 
                 $("#<%=txtLedgerName.ClientID %>").autocomplete({
-                     source: function (request, response) {
-                         $("#<%=hid_Ledgername.ClientID %>").val(0);
-                         $.ajax({
-                             url: "../FAForms/OPBalanceBreakUpNew.aspx/GetLedgername",
-                             data: "{ 'prefix': '" + request.term + "'}",
-                             dataType: "json",
-                             type: "POST",
-                             contentType: "application/json; charset=utf-8",
-                             success: function (data) {
+                    source: function (request, response) {
+                        $("#<%=hid_Ledgername.ClientID %>").val(0);
+                        $.ajax({
+                            url: "../FAForms/OPBalanceBreakUpNew.aspx/GetLedgername",
+                            data: "{ 'prefix': '" + request.term + "'}",
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
 
-                                 response($.map(data.d, function (item) {
+                                response($.map(data.d, function (item) {
 
-                                     return {
-                                         label: item.split('~')[0],
-                                         val: item.split('~')[1],
-                                         address: item.split('~')[2]
-                                     }
-                                 }))
-                             },
-                             error: function (response) {
-                                 //alert(response.responseText);
-                             },
-                             failure: function (response) {
-                                 //alert(response.responseText);
-                             }
-                         });
-                     },
+                                    return {
+                                        label: item.split('~')[0],
+                                        val: item.split('~')[1],
+                                        address: item.split('~')[2]
+                                    }
+                                }))
+                            },
+                            error: function (response) {
+                                //alert(response.responseText);
+                            },
+                            failure: function (response) {
+                                //alert(response.responseText);
+                            }
+                        });
+                    },
 
-                     select: function (event, i) {
-                         $("#<%=txtLedgerName.ClientID %>").val(i.item.label);
-                        $("#<%=txtLedgerName.ClientID %>").val($.trim(i.item.label.split(',')[0]));
-                        $("#<%=txtLedgerName.ClientID %>").change();
-                        $("#<%=hid_Ledgername.ClientID %>").val(i.item.val);
-                        $("#<%=hid_custid.ClientID %>").val(i.item.address);
+                    select: function (event, i) {
+                        $("#<%=txtLedgerName.ClientID %>").val(i.item.label);
+                         $("#<%=txtLedgerName.ClientID %>").val($.trim(i.item.label.split(',')[0]));
+                         $("#<%=txtLedgerName.ClientID %>").change();
+                         $("#<%=hid_Ledgername.ClientID %>").val(i.item.val);
+                         $("#<%=hid_custid.ClientID %>").val(i.item.address);
 
-                     },
-                     focus: function (event, i) {
-                         $("#<%=txtLedgerName.ClientID %>").val(i.item.label);
-                        $("#<%=txtLedgerName.ClientID %>").val($.trim(i.item.label.split(',')[0]));
-                        $("#<%=hid_Ledgername.ClientID %>").val(i.item.val);
-                        $("#<%=hid_custid.ClientID %>").val(i.item.address);
-                     },
-                     change: function (event, i) {
-                         if (i.item) {
-                             $("#<%=txtLedgerName.ClientID %>").val($.trim(i.item.label.split(',')[0]));
+                    },
+                    focus: function (event, i) {
+                        $("#<%=txtLedgerName.ClientID %>").val(i.item.label);
+                         $("#<%=txtLedgerName.ClientID %>").val($.trim(i.item.label.split(',')[0]));
+                         $("#<%=hid_Ledgername.ClientID %>").val(i.item.val);
+                         $("#<%=hid_custid.ClientID %>").val(i.item.address);
+                    },
+                    change: function (event, i) {
+                        if (i.item) {
+                            $("#<%=txtLedgerName.ClientID %>").val($.trim(i.item.label.split(',')[0]));
                              $("#<%=hid_Ledgername.ClientID %>").val(i.item.val);
                              $("#<%=hid_custid.ClientID %>").val(i.item.address);
 
@@ -286,10 +286,10 @@
                           $("#<%=txtFCurr.ClientID %>").val(i.item.label);
                         $("#<%=hdncurrid.ClientID %>").val(i.item.val);
 
-                      },
-                      minLength: 1
-                  });
-              });
+                     },
+                     minLength: 1
+                 });
+             });
 
             $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
 
@@ -440,7 +440,7 @@ div#logix_CPH_CalendarExtender1_container {
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="logix_CPH" runat="server">
     <div class="">
-        <div class="col-md-12 maindiv" >
+        <div class="col-md-12 maindiv">
             <div class="widget box PB20" runat="server">
                 <div class="widget-header">
                     <div>
@@ -448,19 +448,20 @@ div#logix_CPH_CalendarExtender1_container {
                         <asp:Label ID="lbl_head" runat="server"></asp:Label>
                     </h3>
                         </div>
+                     <div class="FixedButtons">
+     <div class="btn-ctrl1">
+         <div class="btn ico-add" id="btnadd1" runat="server">
+             <asp:Button ID="btnadd" runat="server" ToolTip="Add" OnClick="btnadd_Click" TabIndex="6" /></div>
+         <div class="btn ico-delete" id="btndelete1" runat="server">
+             <asp:Button ID="btndelete" runat="server" Visible="true" TabIndex="20" ToolTip="Delete" OnClick="btndelete_Click" /></div>
+     </div>
+ </div>
 
-                    <div class="FixedButtons">
-    <div class="btn-ctrl1">
-        <div class="btn ico-add" id="btnadd1" runat="server">
-            <asp:Button ID="btnadd" runat="server" ToolTip="Add" OnClick="btnadd_Click" TabIndex="6" /></div>
-        <div class="btn ico-delete" id="btndelete1" runat="server">
-            <asp:Button ID="btndelete" runat="server" Visible="true" TabIndex="20" ToolTip="Delete" OnClick="btndelete_Click" /></div>
-    </div>
-</div>
+
 
                 </div>
                 <div class="widget-content">
-                    
+                   
                     <div class="FormGroupContent4">
                         <div class="LedgerName">
                             <div style="display: none;">

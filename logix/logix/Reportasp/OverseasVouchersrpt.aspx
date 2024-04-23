@@ -318,6 +318,27 @@ img#lbl_img {
                             </div>
 
                         </div>
+                         <div style="clear: both;"></div>
+                         <div id="div_vendorrefdate" runat="server" visible="false" style="float:left;width:100%;border-bottom:1px solid #000">
+    <div style="width:19%;float:left;font-weight: bold;font-size: 14px; color: #000;padding: 7px 0px 5px 3px;border-right:1px solid #000">
+        <label id="label2" runat="server">Vendor Ref Date</label>
+
+    </div>
+    <div style="width:40%;float:left;padding: 7px 0px 5px 3px;font-size: 14px; color: #000">
+        <asp:Label ID="lbl_vendordate" runat="server"></asp:Label>
+
+    </div>
+
+</div>
+                          <%--<div id="div_vendorrefdate" runat="server" visible="false">
+                            <div style="width: 165px; float: left; margin: 0px 0px 5px 0px; font-weight: bold; padding: 0px 0px 0px 20px;color: #000000;">
+                                <label id="label2" runat="server">Vendor Ref Date</label>
+                            </div>
+
+                            <div style="width: 240px; float: left;  margin: 0px 0px 5px 0px;">
+                                <asp:Label ID="lbl_vendordate" runat="server"></asp:Label>
+                            </div>
+                        </div>--%>
                          <div id="div_shipperd" runat="server" visible="true" style="float:left;width:100%;border-bottom:1px solid #000">
                             <div style="width:19%;float:left;font-weight: bold;font-size: 14px; color: #000;padding: 7px 0px 5px 3px;border-right:1px solid #000">
                                 <label id="label_shipperd" runat="server">Shipper Ref #</label>
@@ -561,16 +582,16 @@ img#lbl_img {
                             <div style="width: 240px; float: left; display: inline-block; margin: 0px 0px 5px 0px;">
                             </div>
                         </div> 
-                         <div style="clear: both;"></div>
-                          <div id="div_vendorrefdate" runat="server" visible="false">
-                            <div style="width: 165px; float: left; display: inline-block; margin: 0px 0px 5px 0px; font-weight: bold; padding: 0px 0px 0px 20px;color: #000000;">
+                         <%--<div style="clear: both;"></div>
+                          <div id="div_vendorrefdate" runat="server">
+                            <div style="width: 165px; float: left; margin: 0px 0px 5px 0px; font-weight: bold; padding: 0px 0px 0px 20px;color: #000000;">
                                 <label id="label2" runat="server">Vendor Ref Date</label>
                             </div>
 
-                            <div style="width: 240px; float: left; display: inline-block; margin: 0px 0px 5px 0px;">
+                            <div style="width: 240px; float: left;  margin: 0px 0px 5px 0px;">
                                 <asp:Label ID="lbl_vendordate" runat="server"></asp:Label>
                             </div>
-                        </div>
+                        </div>--%>
                         <div style="clear: both;"></div>
                         <div  id="div_exrate" runat="server" visible="false">
                             <div style="width: 165px; float: left; display: inline-block; margin: 0px 0px 5px 0px; font-weight: bold; padding: 0px 0px 0px 20px;color: #000000;">Ex. Rate</div>

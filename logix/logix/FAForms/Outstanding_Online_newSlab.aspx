@@ -586,14 +586,14 @@
                     var $colName = $cell.closest("table")
                         .find('th:eq(' + $colIndex + ')').text();
                     $("#para").empty()
-                    .append("<b>Current Cell Text: </b>"
-                        + $currentCellText + "<br/>")
-                    .append("<b>Text to Left of Clicked Cell: </b>"
-                        + $leftCellText + "<br/>")
-                    .append("<b>Text to Right of Clicked Cell: </b>"
-                        + $rightCellText + "<br/>")
-                    .append("<b>Column Name of Clicked Cell: </b>"
-                        + $colName)
+                        .append("<b>Current Cell Text: </b>"
+                            + $currentCellText + "<br/>")
+                        .append("<b>Text to Left of Clicked Cell: </b>"
+                            + $leftCellText + "<br/>")
+                        .append("<b>Text to Right of Clicked Cell: </b>"
+                            + $rightCellText + "<br/>")
+                        .append("<b>Column Name of Clicked Cell: </b>"
+                            + $colName)
                 });
         });
 
@@ -763,6 +763,7 @@
                     </div>
                         </div>
 
+
                                       <div class="FixedButtons">
                         <div class="right_btn">
     <div class="btn ico-get">
@@ -780,11 +781,10 @@
 </div>
                   </div>
 
-
                 </div>
                 <div class="widget-content">
 
-                   
+                    
 
 
                     <div class="FormGroupContent4">
@@ -793,7 +793,7 @@
                             <asp:TextBox ID="txtSubGroupName" runat="server" placeholder="Sub Group Name" ToolTip="Sub Group Name" AutoPostBack="true" CssClass="form-control" OnTextChanged="txtSubGroupName_TextChanged"></asp:TextBox>
                         </div>
                                                                                 <div class="SubGroupContent1O" style="width: 9%;" >
-   <asp:DropDownList ID="ddl_OG" runat="server" AutoPostBack="True" Data-placeholder="OG" ToolTip="OG" CssClass="chzn-select" OnTextChanged="ddl_OG_TextChanged">
+   <asp:DropDownList ID="ddl_OG" runat="server" AutoPostBack="True" Data-placeholder="Receivable/Payable" ToolTip="Receivable/Payable" CssClass="chzn-select" OnTextChanged="ddl_OG_TextChanged">
     <asp:ListItem Value="0" Text="All"></asp:ListItem>
        <asp:ListItem Value="1" Text="Payable"></asp:ListItem>
        <asp:ListItem Value="2" Text="Receivable"></asp:ListItem>
@@ -911,6 +911,16 @@
                             </center>
 
                         </div>
+                                                    <div class="LedgerChk" style="width:14% !important">
+
+    <span>Ledger Ageing With Fcurr</span>
+    <center>
+        <label class="switch">
+            <asp:CheckBox ID="chk_FCurr" runat="server" AutoPostBack="true" />
+
+        </label>
+    </center>
+</div>
                     </div>
 
                     <div class="FormGroupContent4">

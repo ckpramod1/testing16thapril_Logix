@@ -27,19 +27,17 @@ namespace logix.FAForm
         DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
         DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
 
-       
+
         DataAccess.Accounts.Approval obj_da_Approval = new DataAccess.Accounts.Approval();
         DataAccess.FAMaster.MasterLedger obj_da_Ledger = new DataAccess.FAMaster.MasterLedger();
         DataAccess.HR.Employee Emp_Obj = new DataAccess.HR.Employee();
         DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+
         int int_bid, int_divisionid;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);
-
-            ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_cancel);
-
 
             string Ccode = Convert.ToString(Session["Ccode"]);
 
@@ -54,13 +52,16 @@ namespace logix.FAForm
                 obj_da_Ledger.GetDataBase(Ccode);
                 Emp_Obj.GetDataBase(Ccode);
                 Logobj.GetDataBase(Ccode);
-               
+
 
             }
 
+
+            ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btn_cancel);
+
             if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
             {
-                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('"+ Session["Site"].ToString() + "/','_top');", true);
+                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('" + Session["Site"].ToString() + "/','_top');", true);
             }
             if (ddl_receipt.SelectedItem.Text == "Payment")
             {
@@ -80,7 +81,7 @@ namespace logix.FAForm
             {
                 lbnl_logyear.Text = Session["LYEAR"].ToString();
                 Session["AgainstVouYear"] = null;
-                //DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+                //DataAccess.LogDetails obj_da_Log = new //DataAccess.LogDetails();
                 hid_date.Value = Utility.fn_ConvertDate(obj_da_Log.GetDate().ToShortDateString());
                 txt_date.Text = hid_date.Value.ToString();
                 txt_year.Text = Session["Vouyear"].ToString();
@@ -199,8 +200,8 @@ namespace logix.FAForm
             double Amount = 0;
             DataTable obj_dt = new DataTable();
             DataTable obj_dttemp = new DataTable();
-            //DataAccess.Accounts.Recipts obj_da_Receipt = new DataAccess.Accounts.Recipts();
-            //DataAccess.Accounts.Payment obj_da_payment = new DataAccess.Accounts.Payment();
+            //DataAccess.Accounts.Recipts obj_da_Receipt = new //DataAccess.Accounts.Recipts();
+            //DataAccess.Accounts.Payment obj_da_payment = new //DataAccess.Accounts.Payment();
 
             if (ddl_receipt.SelectedIndex == 0)
             {
@@ -496,11 +497,11 @@ namespace logix.FAForm
             double Income_Amount = 0, Expence_Amount = 0, Grand_Total = 0, Customer_Amount = 0, excess = 0;
             bool Customer = false;
             int Rid = int.Parse(hid_rptid.Value.ToString());
-            //DataAccess.Accounts.Recipts obj_da_Receipt = new DataAccess.Accounts.Recipts();
-            //DataAccess.Accounts.Approval obj_da_Approval = new DataAccess.Accounts.Approval();
+            //DataAccess.Accounts.Recipts obj_da_Receipt = new //DataAccess.Accounts.Recipts();
+            //DataAccess.Accounts.Approval obj_da_Approval = new //DataAccess.Accounts.Approval();
 
-            //DataAccess.FAMaster.MasterLedger obj_da_Ledger = new DataAccess.FAMaster.MasterLedger();
-            //DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+            //DataAccess.FAMaster.MasterLedger obj_da_Ledger = new //DataAccess.FAMaster.MasterLedger();
+            //DataAccess.LogDetails obj_da_Log = new //DataAccess.LogDetails();
 
             if (double.Parse(txt_excess.Text.ToString()) >= 100 || double.Parse(txt_excess.Text.ToString()) <= -100)
             {
@@ -755,14 +756,14 @@ namespace logix.FAForm
                     {
                         TextBox Txt = (TextBox)row.FindControl("txt_receiptamount");
                         ramt = double.Parse(Txt.Text.ToString());
-                        char R_type;
-                        R_type = char.Parse(Grd_detail.DataKeys[row.RowIndex].Values[1].ToString().Trim());
+                        string R_type;
+                        R_type = (Grd_detail.DataKeys[row.RowIndex].Values[1].ToString().Trim());
 
-                        if (R_type == 'O')
+                        if (R_type == "O")
                         {
                             HttpContext.Current.Session["OnAccountVoutypeEdi"] = R_type;
                             int_Ryear = int.Parse(Grd_detail.DataKeys[row.RowIndex].Values[3].ToString());
-                            obj_da_Receipt.InsRecptAginstInv(Rid, Convert.ToChar(Session["rptype"].ToString()), 0, 'O', int.Parse(Session["LoginBranchid"].ToString()), 0, OnAmount, 'Y', int_Ryear);
+                            obj_da_Receipt.InsRecptAginstInvnew(Rid, Convert.ToChar(Session["rptype"].ToString()), 0, "O", int.Parse(Session["LoginBranchid"].ToString()), 0, OnAmount, 'Y', int_Ryear);
                             int int_Ledgerid = obj_da_Ledger.ChkLedgeridfrmLedHead(int.Parse(hid_customerid.Value.ToString()), "C", Session["FADbname"].ToString());
                             obj_da_Approval.InsLedgerOPBreakup4OAC(int_Ledgerid, int_Ryear, int_branchid, Rid, Convert.ToChar(Session["rptype"].ToString()), int_Ryear, OnAmount, int.Parse(hid_customerid.Value.ToString()));
                         }
@@ -779,7 +780,7 @@ namespace logix.FAForm
 
                 try
                 {
-                    //DataAccess.FAVoucher obj_da_FA = new DataAccess.FAVoucher();
+                    //DataAccess.FAVoucher obj_da_FA = new //DataAccess.FAVoucher();
                     DataTable obj_dt = new DataTable();
                     int int_Voucherid = 0;
                     string Str_Vouchertype = "";
@@ -792,14 +793,14 @@ namespace logix.FAForm
                     {
                         GetFADBvou(Convert.ToInt32(txt_year.Text));
                     }
-                    
 
 
-                    //DataAccess.HR.Employee Emp_Obj = new DataAccess.HR.Employee();
+
+                    //DataAccess.HR.Employee Emp_Obj = new //DataAccess.HR.Employee();
                     int corbid = Emp_Obj.GetBranchId(int_divisionid, "CORPORATE");
 
 
-                    //DataAccess.FAMaster.ReportView objrv = new DataAccess.FAMaster.ReportView();
+                    //DataAccess.FAMaster.ReportView objrv = new //DataAccess.FAMaster.ReportView();
                     DataSet ds = new DataSet();
                     DataTable dt = new DataTable();
                     DataTable dt1 = new DataTable();
@@ -813,7 +814,7 @@ namespace logix.FAForm
 
                     // Update for Trigger 
                     obj_da_Receipt.UpdRecptPymt4trigger(Convert.ToInt32(txt_receipt.Text), int.Parse(Session["LoginBranchid"].ToString()), Convert.ToInt32(txt_year.Text), Convert.ToInt32(Session["LoginEmpId"].ToString()), Session["rptype"].ToString(), ddl_module.SelectedValue.ToString());
-                
+
 
                     if (ddl_module.SelectedValue.ToString() == "C")
                     {
@@ -879,7 +880,7 @@ namespace logix.FAForm
                         }
                         // logix.CommanClass.TallyEDIFA.Fn_FATransfer(Str_Vouchertype, int.Parse(txt_receipt.Text.ToString()), int.Parse(txt_receipt.Text.ToString()), "", "", "");
                         //logix.CommanClass.TallyEDIFA.Fn_FATransfer(Str_Vouchertype, int.Parse(txt_receipt.Text.ToString()), int.Parse(txt_receipt.Text.ToString()), "", "", Convert.ToInt32(Session["LoginBranchid"].ToString()), "");
-                        
+
                     }
 
 
@@ -922,60 +923,60 @@ namespace logix.FAForm
                     //    if (ddl_module.SelectedValue.ToString() == "B")
                     //    {
 
-                    //        DataAccess.checkvouchercount CntObj = new DataAccess.checkvouchercount();
+                    //        //DataAccess.checkvouchercount CntObj = new //DataAccess.checkvouchercount();
                     //        CntObj.DelAutoJV4Fa(Rid, int.Parse(txt_receipt.Text.ToString()), int.Parse(Session["LoginBranchid"].ToString()), "Delete", Session["FADbname"].ToString(), Session["rptype"].ToString());
                     //    }
                     //    logix.CommanClass.TallyEDIFA.Fn_FATransfer(Str_Vouchertype, int.Parse(txt_receipt.Text.ToString()), int.Parse(txt_receipt.Text.ToString()), "", "", Convert.ToInt32(Session["LoginBranchid"].ToString()), "");
                     //}
 
 
-                  /*  if (ddl_module.SelectedValue.ToString() == "C")
-                    {
-                        if (Session["rptype"].ToString() == "R")
-                        {
-                            obj_da_Receipt.SpDelRecPay(Convert.ToInt32(txt_receipt.Text), 10, Convert.ToInt32(Session["LoginBranchid"].ToString()), "Voucher", Session["FADbname"].ToString());
-                            //obj_dt = obj_da_FA.GetRepostDetails(int.Parse(txt_receipt.Text.ToString()), 10, int.Parse(Session["LoginBranchid"].ToString()), 0, 0, "Voucher", Session["FADbname"].ToString());
-                            Str_Vouchertype = "Cash Receipt";
-                        }
-                        else if (Session["rptype"].ToString() == "P")
-                        {
-                            obj_da_Receipt.SpDelRecPay(Convert.ToInt32(txt_receipt.Text), 12, Convert.ToInt32(Session["LoginBranchid"].ToString()), "Voucher", Session["FADbname"].ToString());
-                            //obj_dt = obj_da_FA.GetRepostDetails(int.Parse(txt_receipt.Text.ToString()), 12, int.Parse(Session["LoginBranchid"].ToString()), 0, 0, "Voucher", Session["FADbname"].ToString());
-                            Str_Vouchertype = "Cash Payment";
-                        }
-                        logix.CommanClass.TallyEDIFA.Fn_FATransfer(Str_Vouchertype, int.Parse(txt_receipt.Text.ToString()), int.Parse(txt_receipt.Text.ToString()), "", "", "");
-                    }
-                    else if (ddl_module.SelectedValue.ToString() == "B")
-                    {
-                        if (Session["rptype"].ToString() == "R")
-                        {
-                            obj_da_Receipt.SpDelRecPay(Convert.ToInt32(txt_receipt.Text), 9, Convert.ToInt32(Session["LoginBranchid"].ToString()), "Voucher", Session["FADbname"].ToString());
-                            //obj_dt = obj_da_FA.GetRepostDetails(int.Parse(txt_receipt.Text.ToString()), 9, int.Parse(Session["LoginBranchid"].ToString()), 0, 0, "Voucher", Session["FADbname"].ToString());
-                            Str_Vouchertype = "Bank Receipt";
-                        }
-                        else if (Session["rptype"].ToString() == "P")
-                        {
-                            obj_da_Receipt.SpDelRecPay(Convert.ToInt32(txt_receipt.Text), 11, Convert.ToInt32(Session["LoginBranchid"].ToString()), "Voucher", Session["FADbname"].ToString());
-                            // obj_dt = obj_da_FA.GetRepostDetails(int.Parse(txt_receipt.Text.ToString()), 11, int.Parse(Session["LoginBranchid"].ToString()), 0, 0, "Voucher", Session["FADbname"].ToString());
-                            Str_Vouchertype = "Bank Payment";
-                        }
-                        logix.CommanClass.TallyEDIFA.Fn_FATransfer(Str_Vouchertype, int.Parse(txt_receipt.Text.ToString()), int.Parse(txt_receipt.Text.ToString()), "", "", "");
+                    /*  if (ddl_module.SelectedValue.ToString() == "C")
+                      {
+                          if (Session["rptype"].ToString() == "R")
+                          {
+                              obj_da_Receipt.SpDelRecPay(Convert.ToInt32(txt_receipt.Text), 10, Convert.ToInt32(Session["LoginBranchid"].ToString()), "Voucher", Session["FADbname"].ToString());
+                              //obj_dt = obj_da_FA.GetRepostDetails(int.Parse(txt_receipt.Text.ToString()), 10, int.Parse(Session["LoginBranchid"].ToString()), 0, 0, "Voucher", Session["FADbname"].ToString());
+                              Str_Vouchertype = "Cash Receipt";
+                          }
+                          else if (Session["rptype"].ToString() == "P")
+                          {
+                              obj_da_Receipt.SpDelRecPay(Convert.ToInt32(txt_receipt.Text), 12, Convert.ToInt32(Session["LoginBranchid"].ToString()), "Voucher", Session["FADbname"].ToString());
+                              //obj_dt = obj_da_FA.GetRepostDetails(int.Parse(txt_receipt.Text.ToString()), 12, int.Parse(Session["LoginBranchid"].ToString()), 0, 0, "Voucher", Session["FADbname"].ToString());
+                              Str_Vouchertype = "Cash Payment";
+                          }
+                          logix.CommanClass.TallyEDIFA.Fn_FATransfer(Str_Vouchertype, int.Parse(txt_receipt.Text.ToString()), int.Parse(txt_receipt.Text.ToString()), "", "", "");
+                      }
+                      else if (ddl_module.SelectedValue.ToString() == "B")
+                      {
+                          if (Session["rptype"].ToString() == "R")
+                          {
+                              obj_da_Receipt.SpDelRecPay(Convert.ToInt32(txt_receipt.Text), 9, Convert.ToInt32(Session["LoginBranchid"].ToString()), "Voucher", Session["FADbname"].ToString());
+                              //obj_dt = obj_da_FA.GetRepostDetails(int.Parse(txt_receipt.Text.ToString()), 9, int.Parse(Session["LoginBranchid"].ToString()), 0, 0, "Voucher", Session["FADbname"].ToString());
+                              Str_Vouchertype = "Bank Receipt";
+                          }
+                          else if (Session["rptype"].ToString() == "P")
+                          {
+                              obj_da_Receipt.SpDelRecPay(Convert.ToInt32(txt_receipt.Text), 11, Convert.ToInt32(Session["LoginBranchid"].ToString()), "Voucher", Session["FADbname"].ToString());
+                              // obj_dt = obj_da_FA.GetRepostDetails(int.Parse(txt_receipt.Text.ToString()), 11, int.Parse(Session["LoginBranchid"].ToString()), 0, 0, "Voucher", Session["FADbname"].ToString());
+                              Str_Vouchertype = "Bank Payment";
+                          }
+                          logix.CommanClass.TallyEDIFA.Fn_FATransfer(Str_Vouchertype, int.Parse(txt_receipt.Text.ToString()), int.Parse(txt_receipt.Text.ToString()), "", "", "");
 
 
-                    }
-                    if (obj_dt.Rows.Count == 1)
-                    {
-                        int_Voucherid = int.Parse(obj_dt.Rows[0]["vouid"].ToString());
-                        obj_da_FA.Delvoudetail(int_Voucherid, Session["FADbname"].ToString(), "Delete");
+                      }
+                      if (obj_dt.Rows.Count == 1)
+                      {
+                          int_Voucherid = int.Parse(obj_dt.Rows[0]["vouid"].ToString());
+                          obj_da_FA.Delvoudetail(int_Voucherid, Session["FADbname"].ToString(), "Delete");
 
-                        if (ddl_module.SelectedValue.ToString() == "B")
-                        {
+                          if (ddl_module.SelectedValue.ToString() == "B")
+                          {
 
-                            DataAccess.checkvouchercount CntObj = new DataAccess.checkvouchercount();
-                            CntObj.DelAutoJV4Fa(Rid, int.Parse(txt_receipt.Text.ToString()), int.Parse(Session["LoginBranchid"].ToString()), "Delete", Session["FADbname"].ToString());
-                        }
-                        logix.CommanClass.TallyEDIFA.Fn_FATransfer(Str_Vouchertype, int.Parse(txt_receipt.Text.ToString()), int.Parse(txt_receipt.Text.ToString()), "", "", "");
-                    }*/
+                              //DataAccess.checkvouchercount CntObj = new //DataAccess.checkvouchercount();
+                              CntObj.DelAutoJV4Fa(Rid, int.Parse(txt_receipt.Text.ToString()), int.Parse(Session["LoginBranchid"].ToString()), "Delete", Session["FADbname"].ToString());
+                          }
+                          logix.CommanClass.TallyEDIFA.Fn_FATransfer(Str_Vouchertype, int.Parse(txt_receipt.Text.ToString()), int.Parse(txt_receipt.Text.ToString()), "", "", "");
+                      }*/
                 }
                 catch (Exception Ex)
                 {
@@ -1128,7 +1129,7 @@ namespace logix.FAForm
             GridViewlog.Visible = true;
             Panel1.Visible = true;
             DataTable obj_dtlogdetails = new DataTable();
-            //DataAccess.LogDetails Logobj = new DataAccess.LogDetails();
+            //DataAccess.LogDetails Logobj = new //DataAccess.LogDetails();
             JobInput.Text = "";
 
             obj_dtlogdetails = Logobj.InsTempGrpLogdtlsGet(Convert.ToInt32(Session["LoginEmpId"]), Convert.ToInt32(Session["LoginBranchid"]), 1167, "MSGroup", "", "", Session["StrTranType"].ToString());

@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Sql;
 using System.Web.Services;
+using System.Text;
+using System.Web.Services.Description;
 
 namespace logix.FAForms
 {
@@ -35,14 +37,12 @@ namespace logix.FAForms
         DataAccess.HR.Employee empobj = new DataAccess.HR.Employee();
         DataAccess.Masters.MasterCharges chargeobj = new DataAccess.Masters.MasterCharges();
         DataAccess.Masters.MasterCustomer obj_da_customer = new DataAccess.Masters.MasterCustomer();
-        DataAccess.Masters.MasterCustomer obj_MasterCustomer = new DataAccess.Masters.MasterCustomer();
-        DataAccess.Masters.MasterPort port = new DataAccess.Masters.MasterPort();
 
+        string StrScript = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "GenerateLabelAfter();", true);
-
 
             string Ccode = Convert.ToString(Session["Ccode"]);
 
@@ -59,11 +59,7 @@ namespace logix.FAForms
                 chargeobj.GetDataBase(Ccode);
 
                 obj_da_customer.GetDataBase(Ccode);
-                obj_MasterCustomer.GetDataBase(Ccode);
-                port.GetDataBase(Ccode);
-
-
-
+              
             }
 
             ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btncancel);
@@ -552,7 +548,7 @@ namespace logix.FAForms
             DataAccess.Masters.MasterCharges chargeobj = new DataAccess.Masters.MasterCharges();
             string Ccode = HttpContext.Current.Session["Ccode"].ToString();
             chargeobj.GetDataBase(Ccode);
-         
+          
             DataTable dtCharge = new DataTable();
             dtCharge = chargeobj.GetLikeCurrency(prefix);
             List_Result = Utility.Fn_TableToList(dtCharge, "currency", "currency");
@@ -693,7 +689,7 @@ namespace logix.FAForms
 
         protected void txtLedgerName_TextChanged(object sender, EventArgs e)
         {
-          //  DataAccess.Accounts.Recipts recobj = new DataAccess.Accounts.Recipts();
+           // DataAccess.Accounts.Recipts recobj = new DataAccess.Accounts.Recipts();
             DataTable dtopbal = new DataTable();
             double opbalamt = 0;
 
@@ -1161,6 +1157,7 @@ namespace logix.FAForms
             //    blnerr = true;
             //    return;
             //}
+
             string filename = System.IO.Path.GetFileName(fileuploadExcel.FileName);
 
             string[] strTempArray;
@@ -1293,7 +1290,6 @@ namespace logix.FAForms
                 //    }
 
 
-
                 //}
                 //grdINVRec.DataSource = newdt;
                 //grdINVRec.DataBind();
@@ -1352,6 +1348,11 @@ namespace logix.FAForms
                 newdt.Columns.Add("lid");
                 newdt.Columns.Add("cid");
                 string vid = "";
+
+                int r = 0;
+                DataTable dtnewcus = new DataTable();
+                dtnewcus = fn_CreateDT();
+
                 //int invno = 1000, pano = 1000, acnno = 1000, adnno = 1000, cnno = 1000, dnno = 1000, osdn = 1000, oscn = 1000, pno = 1000, rno = 1000;
 
                 int invno = obj_da_Led.GetVouNo4OPBal("OI");
@@ -1365,6 +1366,8 @@ namespace logix.FAForms
                 int pno = obj_da_Led.GetVouNo4OPBal("OZ");
                 int rno = obj_da_Led.GetVouNo4OPBal("OY");
                 int jno = obj_da_Led.GetVouNo4OPBal("OJ");
+                int rpno = obj_da_Led.GetVouNo4OPBal("ORP");
+                int rrno = obj_da_Led.GetVouNo4OPBal("ORR");
 
 
                 for (int i = 0; i < newdt.Rows.Count; i++)
@@ -1396,13 +1399,26 @@ namespace logix.FAForms
                     }
                     if (newdt.Rows[i]["LOCATION"].ToString() == "-" || newdt.Rows[i]["LOCATION"].ToString() == "")
                     {
-                        newdt.Rows[i]["LOCATION"] = "CORPORATE";
+                        newdt.Rows[i]["LOCATION"] = "";
+                        //newdt.Rows[i]["LOCATION"] = "CORPORATE";
+                    }
+
+                    if (newdt.Rows[i]["VOU DATE"].ToString() == "-" || newdt.Rows[i]["VOU DATE"].ToString() == "" || newdt.Rows[i]["VOU DATE"].ToString() == " ")
+                    {
+                        newdt.Rows[i]["VOU DATE"] = newdt.Rows[i]["VENDOR REF DATE"];
+                    }
+                    if (newdt.Rows[i]["VOU NO"].ToString() == "-" || newdt.Rows[i]["VOU NO"].ToString() == "" || newdt.Rows[i]["VOU NO"].ToString() == " ")
+                    {
+                        newdt.Rows[i]["VOU NO"] = newdt.Rows[i]["VENDOR REFNO"];
                     }
 
                     //newdt.Rows[i]["LOCATION"] = "CHENNAI";
 
-                    bid = empobj.GetBranchIdNEW(newdt.Rows[i]["LOCATION"].ToString());
+                    bid = empobj.GetBranchIdNEW("CHENNAI");
                     newdt.Rows[i]["bid"] = bid.ToString();
+
+                    //bid = empobj.GetBranchIdNEW(newdt.Rows[i]["LOCATION"].ToString());
+                    //newdt.Rows[i]["bid"] = bid.ToString();
 
 
                     // New Set Vino
@@ -1422,7 +1438,7 @@ namespace logix.FAForms
                             vendorrefno = newdt.Rows[i]["VOU NO"].ToString();
                             //vendorrefdate = Convert.ToDateTime(newdt.Rows[i]["VENDOR REF DATE"].ToString());
                         }
-                        else if (newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "CN-OPS" || newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "PURCHASE INVOICE")
+                        else if (newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "CN-OPS" || newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "CREDIT NOTE - OPERATIONS" || newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "PURCHASE INVOICE")
                         {
                             newdt.Rows[i]["vid"] = "OP";
                             vid = newdt.Rows[i]["vid"].ToString();
@@ -1461,7 +1477,7 @@ namespace logix.FAForms
                             vendorrefno = newdt.Rows[i]["VENDOR REFNO"].ToString();
                             //vendorrefdate = Convert.ToDateTime(newdt.Rows[i]["VENDOR REF DATE"].ToString());
                         }
-                        else if (newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "Debit Note - Others" || newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "DEBIT NOTE")
+                        else if (newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "Debit Note - Others".ToUpper() || newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "DEBIT NOTE")
                         {
                             newdt.Rows[i]["vid"] = "OV";
                             vid = newdt.Rows[i]["vid"].ToString();
@@ -1472,7 +1488,7 @@ namespace logix.FAForms
                             vendorrefno = newdt.Rows[i]["VOU NO"].ToString();
                             //vendorrefdate = Convert.ToDateTime(newdt.Rows[i]["VENDOR REF DATE"].ToString());
                         }
-                        else if (newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "Credit Note - Others" || newdt.Rows[i]["VOU TYPE"].ToString() == "CREDIT NOTE")
+                        else if (newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "Credit Note - Others".ToUpper() || newdt.Rows[i]["VOU TYPE"].ToString() == "CREDIT NOTE")
                         {
                             newdt.Rows[i]["vid"] = "OE";
                             vid = newdt.Rows[i]["vid"].ToString();
@@ -1632,10 +1648,40 @@ namespace logix.FAForms
                             //vendorrefdate = Convert.ToDateTime(newdt.Rows[i]["VENDOR REF DATE"].ToString());
                         }
 
+                        else if (newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "Remittance receipt".ToUpper())
+                        {
+                            double amount = Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"].ToString());
+
+                            newdt.Rows[i]["vid"] = "ORR";
+                            vid = newdt.Rows[i]["vid"].ToString();
+                            int_Subgroupid = 65;
+                            int_Groupid = 13;
+                            obptype = Convert.ToChar("C");
+                            Session["voutyenew"] = newdt.Rows[i]["VOU TYPE"].ToString().ToUpper();
+                            rrno = rrno + 1;
+                            vouno = rrno;
+                            vendorrefno = newdt.Rows[i]["VOU NO"].ToString();
+                            //vendorrefdate = Convert.ToDateTime(newdt.Rows[i]["VENDOR REF DATE"].ToString());
+                        }
+                        else if (newdt.Rows[i]["VOU TYPE"].ToString().ToUpper() == "Remittance payment".ToUpper())
+                        {
+                            newdt.Rows[i]["vid"] = "ORP";
+                            vid = newdt.Rows[i]["vid"].ToString();
+                            int_Subgroupid = 44;
+                            int_Groupid = 12;
+                            obptype = Convert.ToChar("D");
+                            Session["voutyenew"] = newdt.Rows[i]["VOU TYPE"].ToString().ToUpper();
+                            rpno = rpno + 1;
+                            vouno = rpno;
+                            vendorrefno = newdt.Rows[i]["VOU NO"].ToString();
+                            //vendorrefdate = Convert.ToDateTime(newdt.Rows[i]["VENDOR REF DATE"].ToString());
+                        }
+
+
 
                         if (newdt.Rows[i]["LEDGER NAME"].ToString().ToUpper() != "")
                         {
-                            ledgername = newdt.Rows[i]["LEDGER NAME"].ToString().ToUpper();
+                            ledgername = newdt.Rows[i]["LEDGER NAME"].ToString().ToUpper().Trim();
                             if (newdt.Rows[i]["FCURR"].ToString() != "")
                             {
                                 fcurr = newdt.Rows[i]["FCURR"].ToString();
@@ -1655,92 +1701,116 @@ namespace logix.FAForms
                                 fexrate = 1;
                             }
 
-                            dtcust = obj_da_customer.GetcheckLedgeridOB(ledgername);
+                            dtcust = obj_da_customer.GetcheckLedgeridOBNew(ledgername, newdt.Rows[i]["LOCATION"].ToString());
 
                             if (dtcust.Rows.Count == 0)
                             {
-                                byte[] Img_Length = new byte[0];
-                                byte[] Img_Length1 = new byte[0];
-                                byte[] Img_Length2 = new byte[0];
-                                byte[] Img_Length3 = new byte[0];
-                                byte[] Img_Length4 = new byte[0];
-                                int groupid = 0;
-                                string Type1 = "", txt_gstin = "";
-                                string RCM = "", unregistered = "", gstexemp = "", SEZ = "", Register = "", SEZIgst = "", SEZAGENT = "";
-                                string txtPanNo = "";
-                                string typetds = "";
-                                int int_location = 0, int_port = 0, int_district = 0, int_state = 0;
-                                int int_country = 0;
-                                string hf_countryid = "";
-                                string hf_portid = "";
-                                DataTable dt_Location1 = new DataTable();
-                                DataTable dt_Location2 = new DataTable();
-                                DataTable dtloc = new DataTable();
+
+                                dtnewcus.Rows.Add();
+
+                                dtnewcus.Rows[r]["VOU DATE"] = (Convert.ToDateTime(newdt.Rows[i]["VOU DATE"])).ToString("MM/dd/yyyy");
+                                //dtnewcus.Rows[r]["VOU DATE"] = newdt.Rows[i]["VOU DATE"].ToString();
+
+                                dtnewcus.Rows[r]["LEDGER NAME"] = newdt.Rows[i]["LEDGER NAME"].ToString();
+                                dtnewcus.Rows[r]["VOU TYPE"] = newdt.Rows[i]["VOU TYPE"].ToString();
+                                dtnewcus.Rows[r]["VOU NO"] = newdt.Rows[i]["VOU NO"].ToString();
+                                dtnewcus.Rows[r]["VOU AMOUNT"] = newdt.Rows[i]["VOU AMOUNT"].ToString();
+                                dtnewcus.Rows[r]["VOU YEAR"] = newdt.Rows[i]["VOU YEAR"].ToString();
+                                dtnewcus.Rows[r]["FAMOUNT"] = newdt.Rows[i]["FAMOUNT"].ToString();
+                                dtnewcus.Rows[r]["EX RATE"] = newdt.Rows[i]["EX RATE"].ToString();
+                                dtnewcus.Rows[r]["FCURR"] = newdt.Rows[i]["FCURR"].ToString();
+                                dtnewcus.Rows[r]["VENDOR REFNO"] = newdt.Rows[i]["VENDOR REFNO"].ToString();
+
+                                dtnewcus.Rows[r]["VENDOR REF DATE"] = (Convert.ToDateTime(newdt.Rows[i]["VENDOR REF DATE"])).ToString("MM/dd/yyyy");
+                                //dtnewcus.Rows[r]["VENDOR REF DATE"] = newdt.Rows[i]["VENDOR REF DATE"].ToString();
+
+                                dtnewcus.Rows[r]["LOCATION"] = newdt.Rows[i]["LOCATION"].ToString();
+                                dtnewcus.Rows[r]["ADDRESS"] = newdt.Rows[i]["ADDRESS"].ToString();
+
+                                r = r + 1;
+                                continue;
+
+                                //byte[] Img_Length = new byte[0];
+                                //byte[] Img_Length1 = new byte[0];
+                                //byte[] Img_Length2 = new byte[0];
+                                //byte[] Img_Length3 = new byte[0];
+                                //byte[] Img_Length4 = new byte[0];
+                                //int groupid = 0;
+                                //string Type1 = "", txt_gstin = "";
+                                //string RCM = "", unregistered = "", gstexemp = "", SEZ = "", Register = "", SEZIgst = "", SEZAGENT = "";
+                                //string txtPanNo = "";
+                                //string typetds = "";
+                                //int int_location = 0, int_port = 0, int_district = 0, int_state = 0;
+                                //int int_country = 0;
+                                //string hf_countryid = "";
+                                //string hf_portid = "";
+                                //DataTable dt_Location1 = new DataTable();
+                                //DataTable dt_Location2 = new DataTable();
+                                //DataTable dtloc = new DataTable();
                                 //DataAccess.Masters.MasterCustomer obj_MasterCustomer = new DataAccess.Masters.MasterCustomer();
                                 //DataAccess.Masters.MasterPort port = new DataAccess.Masters.MasterPort();
 
-                                string cityname = newdt.Rows[i]["LOCATION"].ToString().Trim();
-                                string txtstreet = newdt.Rows[i]["ADDRESS"].ToString().Trim();
+                                //string cityname = newdt.Rows[i]["LOCATION"].ToString().Trim();
+                                //string txtstreet = newdt.Rows[i]["ADDRESS"].ToString().Trim();
 
-                                if (cityname != "")
-                                {
-                                    hf_countryid = Convert.ToString(port.SPSelPortByCountryId(cityname.ToUpper()));
-                                    int_country = Convert.ToInt32(hf_countryid);
+                                //if (cityname != "")
+                                //{
+                                //    hf_countryid = Convert.ToString(port.SPSelPortByCountryId(cityname.ToUpper()));
+                                //    int_country = Convert.ToInt32(hf_countryid);
 
-                                    hf_portid = Convert.ToString(port.GetNPortid(cityname.ToUpper()));
-                                    int_port = Convert.ToInt32(hf_portid);
+                                //    hf_portid = Convert.ToString(port.GetNPortid(cityname.ToUpper()));
+                                //    int_port = Convert.ToInt32(hf_portid);
 
-                                    dt_Location1 = obj_MasterCustomer.SPSelLikeLocationWithCity("0", int_port);
-                                    dt_Location2 = obj_MasterCustomer.SPSelLikewithoutLocationCity(int_port);
+                                //    dt_Location1 = obj_MasterCustomer.SPSelLikeLocationWithCity("0", int_port);
+                                //    dt_Location2 = obj_MasterCustomer.SPSelLikewithoutLocationCity(int_port);
 
-                                    if (dt_Location1.Rows.Count > 0)
-                                    {
-                                        int_location = Convert.ToInt32(dt_Location1.Rows[0]["LocationId"].ToString());
-                                    }
-                                    else if (dt_Location2.Rows.Count > 0)
-                                    {
-                                        //int_location = Convert.ToInt32(dt_Location2.Rows[0]["LocationId"].ToString());
+                                //    if (dt_Location1.Rows.Count > 0)
+                                //    {
+                                //        int_location = Convert.ToInt32(dt_Location1.Rows[0]["LocationId"].ToString());
+                                //    }
+                                //    else if (dt_Location2.Rows.Count > 0)
+                                //    {
+                                //        //int_location = Convert.ToInt32(dt_Location2.Rows[0]["LocationId"].ToString());
 
-                                    }
-                                    else
-                                    {
-                                        int_location = 0;
-                                    }
+                                //    }
+                                //    else
+                                //    {
+                                //        int_location = 0;
+                                //    }
 
-                                    dtloc = obj_MasterCustomer.GETDetails4LocationIntNewPort(0, Convert.ToInt32(int_port));
+                                //    dtloc = obj_MasterCustomer.GETDetails4LocationIntNewPort(0, Convert.ToInt32(int_port));
 
-                                    if (dtloc.Rows.Count > 0)
-                                    {
-                                        int_district = Convert.ToInt32(dtloc.Rows[0]["districtid"].ToString());
+                                //    if (dtloc.Rows.Count > 0)
+                                //    {
+                                //        int_district = Convert.ToInt32(dtloc.Rows[0]["districtid"].ToString());
 
-                                        int_state = Convert.ToInt32(dtloc.Rows[0]["stateid"].ToString());
-                                    }
-                                    else
-                                    {
-                                        int_district = 0;
-                                        int_state = 0;
-                                    }
-                                }
-                                else
-                                {
-                                    int_country = 0;
-                                    int_port = 0;
-                                    int_district = 0;
-                                    int_state = 0;
+                                //        int_state = Convert.ToInt32(dtloc.Rows[0]["stateid"].ToString());
+                                //    }
+                                //    else
+                                //    {
+                                //        int_district = 0;
+                                //        int_state = 0;
+                                //    }
+                                //}
+                                //else
+                                //{
+                                //    int_country = 0;
+                                //    int_port = 0;
+                                //    int_district = 0;
+                                //    int_state = 0;
 
-                                }
+                                //}
 
 
-                                obj_MasterCustomer.SPInsMasterCustomerNewimagenewnew_onelhnew(ledgername.ToUpper().Trim(), "C", "", "", "", txtstreet.ToUpper(),
-                                                                   int_location, int_port, int_district, int_state, int_country, "", 0, null, "", 0, "", 0, null, "",
-                                                                   "", txtPanNo, "", "", "", "", "", "", "", "", "", Convert.ToInt32(Session["LoginEmpId"]),
-                                                                   null, null, 0, txt_gstin.ToUpper(), "", null, RCM, unregistered, gstexemp, SEZ, Register, Img_Length, Img_Length1,
-                                                                   Img_Length2, Img_Length3, Img_Length4, Convert.ToInt32(Session["LoginEmpId"]), 0.0, "", "", "", 0.0, SEZIgst, "L", "", SEZAGENT);
+                                //obj_MasterCustomer.SPInsMasterCustomerNewimagenewnew_onelhnew(ledgername.ToUpper().Trim(), "C", "", "", "", txtstreet.ToUpper(),
+                                //                                   int_location, int_port, int_district, int_state, int_country, "", 0, null, "", 0, "", 0, null, "",
+                                //                                   "", txtPanNo, "", "", "", "", "", "", "", "", "", Convert.ToInt32(Session["LoginEmpId"]),
+                                //                                   null, null, 0, txt_gstin.ToUpper(), "", null, RCM, unregistered, gstexemp, SEZ, Register, Img_Length, Img_Length1,
+                                //                                   Img_Length2, Img_Length3, Img_Length4, Convert.ToInt32(Session["LoginEmpId"]), 0.0, "", "", "", 0.0, SEZIgst, "L", "", SEZAGENT);
                             }
 
                             DataTable dtcust1 = new DataTable();
-                            dtcust1 = obj_da_customer.GetcheckLedgeridOB(ledgername);
-
+                            dtcust1 = obj_da_customer.GetcheckLedgeridOBNew(ledgername, newdt.Rows[i]["LOCATION"].ToString());
 
                             if (dtcust1.Rows.Count > 0)
                             {
@@ -1807,18 +1877,18 @@ namespace logix.FAForms
 
                                 if (ledgerid == 0)
                                 {
-                                    int_Ledgerid = obj_da_Led.InsLedgerHeadfromTally(ledgername, int_Subgroupid, int_Groupid, 'G', customerid, 'C', FaDbName);
+                                    int_Ledgerid = obj_da_Led.InsLedgerHeadfromTally(ledgername.Trim(), int_Subgroupid, int_Groupid, 'G', customerid, 'C', FaDbName);
 
-                                    obj_da_Led.InsLedgerDetailsNew(int_Ledgerid, Div_Id, bid, 'Z', Convert.ToChar(obptype.ToString()), 0, Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"])), FaDbName);
+                                    obj_da_Led.InsLedgerDetailsNew(int_Ledgerid, Div_Id, bid, 'Z', Convert.ToChar(obptype.ToString()), 0, Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"])), FaDbName, Convert.ToDouble(Math.Abs(fcamt)), fcurr);
 
-                                    recobj.InsFARectPmtNew(Convert.ToInt32(int_Ledgerid), vouno, Convert.ToDateTime(newdt.Rows[i]["VOU DATE"].ToString().Replace("-", "/")), vid, 2022, Convert.ToInt32(bid), Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"].ToString())), fcurr, Convert.ToDouble(Math.Abs(fcamt)), Convert.ToInt32(Session["Loginyear"].ToString()), Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"])), "", 0, "N", Convert.ToInt32(customerid), Convert.ToDouble(fexrate), vendorrefno, Convert.ToDateTime(newdt.Rows[i]["VOU DATE"].ToString().Replace("-", "/")));
+                                    recobj.InsFARectPmtNew(Convert.ToInt32(int_Ledgerid), vouno, Convert.ToDateTime(newdt.Rows[i]["VOU DATE"].ToString().Replace("-", "/")), vid, 2023, Convert.ToInt32(bid), Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"].ToString())), fcurr, Convert.ToDouble(Math.Abs(fcamt)), Convert.ToInt32(Session["Loginyear"].ToString()), Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"])), "", 0, "N", Convert.ToInt32(customerid), Convert.ToDouble(fexrate), vendorrefno, Convert.ToDateTime(newdt.Rows[i]["VOU DATE"].ToString().Replace("-", "/")));
                                     //recobj.InsFARectPmtcheck(Convert.ToInt32(int_Ledgerid), Convert.ToInt32(newdt.Rows[i]["VOU NO"].ToString()), Convert.ToDateTime(Utility.fn_ConvertDatetime(newdt.Rows[i]["VOU DATE"].ToString().Replace("-", "/"))), vid, Convert.ToInt32(newdt.Rows[i]["VOU YEAR"].ToString()), Convert.ToInt32(bid), Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"].ToString()), fcurr, Convert.ToDouble(fcamt), Convert.ToInt32(Session["VOU YEAR"].ToString()), Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"]), "", 0, "N", Convert.ToInt32(customerid), Convert.ToDouble(fexrate), newdt.Rows[i]["VENDOR REFNO"].ToString(), Convert.ToDateTime(newdt.Rows[i]["VENDOR REF DATE"].ToString().Replace("-", "/")));
                                 }
                                 else
                                 {
-                                    obj_da_Led.InsLedgerDetailsNew(ledgerid, Div_Id, bid, 'Z', Convert.ToChar(obptype.ToString()), 0, Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"])), FaDbName);
+                                    obj_da_Led.InsLedgerDetailsNew(ledgerid, Div_Id, bid, 'Z', Convert.ToChar(obptype.ToString()), 0, Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"])), FaDbName, Convert.ToDouble(Math.Abs(fcamt)), fcurr);
 
-                                    recobj.InsFARectPmtNew(Convert.ToInt32(ledgerid), vouno, Convert.ToDateTime(newdt.Rows[i]["VOU DATE"].ToString().Replace("-", "/")), vid, 2022, Convert.ToInt32(bid), Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"].ToString())), fcurr, Convert.ToDouble(Math.Abs(fcamt)), Convert.ToInt32(Session["Loginyear"].ToString()), Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"])), "", 0, "N", Convert.ToInt32(customerid), Convert.ToDouble(fexrate), vendorrefno, Convert.ToDateTime(newdt.Rows[i]["VOU DATE"].ToString().Replace("-", "/")));
+                                    recobj.InsFARectPmtNew(Convert.ToInt32(ledgerid), vouno, Convert.ToDateTime(newdt.Rows[i]["VOU DATE"].ToString().Replace("-", "/")), vid, 2023, Convert.ToInt32(bid), Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"].ToString())), fcurr, Convert.ToDouble(Math.Abs(fcamt)), Convert.ToInt32(Session["Loginyear"].ToString()), Math.Abs(Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"])), "", 0, "N", Convert.ToInt32(customerid), Convert.ToDouble(fexrate), vendorrefno, Convert.ToDateTime(newdt.Rows[i]["VOU DATE"].ToString().Replace("-", "/")));
                                     //recobj.InsFARectPmtcheck(Convert.ToInt32(ledgerid), Convert.ToInt32(newdt.Rows[i]["VOU NO"].ToString()), Convert.ToDateTime(Utility.fn_ConvertDatetime(newdt.Rows[i]["VOU DATE"].ToString().Replace("-", "/"))), vid, Convert.ToInt32(newdt.Rows[i]["VOU YEAR"].ToString()), Convert.ToInt32(bid), Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"].ToString()), fcurr, Convert.ToDouble(fcamt), Convert.ToInt32(Session["VOU YEAR"].ToString()), Convert.ToDouble(newdt.Rows[i]["VOU AMOUNT"]), "", 0, "N", Convert.ToInt32(customerid), Convert.ToDouble(fexrate), newdt.Rows[i]["VENDOR REFNO"].ToString(), Convert.ToDateTime(newdt.Rows[i]["VENDOR REF DATE"].ToString().Replace("-", "/")));
 
                                 }
@@ -1830,8 +1900,36 @@ namespace logix.FAForms
                     }
                 }
 
-                ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "logix", "alert('File Uploaded Successfully');", true);
-                return;
+
+                StrScript += "File Uploaded Successfully";
+
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "logix", "alertify.alert('" + StrScript + "');", true);
+
+
+                if (dtnewcus.Rows.Count > 0)
+                {
+                    Response.Clear();
+                    Response.Buffer = true;
+                    Response.AddHeader("content-disposition", "attachment;filename=OPBalBreakupMisMatchCust.xls");
+                    Response.Charset = "";
+                    Response.ContentType = "application/vnd.ms-excel";
+                    StringBuilder SB = new StringBuilder();
+                    StringWriter sw = new System.IO.StringWriter(SB);
+                    HtmlTextWriter hw = new HtmlTextWriter(sw);
+                    GridView grd = new GridView();
+
+                    grd.DataSource = dtnewcus;
+                    grd.DataBind();
+
+                    grd.RenderControl(hw);
+                    Response.Write(sw);
+                    Response.Flush();
+                    Response.End();
+                }
+
+
+                //ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "logix", "alert('File Uploaded Successfully');", true);
+                //return;
 
                 //grdINVRec.DataSource = newdt;
                 //grdINVRec.DataBind();
@@ -1843,6 +1941,27 @@ namespace logix.FAForms
                 ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "logix", "alert('Kindly check the Excel Format');", true);
                 return;
             }
+        }
+
+        public DataTable fn_CreateDT()
+        {
+            DataTable dtnewcust = new DataTable();
+
+            dtnewcust.Columns.Add("VOU DATE");
+            dtnewcust.Columns.Add("LEDGER NAME");
+            dtnewcust.Columns.Add("VOU TYPE");
+            dtnewcust.Columns.Add("VOU NO");
+            dtnewcust.Columns.Add("VOU AMOUNT");
+            dtnewcust.Columns.Add("VOU YEAR");
+            dtnewcust.Columns.Add("FAMOUNT");
+            dtnewcust.Columns.Add("EX RATE");
+            dtnewcust.Columns.Add("FCURR");
+            dtnewcust.Columns.Add("VENDOR REFNO");
+            dtnewcust.Columns.Add("VENDOR REF DATE");
+            dtnewcust.Columns.Add("LOCATION");
+            dtnewcust.Columns.Add("ADDRESS");
+
+            return dtnewcust;
         }
 
         protected void txtvouno_TextChanged(object sender, EventArgs e)

@@ -235,7 +235,7 @@
                 font-size: 11px;
             }
 
-        .modalPopupssLog {
+        .modalPopupLog {
             background-color: #FFFFFF;
             border: 1px solid #b1b1b1;
             width: 48.5%;
@@ -415,7 +415,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="logix_CPH" runat="server">
 
     <div>
-        <div class="col-md-12  maindiv">
+        <div class="col-md-12 maindiv">
             <div class="widget box" runat="server">
                 <div class="widget-header">
                     <div>
@@ -436,7 +436,6 @@
                     </div>
                         </div>
 
-
                       <div class="FixedButtons">
 
     <div class="right_btn">
@@ -450,10 +449,11 @@
     </div>
 </div>
 
+
                 </div>
 
                 <div class="widget-content">
-                      
+                     
                     <div class="FormGroupContent4 boxmodal">
                         <div class="ModeAc">
                             <asp:Label ID="lbl_mode" runat="server" Text="Mode" Visible="false"></asp:Label>
