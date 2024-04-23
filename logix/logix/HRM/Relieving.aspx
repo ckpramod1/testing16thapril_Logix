@@ -265,7 +265,7 @@
     
     <!-- Breadcrumbs line End -->
 
-
+      <div class="col-md-12  maindiv">
     <div class="widget box">
         <div class="widget-header">
             <div>
@@ -377,6 +377,7 @@
           
         </div>
     </div>
+        </div>
 
 
 

@@ -21,6 +21,9 @@ namespace logix.Maintenance
         DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
         DataAccess.HR.FrontPage da_obj_HRFrontObj = new DataAccess.HR.FrontPage();
         DataAccess.HR.Employee hrobj = new DataAccess.HR.Employee();
+        DataAccess.UserPermission obj_UP = new DataAccess.UserPermission();
+        DataAccess.Masters.MasterEmployee obj_emp = new DataAccess.Masters.MasterEmployee();
+        DataAccess.HR.Employee da_obj_hrempobj = new DataAccess.HR.Employee();
         DataTable dt = new DataTable();
         DataTable dts = new DataTable();
         int branchid;
@@ -49,6 +52,23 @@ namespace logix.Maintenance
             //    grd_images.DataSource = (byte[])(str);
             //    grd_images.DataBind();
             //}
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+                userobj.GetDataBase(Ccode);
+                da_obj_userobj.GetDataBase(Ccode);
+                obj_da_Log.GetDataBase(Ccode);
+                da_obj_HRFrontObj.GetDataBase(Ccode);
+                hrobj.GetDataBase(Ccode);
+
+                obj_UP.GetDataBase(Ccode);
+                obj_emp.GetDataBase(Ccode);
+                da_obj_hrempobj.GetDataBase(Ccode);
+
+            }
 
 
 
@@ -101,6 +121,8 @@ namespace logix.Maintenance
             List<string> gname = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.HR.Employee da_obj_HRFrontObj = new DataAccess.HR.Employee();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_HRFrontObj.GetDataBase(Ccode);
             obj_dt = da_obj_HRFrontObj.GetLikeroleName(prefix.ToUpper());
             gname = Utility.Fn_DatatableToList_int16(obj_dt, "rolename", "roleid");
             // Utility.Fn_TableToList_Cust(obj_dt, "empnamecode", "employeeid", "portname", "designame");
@@ -126,13 +148,13 @@ namespace logix.Maintenance
         public void userrights()
         {
             DataTable dt_MenuRights = new DataTable();
-            DataAccess.UserPermission obj_UP = new DataAccess.UserPermission();
+            //DataAccess.UserPermission obj_UP = new //DataAccess.UserPermission();
             dt_MenuRights = obj_UP.Getmodule(Convert.ToInt16(Session["LoginEmpId"].ToString()), Convert.ToInt16(Session["LoginBranchid"].ToString()));
         }
 
         protected void grd_images_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataAccess.HR.Employee obj_emp = new DataAccess.HR.Employee();
+            //DataAccess.HR.Employee obj_emp = new //DataAccess.HR.Employee();
             if (txt_user.Text != "")
             {
 
@@ -424,7 +446,7 @@ namespace logix.Maintenance
 
         public void grid_homeimage()
         {
-            DataAccess.Masters.MasterEmployee obj_emp = new DataAccess.Masters.MasterEmployee();
+            //DataAccess.Masters.MasterEmployee obj_emp = new //DataAccess.Masters.MasterEmployee();
             DataTable dtnew;
             if(ddl_branch.SelectedValue !="0")
             {
@@ -6138,13 +6160,13 @@ namespace logix.Maintenance
 
         private void LoadCheckList()
         {
-            DataAccess.UserPermission da_obj_userobj = new DataAccess.UserPermission();
+            //DataAccess.UserPermission da_obj_userobj = new //DataAccess.UserPermission();
 
             if (hf_employeeid.Value != "")
             {
                 if (txt_user.Text != "All" && grd_user.Rows.Count > 0)
                 {
-                    DataAccess.HR.Employee da_obj_hrempobj = new DataAccess.HR.Employee();
+                    //DataAccess.HR.Employee da_obj_hrempobj = new //DataAccess.HR.Employee();
                     //  str_employeecode = hf_empcode.Value;
                     //  hf_employeeid.Value = da_obj_hrempobj.GetEmpId(Convert.ToString(hf_empcode.Value)).ToString();
 
@@ -6278,13 +6300,13 @@ namespace logix.Maintenance
 
         public void loadcheckbranch()
         {
-            DataAccess.UserPermission da_obj_userobj = new DataAccess.UserPermission();
+            //DataAccess.UserPermission da_obj_userobj = new //DataAccess.UserPermission();
 
             if (hf_employeeid.Value != "")
             {
                 if (txt_user.Text != "All" && Gridbranch.Rows.Count > 0)
                 {
-                    DataAccess.HR.Employee da_obj_hrempobj = new DataAccess.HR.Employee();
+                    //DataAccess.HR.Employee da_obj_hrempobj = new //DataAccess.HR.Employee();
                     //  str_employeecode = hf_empcode.Value;
                     //  hf_employeeid.Value = da_obj_hrempobj.GetEmpId(Convert.ToString(hf_empcode.Value)).ToString();
 
@@ -6423,9 +6445,9 @@ namespace logix.Maintenance
 
                 try
                 {
-                    DataAccess.UserPermission da_obj_userobj = new DataAccess.UserPermission();
-                    DataAccess.Masters.MasterPort da_obj_PortObj = new DataAccess.Masters.MasterPort();
-                    DataAccess.HR.Employee da_obj_hrempobj = new DataAccess.HR.Employee();
+                    //DataAccess.UserPermission da_obj_userobj = new //DataAccess.UserPermission();
+                    //DataAccess.Masters.MasterPort da_obj_PortObj = new //DataAccess.Masters.MasterPort();
+                    //DataAccess.HR.Employee da_obj_hrempobj = new //DataAccess.HR.Employee();
                     LoadCheckList();
 
                     if (!string.IsNullOrEmpty(Convert.ToString(hf_employeeid.Value)))
@@ -6738,9 +6760,9 @@ namespace logix.Maintenance
 
             try
             {
-                DataAccess.UserPermission da_obj_userobj = new DataAccess.UserPermission();
-                DataAccess.Masters.MasterPort da_obj_PortObj = new DataAccess.Masters.MasterPort();
-                DataAccess.HR.Employee da_obj_hrempobj = new DataAccess.HR.Employee();
+                //DataAccess.UserPermission da_obj_userobj = new //DataAccess.UserPermission();
+                //DataAccess.Masters.MasterPort da_obj_PortObj = new //DataAccess.Masters.MasterPort();
+                //DataAccess.HR.Employee da_obj_hrempobj = new //DataAccess.HR.Employee();
                 loadcheckbranch();
 
                 if (!string.IsNullOrEmpty(Convert.ToString(hf_employeeid.Value)))
@@ -6979,7 +7001,7 @@ namespace logix.Maintenance
         }
         protected void btn_view_Click(object sender, EventArgs e)
         {
-            DataAccess.HR.Employee da_obj_hrempobj = new DataAccess.HR.Employee();
+            //DataAccess.HR.Employee da_obj_hrempobj = new //DataAccess.HR.Employee();
             string str_RptName = "";
             string str_Script = "";
             string str_sf = "";
@@ -7856,7 +7878,7 @@ namespace logix.Maintenance
 
         protected void Grid_homeimage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataAccess.HR.Employee obj_emp = new DataAccess.HR.Employee();
+            //DataAccess.HR.Employee obj_emp = new //DataAccess.HR.Employee();
             int Processid;
             if (txt_user.Text != "")
             {
@@ -8167,7 +8189,7 @@ namespace logix.Maintenance
                     txt_userto.Focus();
                     return;
                 }
-                DataAccess.UserPermission da_obj_userobj = new DataAccess.UserPermission();
+                //DataAccess.UserPermission da_obj_userobj = new //DataAccess.UserPermission();
                 da_obj_userobj.insuserrightsall(Convert.ToInt32(hf_employeeid.Value), Convert.ToInt32(hf_employeeidto.Value));
                 // obj_da_Log.InsLogDetail(Convert.ToInt32(Session["LoginEmpID"].ToString()), 315, 2, Convert.ToInt32(Session["LoginBranchid"].ToString()), "Old Emp #" + Convert.ToInt32(hf_employeeid.Value) + "Update to New Emp #" + Convert.ToInt32(hf_employeeidto.Value));
 
@@ -8248,7 +8270,7 @@ namespace logix.Maintenance
             GridViewlog.Visible = true;
             Panel2.Visible = true;
             DataTable obj_dtlogdetails = new DataTable();
-            DataAccess.LogDetails obj_da_Log = new DataAccess.LogDetails();
+            //DataAccess.LogDetails obj_da_Log = new //DataAccess.LogDetails();
 
 
 
@@ -8299,7 +8321,7 @@ namespace logix.Maintenance
 
         protected void ddl_branch_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataAccess.HR.Employee obj_emp = new DataAccess.HR.Employee();
+            //DataAccess.HR.Employee obj_emp = new //DataAccess.HR.Employee();
             if (txt_user.Text != "")
             {
 
@@ -8371,7 +8393,7 @@ namespace logix.Maintenance
 
         protected void ddl_process_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataAccess.HR.Employee obj_emp = new DataAccess.HR.Employee();
+            //DataAccess.HR.Employee obj_emp = new //DataAccess.HR.Employee();
             int Processid;
             if (txt_user.Text != "")
             {
