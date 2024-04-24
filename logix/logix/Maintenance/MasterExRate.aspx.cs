@@ -824,26 +824,34 @@ namespace logix.Maintenance
         {
             string a, b;
             string Ccode = Convert.ToString(Session["Ccode"]);
-
-            if (Ccode == "CH01")
+            string DBName = "Demo";
+            if (Ccode == "SWNLOG")
             {
-                string DBName = "SL";
+                DBName = "SL";
                 using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
                 {
                     DBCS = reader.ReadLine();
                 }
             }
-            else if (Ccode == "CH02")
+            else if (Ccode == "MARINAIR")
             {
-                string DBName = "MarinAir";
+                DBName = "MarinAir";
                 using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
                 {
                     DBCS = reader.ReadLine();
                 }
             }
-            if (Ccode == "CH03")
+            else if (Ccode == "OCEANKARE")
             {
-                string DBName = "OceanKare";
+                DBName = "OceanKare";
+                using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
+                {
+                    DBCS = reader.ReadLine();
+                }
+            }
+            else if (Ccode == "DEMO")
+            {
+                DBName = "LogixDemo";
                 using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
                 {
                     DBCS = reader.ReadLine();

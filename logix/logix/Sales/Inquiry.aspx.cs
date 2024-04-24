@@ -174,6 +174,7 @@ namespace logix.Sales
                 obj_MasterPort.GetDataBase(Ccode) ;
                 cus.GetDataBase(Ccode) ;
                 da_obj_Customer.GetDataBase(Ccode) ;
+                empobj.GetDataBase(Ccode);
             }
 
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "SpanTagMoveInputBottom();MuiTextField();", true);

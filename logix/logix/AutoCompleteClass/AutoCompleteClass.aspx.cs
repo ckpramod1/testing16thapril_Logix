@@ -23,6 +23,8 @@ namespace logix.AutoCompleteClass
             List<string> LedgerName = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.FAMaster.MasterLedger da_obj_Ledger = new DataAccess.FAMaster.MasterLedger();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Ledger.GetDataBase(Ccode);
             obj_dt = da_obj_Ledger.GetLikeLedgername(prefix.ToUpper(), Convert.ToInt32(HttpContext.Current.Session["LoginDivisionId"].ToString()), Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString()), HttpContext.Current.Session["FADbname"].ToString());
             HttpContext.Current.Session["LV_Ledger"] = obj_dt;
             LedgerName = Utility.Fn_TableToList(obj_dt, "LNandPort", "Ledgerid","opsid");
@@ -38,6 +40,8 @@ namespace logix.AutoCompleteClass
             List<string> chequeNO = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Accounts.Recipts da_obj_rec = new DataAccess.Accounts.Recipts();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_rec.GetDataBase(Ccode);
             obj_dt = da_obj_rec.GetRecptPymtContraLikeChqno(Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString()), prefix.ToUpper(), 'O', HttpContext.Current.Session["FADbname"].ToString());
             HttpContext.Current.Session["Qry_Chq"] = obj_dt;
             chequeNO = Utility.Fn_DatatableToList_string(obj_dt, "chequeno", "chequeno");
@@ -51,6 +55,8 @@ namespace logix.AutoCompleteClass
         public static List<string> Getledgername4Contra(string prefix)
         {
             DataAccess.FAMaster.MasterLedger obj_ledger = new DataAccess.FAMaster.MasterLedger();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_ledger.GetDataBase(Ccode);
             DataTable obj_Dt = new DataTable();
             List<string> Ledgername = new List<string>();
             obj_Dt = obj_ledger.GetLikeLedgernameforcontra(prefix.ToUpper(), Convert.ToInt32(HttpContext.Current.Session["LoginDivisionId"]), Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"]), HttpContext.Current.Session["FADbname"].ToString());
@@ -67,6 +73,9 @@ namespace logix.AutoCompleteClass
             List<string> CustomerName = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Customer.GetDataBase(Ccode);
             DateTime Dt_from,Dt_to;
             Dt_from=DateTime.Parse(Utility.fn_ConvertDate(Str_Value[4]));
             Dt_to=DateTime.Parse(Utility.fn_ConvertDate(Str_Value[5]));
@@ -92,6 +101,8 @@ namespace logix.AutoCompleteClass
             List<string> CustomerName = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Customer.GetDataBase(Ccode);
             DateTime Dt_from, Dt_to;
             Dt_from = DateTime.Parse(Utility.fn_ConvertDate(Str_Value[4]));
             Dt_to = DateTime.Parse(Utility.fn_ConvertDate(Str_Value[5]));
@@ -108,6 +119,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Customer.GetDataBase(Ccode);
             obj_dt = da_obj_Customer.GetLikeIndianCustomer(prefix.ToUpper());
             List_Result = Utility.Fn_TableToList(obj_dt, "customer", "customerid");
             return List_Result;
@@ -119,6 +132,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterPort da_obj_Port = new DataAccess.Masters.MasterPort();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Port.GetDataBase(Ccode);
             obj_dt = da_obj_Port.GetLikePort(prefix.ToUpper());
             List_Result = Utility.Fn_TableToList(obj_dt, "portname", "portid");
             return List_Result;
@@ -130,6 +145,8 @@ namespace logix.AutoCompleteClass
             List<string> LedgerName = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.FAMaster.MasterLedger da_obj_Ledger = new DataAccess.FAMaster.MasterLedger();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Ledger.GetDataBase(Ccode);
             obj_dt = da_obj_Ledger.GetLikeLedgername(prefix.ToUpper(), Convert.ToInt32(HttpContext.Current.Session["LoginDivisionId"].ToString()), Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString()), HttpContext.Current.Session["FADbname"].ToString());
             LedgerName = Utility.Fn_TableToList(obj_dt, "LNandPort", "Ledgerid","opstype");
             return LedgerName;
@@ -142,6 +159,8 @@ namespace logix.AutoCompleteClass
             List<string> LedgerName = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.FAMaster.MasterLedger da_obj_Ledger = new DataAccess.FAMaster.MasterLedger();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Ledger.GetDataBase(Ccode);
             obj_dt = da_obj_Ledger.GetLikeLedgernamenew(prefix.ToUpper(), Convert.ToInt32(HttpContext.Current.Session["LoginDivisionId"].ToString()), Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString()), HttpContext.Current.Session["FADbname"].ToString());
             LedgerName = Utility.Fn_TableToListnew(obj_dt, "LNandPort", "Ledgerid", "opstype", "blocked");
             return LedgerName;
@@ -154,6 +173,8 @@ namespace logix.AutoCompleteClass
             List<string> LedgerName = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Accounts.Journal da_obj_Ledger = new DataAccess.Accounts.Journal();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Ledger.GetDataBase(Ccode);
             obj_dt = da_obj_Ledger.GetLikeLedgernameforADCN(prefix.ToUpper(), Convert.ToInt32(HttpContext.Current.Session["LoginDivisionId"].ToString()), Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString()), HttpContext.Current.Session["FADbname"].ToString());
             LedgerName = Utility.Fn_TableToList(obj_dt, "LNandPort", "Ledgerid", "opstype");
             return LedgerName;
@@ -165,6 +186,8 @@ namespace logix.AutoCompleteClass
             List<string> LedgerName = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Accounts.Journal da_obj_Journal = new DataAccess.Accounts.Journal();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Journal.GetDataBase(Ccode);
             obj_dt = da_obj_Journal.GetLikeLedgernameforjournal(prefix.ToUpper(), Convert.ToInt32(HttpContext.Current.Session["LoginDivisionId"].ToString()), Convert.ToInt32(HttpContext.Current.Session["LoginBranchid"].ToString()), HttpContext.Current.Session["FADbname"].ToString());
             LedgerName = Utility.Fn_TableToList(obj_dt, "ledgername", "ledgerid");
             return LedgerName;
@@ -176,6 +199,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterExRate da_obj_Exrate = new DataAccess.Masters.MasterExRate();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Exrate.GetDataBase(Ccode);
             obj_dt = da_obj_Exrate.GetLikeCurrency(prefix.ToUpper());
             List_Result = Utility.Fn_DttableToList(obj_dt, "currency");
             return List_Result;
@@ -187,6 +212,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterVessel da_obj_Vessel = new DataAccess.Masters.MasterVessel();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Vessel.GetDataBase(Ccode);
             obj_dt = da_obj_Vessel.GetLikeVessel(prefix.ToUpper());
             List_Result = Utility.Fn_TableToList(obj_dt, "vesselname", "vesselid");
             return List_Result;
@@ -198,6 +225,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Customer.GetDataBase(Ccode);
             obj_dt = da_obj_Customer.GetLikeCustomer(prefix.ToUpper(),"C");
             List_Result = Utility.Fn_TableToList(obj_dt, "customer", "customerid");
             return List_Result;
@@ -209,6 +238,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterEmployee da_obj_Employee = new DataAccess.Masters.MasterEmployee();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Employee.GetDataBase(Ccode);
             obj_dt = da_obj_Employee.GetLikeEmployee(prefix.ToUpper());
             List_Result = Utility.Fn_TableToList(obj_dt, "empnamecode", "employeeid");
             return List_Result;
@@ -220,6 +251,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.ForwardingExports.ShippingBill da_obj_ShippingBill = new DataAccess.ForwardingExports.ShippingBill();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_ShippingBill.GetDataBase(Ccode);
             obj_dt = da_obj_ShippingBill.GetLikeShipBill(prefix, int.Parse(HttpContext.Current.Session["LoginBranchid"].ToString()), int.Parse(HttpContext.Current.Session["LoginDivisionId"].ToString()));
             List_Result = Utility.Fn_DttableToList(obj_dt, "sbno");
             return List_Result;
@@ -232,6 +265,9 @@ namespace logix.AutoCompleteClass
             DataTable obj_dt = new DataTable();
             DataAccess.ForwardingImports.BLDetails obj_da_FIBL = new DataAccess.ForwardingImports.BLDetails();
             DataAccess.ForwardingExports.BLDetails obj_da_FEBL = new DataAccess.ForwardingExports.BLDetails();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_da_FIBL.GetDataBase(Ccode);
+            obj_da_FEBL.GetDataBase(Ccode);
             if (HttpContext.Current.Session["StrTranType"].ToString() == "FE")
             {
                 obj_dt = obj_da_FEBL.GetLikeOTHERBLDetails(prefix.ToUpper(), int.Parse(HttpContext.Current.Session["LoginBranchid"].ToString()), int.Parse(HttpContext.Current.Session["LoginDivisionId"].ToString()));
@@ -250,6 +286,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Marketing.Booking obj_da_book = new DataAccess.Marketing.Booking();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            obj_da_book.GetDataBase(Ccode);
             obj_dt = obj_da_book.GetLikeBooking(HttpContext.Current.Session["StrTranType"].ToString(), prefix.ToUpper(), int.Parse(HttpContext.Current.Session["LoginBranchid"].ToString()));
             List_Result = Utility.Fn_DttableToList(obj_dt, "shiprefno");
             return List_Result;
@@ -261,6 +299,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Customer.GetDataBase(Ccode);
             obj_dt = da_obj_Customer.GetLikeCustomer(prefix.ToUpper(), FType);
             List_Result = Utility.Fn_TableToList(obj_dt, "customername", "customerid");
             return List_Result;
@@ -272,6 +312,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            customerobj.GetDataBase(Ccode);
             obj_dt = customerobj.GetLikeIndianCustomer(prefix.ToUpper());
             List_Result = Utility.Fn_TableToList(obj_dt, "customer");
             return List_Result;
@@ -283,6 +325,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Accounts.NotOverCheque noobj = new DataAccess.Accounts.NotOverCheque();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            noobj.GetDataBase(Ccode);
             obj_dt = noobj.GetNotOverChequelikeChequediv(prefix.ToUpper(), int.Parse(HttpContext.Current.Session["LoginDivisionId"].ToString()));
             List_Result = Utility.Fn_TableToList(obj_dt, "ChequeNo");
             return List_Result;
@@ -294,6 +338,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterExRate exrateobj = new DataAccess.Masters.MasterExRate();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            exrateobj.GetDataBase(Ccode);
             obj_dt = exrateobj.GetLikeCurrency(prefix.ToUpper());
             List_Result = Utility.Fn_TableToList(obj_dt, "currency");
             return List_Result;
@@ -305,6 +351,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCharges da_obj_Charge = new DataAccess.Masters.MasterCharges();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Charge.GetDataBase(Ccode);
             obj_dt = da_obj_Charge.GetLikeCharges(prefix.ToUpper());
             List_Result = Utility.Fn_DatatableToList_int16(obj_dt, "chargename", "chargeid");
             return List_Result;
@@ -319,6 +367,8 @@ namespace logix.AutoCompleteClass
             List<string> List_Result = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer da_obj_Customer = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            da_obj_Customer.GetDataBase(Ccode);
             if (ChkType == "C")
             {
                 obj_dt = da_obj_Customer.GetLikeIndianCustomer(prefix.ToUpper());
@@ -356,6 +406,8 @@ namespace logix.AutoCompleteClass
                     {
 
                         DataAccess.ForwardingExports.BLDetails da_obj_FEBL = new DataAccess.ForwardingExports.BLDetails();
+                        string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                        da_obj_FEBL.GetDataBase(Ccode);
                         //obj_dt = da_obj_FEBL.GetLikeOTHERBLDetails(prefix.ToUpper(), int_bid, int_divisionid);
                         obj_dt = da_obj_FEBL.GetLikeOTHERBLDetails(prefix.ToUpper(), int_bid, int_divisionid);
                         List_Result = Utility.Fn_DatatableToList_Text(obj_dt, "blno");
@@ -363,6 +415,8 @@ namespace logix.AutoCompleteClass
                     else
                     {
                         DataAccess.ForwardingExports.JobInfo da_obj_FEJob = new DataAccess.ForwardingExports.JobInfo();
+                        string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                        da_obj_FEJob.GetDataBase(Ccode);
                         obj_dt = da_obj_FEJob.GetOTHERFEJobInfoMBL(prefix.ToUpper(), int_bid, int_divisionid);
                         List_Result = Utility.Fn_DatatableToList_Text(obj_dt, "mblno");
                     }
@@ -372,12 +426,16 @@ namespace logix.AutoCompleteClass
                     if (ChkType == "False")
                     {
                         DataAccess.ForwardingImports.BLDetails da_obj_FIBL = new DataAccess.ForwardingImports.BLDetails();
+                        string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                        da_obj_FIBL.GetDataBase(Ccode);
                         obj_dt = da_obj_FIBL.GetLikeOTHERIBL(prefix.ToUpper(), int_bid, int_divisionid);
                         List_Result = Utility.Fn_DatatableToList_Text(obj_dt, "blno");
                     }
                     else
                     {
                         DataAccess.ForwardingImports.JobInfo da_obj_FIJob = new DataAccess.ForwardingImports.JobInfo();
+                        string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                        da_obj_FIJob.GetDataBase(Ccode);
                         obj_dt = da_obj_FIJob.GetLikeOTHERMBLNo(prefix.ToUpper(), int_bid, int_divisionid);
                         List_Result = Utility.Fn_DatatableToList_Text(obj_dt, "mblno");
                     }
@@ -387,12 +445,16 @@ namespace logix.AutoCompleteClass
                     if (ChkType == "False")
                     {
                         DataAccess.AirImportExports.AIEBLDetails da_obj_AIBL = new DataAccess.AirImportExports.AIEBLDetails();
+                        string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                        da_obj_AIBL.GetDataBase(Ccode);
                         obj_dt = da_obj_AIBL.GetLikeOTHERAIEBLDetails(prefix.ToUpper(), Tran, int_bid, int_divisionid);
                         List_Result = Utility.Fn_DatatableToList_Text(obj_dt, "hawblno");
                     }
                     else
                     {
                         DataAccess.AirImportExports.AIEJobInfo da_obj_AEJob = new DataAccess.AirImportExports.AIEJobInfo();
+                        string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                        da_obj_AEJob.GetDataBase(Ccode);
                         obj_dt = da_obj_AEJob.GetLikeOTHERAIEJobMBLNo(prefix.ToUpper(), Tran, int_bid, int_divisionid);
                         List_Result = Utility.Fn_DatatableToList_Text(obj_dt, "mawblno");
                     }
@@ -400,6 +462,8 @@ namespace logix.AutoCompleteClass
                 else if (Tran == "CH")
                 {
                     DataAccess.CustomHousingAgent.JobInfo da_obj_CHABL = new DataAccess.CustomHousingAgent.JobInfo();
+                    string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                    da_obj_CHABL.GetDataBase(Ccode);
                     obj_dt = da_obj_CHABL.GetLikeOTHERDocno(prefix.ToUpper(), int_bid, int_divisionid);
                     List_Result = Utility.Fn_DatatableToList_Text(obj_dt, "docno");
                 }
@@ -408,6 +472,8 @@ namespace logix.AutoCompleteClass
             else
             {
                 DataAccess.ForwardingExports.BLDetailsWOJob FEBLWoJobj = new DataAccess.ForwardingExports.BLDetailsWOJob();
+                string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                FEBLWoJobj.GetDataBase(Ccode);
                 obj_dt = FEBLWoJobj.GetLikeBLDetailsWOJ(prefix.ToUpper(), int_bid, int_divisionid);
                 List_Result = Utility.Fn_DatatableToList_Text(obj_dt, "blno");
             }

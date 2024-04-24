@@ -989,94 +989,101 @@ top: 4px;
 
                     source: function (request, response) {
                         $("#<%=hf_agentid.ClientID %>").val(0);
-                        $.ajax({
-                            url: "../AE/AEJobInfo.aspx/Getagentname",
-                            data: "{ 'prefix': '" + request.term + "','strcustype':'P'}",
-                            dataType: "json",
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            success: function (data) {
+             $.ajax({
+                 url: "../AE/AEJobInfo.aspx/Getagentname",
+                 data: "{ 'prefix': '" + request.term + "','strcustype':'P'}",
+                 dataType: "json",
+                 type: "POST",
+                 contentType: "application/json; charset=utf-8",
+                 success: function (data) {
 
-                                response($.map(data.d, function (item) {
+                     response($.map(data.d, function (item) {
 
-                                    return {
-                                        label: item.split('~')[0],
-                                        val: item.split('~')[1]
-
-
-                                    }
-                                }))
-
-                            },
-
-                            error: function (response) {
-                                //alertify.alert(response.responseText);
-                            },
-                            failure: function (response) {
-                                //alertify.alert(response.responseText);
-                            }
-
-                        });
-                    },
+                         return {
+                             customername: item.customername,
+                             customerid: item.customerid,
+                             address: item.address
 
 
-                    <%--  select: function (event, i) {
-                        $("#<%=txt_agent.ClientID %>").val($.trim(i.item.label.split(',')[0]));
-                        $("#<%=hf_agentid.ClientID %>").val(i.item.val);
-                        $("#<%=txt_agent.ClientID %>").change();
-                        $("#<%=txt_agent.ClientID %>").val(i.item.address);
 
-                    },
-                    focus: function (event, i) {
-                        $("#<%=txt_agent.ClientID %>").val($.trim(i.item.label.split(',')[0]));
-                        $("#<%=hf_agentid.ClientID %>").val(i.item.val);
-                        $("#<%=txt_agent.ClientID %>").val($.trim(result));
-                        $("#<%=txt_agent.ClientID %>").val(i.item.address);
+                         }
+                     }))
+
+                 },
+
+                 error: function (response) {
+                     //alertify.alert(response.responseText);
+                 },
+                 failure: function (response) {
+                     //alertify.alert(response.responseText);
+                 }
+
+             });
+         },
 
 
-                    },
-                    change: function (event, i) {
-                        if (i.item) {
-                            $("#<%=txt_agent.ClientID %>").val($.trim(i.item.label.split(',')[0]));
-                            $("#<%=hf_agentid.ClientID %>").val(i.item.val);
-                            $("#<%=txt_agent.ClientID %>").val(i.item.address);
-                        }
+         <%--  select: function (event, i) {
+             $("#<%=txt_agent.ClientID %>").val($.trim(i.item.label.split(',')[0]));
+             $("#<%=hf_agentid.ClientID %>").val(i.item.val);
+             $("#<%=txt_agent.ClientID %>").change();
+             $("#<%=txt_agent.ClientID %>").val(i.item.address);
 
-                    },
+         },
+         focus: function (event, i) {
+             $("#<%=txt_agent.ClientID %>").val($.trim(i.item.label.split(',')[0]));
+             $("#<%=hf_agentid.ClientID %>").val(i.item.val);
+             $("#<%=txt_agent.ClientID %>").val($.trim(result));
+             $("#<%=txt_agent.ClientID %>").val(i.item.address);
 
-                    close: function (event, i) {
-                        var result = $("#<%=txt_agent.ClientID %>").val().toString();
-                         var res = result.substring(0, result.lastIndexOf(' ,'));
-                         var out = res.substring(0, res.lastIndexOf(' ,'));
-                         if (out != "") {
-                             $("#<%=txt_agent.ClientID %>").val($.trim(out));
-                        } else {
-                            $("#<%=txt_agent.ClientID %>").val($.trim(res));
-                        }
-                     },--%>
-                    select: function (event, i) {
-                        $("#<%=txt_agent.ClientID %>").val($.trim(i.item.label.split(' ,')[0]));
-                        $("#<%=txt_agent.ClientID %>").change();
-                        $("#<%=hf_agentid.ClientID %>").val(i.item.val);
-                    },
-                    focus: function (event, i) {
-                        $("#<%=txt_agent.ClientID %>").val($.trim(i.item.label.split(' ,')[0]));
-                        $("#<%=hf_agentid.ClientID %>").val(i.item.val);
-                    },
-                    change: function (event, i) {
-                        if (i.item) {
-                            $("#<%=txt_agent.ClientID %>").val($.trim(i.item.label.split(' ,')[0]));
-                            $("#<%=hf_agentid.ClientID %>").val(i.item.val);
-                        }
 
-                    },
-                    close: function (event, i) {
-                        var result = $("#<%=txt_agent.ClientID %>").val().toString().split(' ,')[0];
-                        $("#<%=txt_agent.ClientID %>").val($.trim(result));
-                    },
+         },
+         change: function (event, i) {
+             if (i.item) {
+                 $("#<%=txt_agent.ClientID %>").val($.trim(i.item.label.split(',')[0]));
+                 $("#<%=hf_agentid.ClientID %>").val(i.item.val);
+                 $("#<%=txt_agent.ClientID %>").val(i.item.address);
+             }
 
-                    minLength: 1
-                });
+         },
+
+         close: function (event, i) {
+             var result = $("#<%=txt_agent.ClientID %>").val().toString();
+              var res = result.substring(0, result.lastIndexOf(' ,'));
+              var out = res.substring(0, res.lastIndexOf(' ,'));
+              if (out != "") {
+                  $("#<%=txt_agent.ClientID %>").val($.trim(out));
+             } else {
+                 $("#<%=txt_agent.ClientID %>").val($.trim(res));
+             }
+          },--%>
+         select: function (event, i) {
+             $('#<%=txt_agent.ClientID%>').val(i.item.customername);
+             $("#<%=hf_agentid.ClientID %>").val(i.item.customerid);
+             $('#<%=txt_agent.ClientID%>').change();
+             return false;
+         },
+         focus: function (event, i) {
+             $('#<%=txt_agent.ClientID%>').val(i.item.customername);
+             return false;
+         },
+         change: function (event, i) {
+             $('#<%=txt_agent.ClientID%>').val(i.item.customername);
+             $("#<%=hf_agentid.ClientID %>").val(i.item.customerid);
+
+         }
+
+
+
+     })
+                    .data("autocomplete")._renderItem = function (ul, item) {
+
+
+                        return $("<li>")
+                            .data("item.autocomplete", item)
+                            .append("<a > <span> " + item.customername + "</span><br><span> " + item.address + "</span></a>")
+                            .appendTo(ul);
+
+                    };
             });
 
             $(document).ready(function () {
@@ -1333,10 +1340,11 @@ top: 4px;
 
     <!-- Breadcrumbs line End -->
     <div>
-        <div class="col-md-12">
+        <div class="col-md-12 maindiv">
 
             <div class="widget box" runat="server" id="div_iframe">
                 <div class="widget-header">
+                    <div>
                     <div style="float: left; margin: 0px 0.5% 0px 0px;">
                         <h4 class="hide"><i class="icon-umbrella"></i>
                             <asp:Label ID="lblheader" runat="server" Text="Job #"></asp:Label></h4>
@@ -1355,9 +1363,10 @@ top: 4px;
                     <div style="float: right; margin: 0px -0.5% 0px 0px;" class="log ico-log-sm">
                         <asp:LinkButton ID="logdetails" runat="server" ToolTip="Log" Style="text-decoration: none" OnClick="logdetails_Click"></asp:LinkButton>
                     </div>
-                </div>
-                <div class="widget-content">
-                    <div class="FormGroupContent4 FixedButtons">
+
+                        </div>
+
+                                        <div class="FixedButtons">
                         <div class="left_btn">
                                <div class="btn ico-proforma-sales-invoice">
        <asp:Button ID="Proinvoic" runat="server" Text="Profoma Sales Invoice" ToolTip="Profoma Sales Invoice" TabIndex="22" OnClick="Proinvoic_Click" />
@@ -1413,6 +1422,12 @@ top: 4px;
 
 
                     </div>
+
+
+
+                </div>
+                <div class="widget-content">
+                   
 
                     <div class="FormGroupContent4">
                          <div class="img">

@@ -2340,7 +2340,7 @@ namespace logix.ShipmentDetails
 
                 string Ccode = Convert.ToString(Session["Ccode"]);
                 string DBName = "Demo";
-                if (Ccode == "CH01")
+                if (Ccode == "SWNLOG")
                 {
                     DBName = "SL";
                     using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
@@ -2348,7 +2348,7 @@ namespace logix.ShipmentDetails
                         DBCS = reader.ReadLine();
                     }
                 }
-                else if (Ccode == "CH02")
+                else if (Ccode == "MARINAIR")
                 {
                     DBName = "MarinAir";
                     using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
@@ -2356,9 +2356,17 @@ namespace logix.ShipmentDetails
                         DBCS = reader.ReadLine();
                     }
                 }
-                if (Ccode == "CH03")
+              else  if (Ccode == "OCEANKARE")
                 {
                     DBName = "OceanKare";
+                    using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
+                    {
+                        DBCS = reader.ReadLine();
+                    }
+                }
+                else if (Ccode == "DEMO")
+                {
+                    DBName = "LogixDemo";
                     using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
                     {
                         DBCS = reader.ReadLine();

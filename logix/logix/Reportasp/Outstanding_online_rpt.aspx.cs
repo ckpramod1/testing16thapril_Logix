@@ -16,6 +16,7 @@ namespace logix.Reportasp
         DataAccess.Masters.MasterBranch master_branch = new DataAccess.Masters.MasterBranch();
         DataAccess.FAMaster.MasterLedger master_ledger = new DataAccess.FAMaster.MasterLedger();
         DataAccess.Masters.MasterCustomer master_cust = new DataAccess.Masters.MasterCustomer();
+        DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
         DataTable dtadd = new DataTable();
         DataTable DT_out_print = new DataTable();
         DataTable DT_Ledgerageing = new DataTable();
@@ -26,6 +27,26 @@ namespace logix.Reportasp
         int branchid, SubgroupID, LedgerID, CustomerID;
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+                Master_div.GetDataBase(Ccode);
+                Obj_log.GetDataBase(Ccode);
+                outsobj.GetDataBase(Ccode);
+                master_branch.GetDataBase(Ccode);
+                master_ledger.GetDataBase(Ccode);
+                master_cust.GetDataBase(Ccode);
+                masterObj.GetDataBase(Ccode);
+              
+
+
+
+
+            }
+
             try
             {
                 //if (Session["LoginUserName"] == null || Session["LoginEmpId"] == null || Session["LoginDivisionId"] == null || Session["LoginBranchid"] == null)
@@ -33,7 +54,7 @@ namespace logix.Reportasp
                 //    ScriptManager.RegisterStartupScript(this.Page, typeof(Page), "Master", "alertify.alert('Session TimeOut');window.open('','_top');", true);
                 //}
 
-                DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
+                //DataAccess.Masters.MasterDivision masterObj = new DataAccess.Masters.MasterDivision();
                 DataTable dtlogo = masterObj.Getlogo(Convert.ToInt32(Session["LoginDivisionId"]));
                 if (dtlogo.Rows.Count > 0)
                 {

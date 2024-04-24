@@ -306,19 +306,38 @@ namespace logix.AE
         }
 
         [WebMethod]
-        public static List<string> Getagentname(string prefix, string strcustype)
+        public static List<taskdetails> Getagentname(string prefix, string strcustype)
         {
             List<string> customer = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer da_obj_customerobj = new DataAccess.Masters.MasterCustomer();
             string Ccode = HttpContext.Current.Session["Ccode"].ToString();
             da_obj_customerobj.GetDataBase(Ccode);
-
             strcustype = "P";
 
             obj_dt = da_obj_customerobj.GetLikeCustomer(prefix.ToUpper(), strcustype);
-            customer = Utility.Fn_TableToList(obj_dt, "customer", "customerid");
-            return customer;
+            //customer = Utility.Fn_TableToList(obj_dt, "customer", "customerid");
+            List<taskdetails> dataList = new List<taskdetails>();
+            foreach (DataRow dtrow in obj_dt.Rows)
+            {
+                taskdetails details = new taskdetails();
+                details.customername = dtrow[0].ToString();
+                details.address = dtrow[2].ToString();
+                details.customerid = Convert.ToInt32(dtrow[3]);
+
+                dataList.Add(details);
+            }
+            return dataList;
+            //return customer;
+        }
+
+
+        public class taskdetails
+        {
+            public string customername { get; set; }
+            public string address { get; set; }
+            public int customerid { get; set; }
+
         }
 
         [WebMethod]

@@ -210,7 +210,7 @@ namespace logix.Home
                     // StrTranType = Session["StrTranType"].ToString();
                 }
                 else if (ddl_product.Text == "Air Exports")
-                {
+                { 
                     Session["StrTranType"] = "AE";
                     // StrTranType = Session["StrTranType"].ToString();
                 }

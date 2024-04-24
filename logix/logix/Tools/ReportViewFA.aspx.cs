@@ -94,7 +94,7 @@ namespace logix.Tools
             }
             else if (Ccode == "DEMO")
             {
-                string DBName = "Forwarding";
+                string DBName = "LogixDemo";
                 using (StreamReader reader = new StreamReader(@"C:\DataAccessLink-ConfirmBeforeDeletion\" + DBName + "\\DB.txt"))
                 {
                     DBCS = reader.ReadLine();

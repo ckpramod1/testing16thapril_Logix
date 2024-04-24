@@ -80,6 +80,23 @@ namespace logix.FAForms
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "GenerateLabelAfter();", true);
 
+
+            string Ccode = Convert.ToString(Session["Ccode"]);
+
+            if (Ccode != "")
+            {
+
+                da_obj_Log.GetDataBase(Ccode);
+                sobj1.GetDataBase(Ccode);
+                ledgerobj.GetDataBase(Ccode);
+                HREmpobj.GetDataBase(Ccode);
+                outsobj.GetDataBase(Ccode);
+              
+
+
+
+            }
+
             try
             {
                 ((ScriptManager)Master.FindControl("ScriptManager1")).RegisterPostBackControl(btnClear);
@@ -190,6 +207,8 @@ namespace logix.FAForms
             List<string> customername = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.FAMaster.MasterSubGroup sobj = new DataAccess.FAMaster.MasterSubGroup();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            sobj.GetDataBase(Ccode);
             string FADbname = HttpContext.Current.Session["FADbname"].ToString();
             obj_dt = sobj.GetLikesubGroupname4outstd(prefix.ToUpper(), FADbname);
             customername = Utility.Fn_DatatableToList(obj_dt, "subgroupname", "subgroupid");
@@ -202,6 +221,8 @@ namespace logix.FAForms
             List<string> customername = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            customerobj.GetDataBase(Ccode);
 
             obj_dt = (DataTable)HttpContext.Current.Session["customer"];
             DataView dt_ldg = new DataView(obj_dt);
@@ -226,6 +247,8 @@ namespace logix.FAForms
             List<string> customername = new List<string>();
             DataTable obj_dt = new DataTable();
             DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+            string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+            customerobj.GetDataBase(Ccode);
             obj_dt = (DataTable)HttpContext.Current.Session["Sales"];
             DataView dt_ldg = new DataView(obj_dt);
             dt_ldg.RowFilter = "salesname like '" + prefix.ToUpper() + "%'";
@@ -252,6 +275,8 @@ namespace logix.FAForms
                 DataTable obj_dt = new DataTable();
                 List<string> customername = new List<string>();
                 DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+                string Ccode = HttpContext.Current.Session["Ccode"].ToString();
+                customerobj.GetDataBase(Ccode);
 
                 if (hdf_name.Value != "")
                 {
@@ -1206,7 +1231,7 @@ namespace logix.FAForms
                     //return;
                 }
                 DataTable obj_dt = new DataTable();
-                DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+                //DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
 
                 obj_dt = (DataTable)HttpContext.Current.Session["Sales"];
                 DataView dt_ldg = new DataView(obj_dt);
@@ -1244,7 +1269,7 @@ namespace logix.FAForms
         protected void get_Ledger_filter()
         {
             DataTable obj_dt = new DataTable();
-            DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
+           // DataAccess.Masters.MasterCustomer customerobj = new DataAccess.Masters.MasterCustomer();
             if (Session["customer"] == null)
             {
                 return;
